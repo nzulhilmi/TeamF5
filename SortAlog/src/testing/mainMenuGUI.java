@@ -7,6 +7,7 @@ public class mainMenuGUI extends JFrame {
 	 * Create the frame.
 	 * @return 
 	*/
+	
 	public mainMenuGUI()
 	{
 		JFrame frame = new JFrame("TESTING");

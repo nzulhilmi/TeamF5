@@ -7,8 +7,6 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import SortAlgos;
-
 
 public class SortAlgosTest {
 	SortAlgos SortAlgos = new SortAlgos();

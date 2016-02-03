@@ -1,4 +1,4 @@
-package tests;
+package testing;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
@@ -7,7 +7,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import core.SortAlgos;
+import SortAlgos;
 
 
 public class SortAlgosTest {

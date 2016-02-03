@@ -12,7 +12,8 @@ public class mainMenuComponent extends JPanel
 {
 	public mainMenuComponent(mainMenu menu)
 	{
-		mainMenuPanel panel = new mainMenuPanel(menu);
+		mainMenuModel model = new mainMenuModel(menu);
+		mainMenuPanel panel = new mainMenuPanel(model);
 		setLayout(new BorderLayout());
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		

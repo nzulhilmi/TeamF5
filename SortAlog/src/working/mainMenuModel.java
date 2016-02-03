@@ -1,4 +1,4 @@
-package testing;
+package working;
 
 import java.util.Observable;
 /**
@@ -25,6 +25,5 @@ public class mainMenuModel extends Observable {
 	
 	public void setMenuType(Boolean b){
 		menu.setMenuType(b);
-		
 	}
 }

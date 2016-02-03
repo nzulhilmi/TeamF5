@@ -2,6 +2,7 @@ package testing;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class GUI extends JFrame {
@@ -10,8 +11,9 @@ public class GUI extends JFrame {
 	private JFrame frame;
 	/**
 	 * Create the frame.
+	 * @return 
 	 */
-	public GUI() {
+	public void GUIold() {
 		frame = new JFrame("main Menu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 249, 421);
@@ -27,5 +29,19 @@ public class GUI extends JFrame {
 		
 		lblSortalgoMainMenu.setVisible(true);
 		frame.setVisible(true);
+	}
+	
+	
+	public GUI()
+	{
+		JFrame frame = new JFrame("TESTING");
+		frame.setSize(200, 150);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		mainMenu mainMenu = new mainMenu();
+		mainMenuComponent comp = new mainMenuComponent(mainMenu);
+		
+		frame.add(comp);
+		frame.setVisible(true);	
 	}
 }

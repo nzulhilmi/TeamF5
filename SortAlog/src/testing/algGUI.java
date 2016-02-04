@@ -8,13 +8,15 @@ import javax.swing.JFrame;
  *
  */
 public class algGUI {
-	public algGUI()
+	private String sortType;
+	public algGUI(String sortType)
 	{
-		JFrame frame = new JFrame("NAME OF SORT");
+		this.sortType = sortType;
+		JFrame frame = new JFrame("SortAlgo : " + sortType);
 		frame.setSize(500, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		sortingAlgs sorts = new sortingAlgs();
+		sortingAlgs sort = new sortingAlgs(sortType);
 		//sortingAlgsComponent comp = new sortingAlgsComponent(mainMenu); NOT MADE YET
 		
 		//frame.add(comp);

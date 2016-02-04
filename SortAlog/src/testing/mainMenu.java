@@ -15,7 +15,7 @@ public class mainMenu {
 		switch (sort) {
 		case "bubble":
 			System.out.println("bubble sort selected");
-			
+			algGUI bubble = new algGUI(sort);
 			break;
 		case "PLACEHOLDER1":
 			System.out.println("PlaceHolder selected");

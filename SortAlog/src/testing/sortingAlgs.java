@@ -6,8 +6,16 @@ package testing;
  *
  */
 public class sortingAlgs {
-	public sortingAlgs(){
-//do nothing
+	public sortingAlgs(String sortType){
+		switch (sortType) {
+		case "bubble":
+			bubbleSort();
+			break;
+		case "PLACEHOLDER1" :
+			break;
+		default:
+			break;
+		}
 	}
 	public void bubbleSort(){
 		

@@ -19,7 +19,7 @@ public class SortAlgos {
 		 ArrayList<int[]> array = new ArrayList<int[]>();
 		 int[] currentStep = new int[n];
 		 currentStep = input;
-		 array.set(0, currentStep);
+		 array.add(input);
 		 
 		 //Fill with random integers
 		 /*for(i = 0; i < n; i++)
@@ -39,7 +39,7 @@ public class SortAlgos {
 					 swap = currentStep[j];
 					 currentStep[j] = currentStep[j+1];
 					 currentStep[j+1] = swap;
-					 array.add(currentStep);
+					 array.add(currentStep.clone());
 					 //fillStepsArray(array);
 				 }
 			 }

@@ -1,6 +1,7 @@
 package testing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestMain {
 
@@ -9,25 +10,17 @@ public class TestMain {
 	 */
 	public static void main(String[] args) {
 		SortAlgos sorts = new SortAlgos();
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		array.add(1);
-		array.add(1);
-		array.add(1);
-		array.add(1);
-		array.add(2);
-		array.add(2);
-		array.add(3);
-		array.add(4);
-		array.add(1);
-		array.add(2);
+		int[] array = new int[] {5, 7, 20, 13, 8, 2, 6, 19, 10, 17};
+
 		
-		ArrayList<ArrayList<Integer>> sorted = new ArrayList<ArrayList<Integer>>();
-		
+		ArrayList<int[]> sorted = new ArrayList<int[]>();
 		sorted = sorts.Bubble(array);
-		sorts.printArrayList(sorted.get(sorted.size()-1));
+		int[] result= sorted.get(sorted.size()-1);
+		
 		//Print the arraylist of arraylists
-		System.out.println();
-		for(ArrayList<Integer> innerList : sorted) {
+		System.out.println(Arrays.toString(result));
+		
+		for(int[] innerList : sorted) {
 		    for(Integer number : innerList) {
 		        System.out.print(number + ", ");
 		    }

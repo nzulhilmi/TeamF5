@@ -19,7 +19,7 @@ public class SortAlgos {
 		 ArrayList<int[]> array = new ArrayList<int[]>();
 		 int[] currentStep = new int[n];
 		 currentStep = input;
-		 array.add(input);
+		 array.add(input.clone());
 		 
 		 //Fill with random integers
 		 /*for(i = 0; i < n; i++)

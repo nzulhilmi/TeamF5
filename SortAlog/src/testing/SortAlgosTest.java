@@ -11,65 +11,106 @@ import org.junit.Test;
 
 public class SortAlgosTest {
 	SortAlgos SortAlgos = new SortAlgos();
-	ArrayList<Integer> expected1 = new ArrayList<Integer>();
-	ArrayList<Integer> actual1 = new ArrayList<Integer>();
-	ArrayList<Integer> expected2 = (ArrayList<Integer>) asList(1);
-	ArrayList<Integer> actual2 = (ArrayList<Integer>) asList(1);
-	ArrayList<Integer> expected3 = (ArrayList<Integer>) asList(1,2);
-	ArrayList<Integer> actual3 = (ArrayList<Integer>) asList(1,2);
-	ArrayList<Integer> expected4 = (ArrayList<Integer>) asList(1,2);
-	ArrayList<Integer> actual4 = (ArrayList<Integer>) asList(2,1);
-	ArrayList<Integer> expected5 = (ArrayList<Integer>) asList(1,1);
-	ArrayList<Integer> actual5 = (ArrayList<Integer>) asList(1,1);
-	ArrayList<Integer> expected6 = (ArrayList<Integer>) asList(1,2,3);
-	ArrayList<Integer> actual6 = (ArrayList<Integer>) asList(1,2,3);
-	ArrayList<Integer> expected7 = (ArrayList<Integer>) asList(1,2,3);
-	ArrayList<Integer> actual7 = (ArrayList<Integer>) asList(1,3,2);
-	ArrayList<Integer> expected8 = (ArrayList<Integer>) asList(1,2,3);
-	ArrayList<Integer> actual8 = (ArrayList<Integer>) asList(2,1,3);
-	ArrayList<Integer> expected9 = (ArrayList<Integer>) asList(1,2,3);
-	ArrayList<Integer> actual9 = (ArrayList<Integer>) asList(3,2,1);
-	ArrayList<Integer> expected10 = (ArrayList<Integer>) asList(0,1,2,3,4,5,6,7,8,9);
-	ArrayList<Integer> actual10 = (ArrayList<Integer>) asList(1,5,0,7,6,2,8,9,4,3);
+	// no input\
+	
+	int[] expected1 = new int[1];
+	int[] actual1 = new int[1];
+	// {1}
+	int[] expected2 = new int[] {1};
+	int[] actual2 = new int[] {1};
+	// {1,2}
+	int[] expected3 = new int[] {1,2};
+	int[] actual3 = new int[] {1,2};
+	// {2,1}
+	int[] expected4 = new int[] {1,2};
+	int[] actual4 = new int[] {2,1};
+	// {1,1}
+	int[] expected5 = new int[] {1,1};
+	int[] actual5 = new int[] {1,1};
+	// {1,2,3}
+	int[] expected6 = new int[] {1,2,3};
+	int[] actual6 = new int[] {1,2,3};
+	// {1,3,2}
+	int[] expected7 = new int[] {1,3,2};
+	int[] actual7 = new int[] {1,3,2};
+	// {2,1,3}
+	int[] expected8 = new int[] {2,1,3};
+	int[] actual8 = new int[] {2,1,3};
+	// {3,2,1}
+	int[] expected9 = new int[] {3,2,1};
+	int[] actual9 = new int[] {3,2,1};
+	// {1,5,0,7,6,2,8,9,4,3}
+	int[] expected10 = new int[] {1,5,0,7,6,2,8,9,4,3};
+	int[] actual10 = new int[] {1,5,0,7,6,2,8,9,4,3};
 	@Test
 	public void BubbleSortEmptyLyst_ShouldReturnEmptyList() {
-		Assert.assertTrue(expected1.equals(SortAlgos.Bubble(actual1)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual1);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected1.equals(result));
 	}
 	@Test
 	public void BubbleSortOneElement_ShouldReturnTheElement() {
-		Assert.assertTrue(expected2.equals(SortAlgos.Bubble(actual2)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual2);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected2.equals(result));
 	}
 	@Test
 	public void BubbleSortTwoElementsInOrder_ShouldReturnSameList() {
-		Assert.assertTrue(expected3.equals(SortAlgos.Bubble(actual3)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual3);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected3.equals(result));
 	}
 	@Test
 	public void BubbleSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
-		Assert.assertTrue(expected4.equals(SortAlgos.Bubble(actual4)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual4);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected4.equals(result));
 	}
 	@Test
 	public void BubbleSortTwoEqualElements_ShouldReturnElementsInOrder() {
-		Assert.assertTrue(expected5.equals(SortAlgos.Bubble(actual5)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual5);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected5.equals(result));
 	}
 	@Test
 	public void BubbleSortThreeElementsInOrder_ShouldReturnSortedList() {
-		Assert.assertTrue(expected6.equals(SortAlgos.Bubble(actual6)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual6);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected6.equals(result));
 	}
 	@Test
 	public void BubbleSortThreeElementsLastTwoSwaped_ShouldReturnSortedList() {
-		Assert.assertTrue(expected7.equals(SortAlgos.Bubble(actual7)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual7);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected7.equals(result));
 	}
 	@Test
 	public void BubbleSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {
-		Assert.assertTrue(expected8.equals(SortAlgos.Bubble(actual8)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual8);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected8.equals(result));
 	}
 	@Test
 	public void BubbleSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
-		Assert.assertTrue(expected9.equals(SortAlgos.Bubble(actual9)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual9);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected9.equals(result));
 	}
 	@Test
 	public void BubbleSortNElementsRandomOrder_ShouldReturnSortedList() {
-		Assert.assertTrue(expected10.equals(SortAlgos.Bubble(actual10)));
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.Bubble(actual10);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(expected10.equals(result));
 	}
 	
 

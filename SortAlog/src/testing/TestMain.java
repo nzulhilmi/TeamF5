@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 public class TestMain {
 
-	/**A class to check if sort algorithms work
+	/**A main class to check if sort algorithms works
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		SortAlgos sorts = new SortAlgos();
-		//int[] arr = {1,1,1,1,2,2,3,4,1,2};
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		array.add(1);
 		array.add(1);
@@ -22,10 +21,18 @@ public class TestMain {
 		array.add(1);
 		array.add(2);
 		
-		ArrayList<Integer> sorted = new ArrayList<Integer>();
+		ArrayList<ArrayList<Integer>> sorted = new ArrayList<ArrayList<Integer>>();
 		
 		sorted = sorts.Bubble(array);
-		sorts.printArrayList(sorted);
+		sorts.printArrayList(sorted.get(sorted.size()-1));
+		//Print the arraylist of arraylists
+		System.out.println();
+		for(ArrayList<Integer> innerList : sorted) {
+		    for(Integer number : innerList) {
+		        System.out.print(number + ", ");
+		    }
+		    System.out.println();
+		}
 	}
 
 }

@@ -8,13 +8,19 @@ import java.util.ArrayList;
  *
  */
 public class SortAlgos {
-	
-	public ArrayList<Integer> Bubble(ArrayList<Integer> input){
-		 int n=input.size(), i, j, swap;
+	/**
+	 * Implementation of bubble sort
+	 * @param input ArrayList to be sorted
+	 * @return An ArrayList of ArrayLists which is the steps of the 
+	 * algorithm and the last element is the sorted input list
+	 */
+	public ArrayList<ArrayList<Integer>> Bubble(ArrayList<Integer> input){
+		 
+		int n=input.size(), i, j, swap;
 		// Random randomnumber = new Random();
 		// int[] array = new int[n];
 		 ArrayList<Integer> array = new ArrayList<Integer>();
-		 ArrayList<Integer> steps = new ArrayList<Integer>();
+		 ArrayList<ArrayList<Integer>> steps = new ArrayList<ArrayList<Integer>>();
 		 
 		 //Fill with random integers
 		 for(i = 0; i < n; i++)
@@ -25,6 +31,7 @@ public class SortAlgos {
 			 
 		 }
 		 //fillStepsArray(array);
+		 steps.add(input);
 		 for(i=0; i<(n-1); i++){
 			 System.out.println("in i ");
 			 for(j=0; j<(n-i-1); j++){
@@ -34,16 +41,12 @@ public class SortAlgos {
 					 swap = array.get(j);
 					 array.set(j, array.get(j+1));
 					 array.set((j+1), swap);
-					 addStep(array, steps);
+					 steps.add(array);
 					 //fillStepsArray(array);
 				 }
 			 }
 		 }
-		 return array;
-	}
-private void addStep(ArrayList<Integer> array, ArrayList<Integer> steps) {
-		// TODO Auto-generated method stub
-		
+		 return steps;
 	}
 /*	
 	private void fillStepsArray(ArrayList<Integer> array) {
@@ -57,7 +60,7 @@ private void addStep(ArrayList<Integer> array, ArrayList<Integer> steps) {
 		print2DArray(steps, n);
 		
 	}
-*/
+
 	private void print2DArray(int[][] steps, int n) {
 		for(int r = 0 ; r < n; r++ ){
 			System.out.print("{ " );
@@ -68,7 +71,11 @@ private void addStep(ArrayList<Integer> array, ArrayList<Integer> steps) {
 		}
 		
 	}
-
+	*/
+/**
+ * Print out the content of an Array List
+ * @param input The given array list
+ */
 	public void printArrayList(ArrayList<Integer> input){
 		for(int i=0; i<input.size(); i++){
 			System.out.print(input.get(i)+", ");

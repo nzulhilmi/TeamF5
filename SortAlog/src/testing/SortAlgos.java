@@ -8,45 +8,47 @@ import java.util.ArrayList;
  *
  */
 public class SortAlgos {
-	/**
-	 * Implementation of bubble sort
-	 * @param input ArrayList to be sorted
-	 * @return An ArrayList of ArrayLists which is the steps of the 
-	 * algorithm and the last element is the sorted input list
-	 */
-	public ArrayList<ArrayList<Integer>> Bubble(ArrayList<Integer> input){
-		 
-		int n=input.size(), i, j, swap;
-		// Random randomnumber = new Random();
-		// int[] array = new int[n];
-		 ArrayList<Integer> array = new ArrayList<Integer>();
-		 ArrayList<ArrayList<Integer>> steps = new ArrayList<ArrayList<Integer>>();
+	
+	public ArrayList<int[]> Bubble(int[] input){
+		 int n = input.length, 
+			 i,
+			 j,
+			 swap;
+		 // Random randomnumber = new Random();
+		 // int[] array = new int[n];
+		 ArrayList<int[]> array = new ArrayList<int[]>();
+		 int[] currentStep = new int[n];
+		 currentStep = input;
+		 array.set(0, currentStep);
 		 
 		 //Fill with random integers
-		 for(i = 0; i < n; i++)
+		 /*for(i = 0; i < n; i++)
 		 {
-			// array[i] = input[i]; //randomnumber.nextInt();
-		//	 System.out.print(array[i] + " is " + input[i] + " || " );
+			 // array[i] = input[i]; //randomnumber.nextInt();
+			 // System.out.print(array[i] + " is " + input[i] + " || " );
 			 array.add(input.get(i));
 			 
-		 }
+		 }*/
 		 //fillStepsArray(array);
-		 steps.add(input);
 		 for(i=0; i<(n-1); i++){
-			 System.out.println("in i ");
+			 //System.out.println("in i ");
 			 for(j=0; j<(n-i-1); j++){
-				 System.out.println("in j ");
-				 if(array.get(j)>array.get(j+1)){
-					 System.out.println("in if ");
-					 swap = array.get(j);
-					 array.set(j, array.get(j+1));
-					 array.set((j+1), swap);
-					 steps.add(array);
+				 //System.out.println("in j ");
+				 if(currentStep[j]>currentStep[j+1]){
+					 //System.out.println("in if ");
+					 swap = currentStep[j];
+					 currentStep[j] = currentStep[j+1];
+					 currentStep[j+1] = swap;
+					 array.add(currentStep);
 					 //fillStepsArray(array);
 				 }
 			 }
 		 }
-		 return steps;
+		 return array;
+	}
+private void addStep(ArrayList<Integer> array, ArrayList<Integer> steps) {
+		
+		
 	}
 /*	
 	private void fillStepsArray(ArrayList<Integer> array) {
@@ -60,7 +62,7 @@ public class SortAlgos {
 		print2DArray(steps, n);
 		
 	}
-
+*/
 	private void print2DArray(int[][] steps, int n) {
 		for(int r = 0 ; r < n; r++ ){
 			System.out.print("{ " );
@@ -71,14 +73,10 @@ public class SortAlgos {
 		}
 		
 	}
-	*/
-/**
- * Print out the content of an Array List
- * @param input The given array list
- */
-	public void printArrayList(ArrayList<Integer> input){
-		for(int i=0; i<input.size(); i++){
-			System.out.print(input.get(i)+", ");
+
+	public void printArrayList(ArrayList<int[]> sorted){
+		for(int i=0; i<sorted.size(); i++){
+			System.out.print(sorted.get(i)+", ");
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package testing;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 /**
  * This is the main GUI class for the algorithms
  *
@@ -14,7 +15,7 @@ public class algGUI {
 		this.sortType = sortType;
 		JFrame frame = new JFrame("SortAlgo : " + sortType);
 		frame.setSize(500, 500);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		sortingAlgs sort = new sortingAlgs(sortType);
 		//sortingAlgsComponent comp = new sortingAlgsComponent(mainMenu); NOT MADE YET

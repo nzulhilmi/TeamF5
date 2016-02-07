@@ -14,7 +14,7 @@ public class TestMain {
 
 		
 		ArrayList<int[]> sorted = new ArrayList<int[]>();
-		sorted = sorts.Bubble(array);
+		sorted = sorts.bubbleSort(array);
 		int[] result= sorted.get(sorted.size()-1);
 		
 		//Print the arraylist of arraylists

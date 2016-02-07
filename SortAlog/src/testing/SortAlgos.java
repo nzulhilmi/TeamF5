@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class SortAlgos {
 	
-	public ArrayList<int[]> Bubble(int[] input){
+	public ArrayList<int[]> bubbleSort(int[] input){
 		 int n = input.length, 
 			 i,
 			 j,
@@ -26,7 +26,6 @@ public class SortAlgos {
 		 {
 			 // array[i] = input[i]; //randomnumber.nextInt();
 			 // System.out.print(array[i] + " is " + input[i] + " || " );
-			 array.add(input.get(i));
 			 
 		 }*/
 		 //fillStepsArray(array);
@@ -46,10 +45,7 @@ public class SortAlgos {
 		 }
 		 return array;
 	}
-private void addStep(ArrayList<Integer> array, ArrayList<Integer> steps) {
-		
-		
-	}
+
 /*	
 	private void fillStepsArray(ArrayList<Integer> array) {
 		int n = array.size();

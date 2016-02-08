@@ -10,8 +10,8 @@ import org.junit.Test;
 
 public class SortAlgosTest {
 	SortAlgos SortAlgos = new SortAlgos();
-	// no input\
 	
+	// no input\
 	int[] expected1 = new int[1];
 	int[] actual1 = new int[1];
 	// {1}
@@ -111,6 +111,75 @@ public class SortAlgosTest {
 		result = array.get(array.size()-1);
 		Assert.assertTrue(Arrays.equals(expected10, result));
 	}
-	
+	@Test
+	public void quickSortEmptyLyst_ShouldReturnEmptyList() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual1);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected1, result)); //(expected1, result)) expected1.equals(result));
+	}
+	@Test
+	public void quickSortOneElement_ShouldReturnTheElement() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual2);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected2, result));
+	}
+	@Test
+	public void quickSortTwoElementsInOrder_ShouldReturnSameList() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual3);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected3, result));
+	}
+	@Test
+	public void quickSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual4);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected4, result));
+	}
+	@Test
+	public void quickSortTwoEqualElements_ShouldReturnElementsInOrder() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual5);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected5, result));
+	}
+	@Test
+	public void quickSortThreeElementsInOrder_ShouldReturnSortedList() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual6);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected6, result));
+	}
+	@Test
+	public void quickSortThreeElementsLastTwoSwaped_ShouldReturnSortedList() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual7);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected7, result));
+	}
+	@Test
+	public void quickSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual8);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected8, result));
+	}
+	@Test
+	public void quickSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual9);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected9, result));
+	}
+	@Test
+	public void quickSortNElementsRandomOrder_ShouldReturnSortedList() {
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.quickSort(actual10);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected10, result));
+	}
 
 }

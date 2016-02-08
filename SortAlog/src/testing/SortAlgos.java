@@ -14,51 +14,67 @@ public class SortAlgos {
 			 i,
 			 j,
 			 swap;
-		 // Random randomnumber = new Random();
-		 // int[] array = new int[n];
 		 ArrayList<int[]> array = new ArrayList<int[]>();
 		 int[] currentStep = new int[n];
 		 currentStep = input;
 		 array.add(input.clone());
 		 
-		 //Fill with random integers
-		 /*for(i = 0; i < n; i++)
-		 {
-			 // array[i] = input[i]; //randomnumber.nextInt();
-			 // System.out.print(array[i] + " is " + input[i] + " || " );
-			 
-		 }*/
-		 //fillStepsArray(array);
 		 for(i=0; i<(n-1); i++){
-			 //System.out.println("in i ");
 			 for(j=0; j<(n-i-1); j++){
-				 //System.out.println("in j ");
 				 if(currentStep[j]>currentStep[j+1]){
-					 //System.out.println("in if ");
 					 swap = currentStep[j];
 					 currentStep[j] = currentStep[j+1];
 					 currentStep[j+1] = swap;
 					 array.add(currentStep.clone());
-					 //fillStepsArray(array);
 				 }
 			 }
 		 }
 		 return array;
 	}
 
-/*	
-	private void fillStepsArray(ArrayList<Integer> array) {
-		int n = array.size();
-		int steps[][] = new int[n][n];
-		for(int r = 0 ; r < n; r++ ){
-			for(int c = 0; c < n; c++){
-				steps[r]= array; 
-			}
-		}
-		print2DArray(steps, n);
+	int partition(int input[],ArrayList<int[]> array, int left, int right)
+{
+      int i = left, j = right;
+      int tmp;
+      int pivot = input[(left + right) / 2];
+     
+      while (i <= j) {
+            while (input[i] < pivot)
+                  i++;
+            while (input[j] > pivot)
+                  j--;
+            if (i <= j) {
+                  tmp = input[i];
+                  input[i] = input[j];
+                  input[j] = tmp;
+                  i++;
+                  j--;
+                  array.add(input.clone());
+            }
+      };
+     
+      return i;
+}
+ 
+	public void quickSortHelper(int input[],ArrayList<int[]> array, int left, int right) {
+      int index = partition(input, array, left, right);
+      if (left < index - 1)
+            quickSortHelper(input, array, left, index - 1);
+      if (index < right)
+            quickSortHelper(input, array, index, right);
+}
+
+	public ArrayList<int[]> quickSort(int[] input){
+		 int n = input.length;
+		 ArrayList<int[]> array = new ArrayList<int[]>();
+		 int[] currentStep = new int[n];
+		 currentStep = input;
+		 array.add(input.clone());
+		 quickSortHelper(input,array,0,input.length-1);
+		 
 		
+		 return array;
 	}
-*/
 	private void print2DArray(int[][] steps, int n) {
 		for(int r = 0 ; r < n; r++ ){
 			System.out.print("{ " );

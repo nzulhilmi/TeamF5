@@ -29,7 +29,6 @@ public class visualiser extends JPanel{
 		xCoord = panelWidth/10;
 		System.out.print(xCoord);
 		yCoord = panelHeight/4;
-		System.err.println(yCoord);
 		
 		//xCoord, yCoord, Size, Content
 		//boxes[1] = new box(xCoord, yCoord, boxSize, "1");

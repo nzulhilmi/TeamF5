@@ -20,13 +20,16 @@ public class visualiser extends JPanel{
 	public visualiser(algModel model, int x, int y/*,ArrayList<int[]> sorted*/){
 		super();
 		this.model = model;
-		panelWidth = 275;
-		panelHeight = 250;
+		//temp values
+		panelWidth = 800;
+		panelHeight = 300;
 		
 		//this.boxes = new box[numBoxes];
 		
-		xCoord = panelWidth/2;
-		yCoord = panelHeight/2;
+		xCoord = panelWidth/10;
+		System.out.print(xCoord);
+		yCoord = panelHeight/4;
+		System.err.println(yCoord);
 		
 		//xCoord, yCoord, Size, Content
 		//boxes[1] = new box(xCoord, yCoord, boxSize, "1");
@@ -36,7 +39,7 @@ public class visualiser extends JPanel{
 		{
 			if(i > 0)
 			{
-				xCoord = xCoord + boxSize + (boxSize/10);
+				xCoord = xCoord + boxSize + (boxSize/5);
 			}
 			 boxes[i] = new box(xCoord, yCoord, boxSize, String.valueOf(i+1)); //haneg content values
 		}

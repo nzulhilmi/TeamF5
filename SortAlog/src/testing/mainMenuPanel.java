@@ -1,5 +1,6 @@
 package testing;
 
+import java.awt.BorderLayout;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -22,7 +23,7 @@ public class mainMenuPanel extends JPanel{
 		this.model = model;
 		menuType = model.getMenuType();
 
-		JButton bubble = new JButton("bubble");
+		JButton bubble = new JButton("Bubble");
 		bubble.addActionListener(e -> model.setSort("bubble"));
 
 		JButton placeholder1 = new JButton("PLACEHOLDER1");
@@ -33,7 +34,6 @@ public class mainMenuPanel extends JPanel{
 		if(!model.getMenuType()){
 			menuButtonType = new JButton("Standard");
 			menuButtonType.addActionListener(e -> {model.setMenuType(true); invalidate();});
-		}else {
 			menuButtonType = new JButton("Advanced");
 			menuButtonType.addActionListener(e -> {model.setMenuType(false); invalidate();});
 		}

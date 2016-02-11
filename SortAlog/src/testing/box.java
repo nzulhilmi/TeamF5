@@ -15,7 +15,7 @@ public class box extends JComponent {
 	int size;
 	String content;
 	
-	public box (int xCoord, int yCoord, int size, String content /*String Colour*/){
+	public box (int xCoord, int yCoord, int size, String content /*, String Colour*/){
 
 		this.xCoord = xCoord;
 		this.yCoord = yCoord;
@@ -33,6 +33,6 @@ public class box extends JComponent {
 		g.setColor(Color.BLACK);
 		g.draw(box);
 		label.paint(g);
-		g.drawString(content, xCoord + (size/2), yCoord + (size/2));
+		g.drawString(content, xCoord + (size/2)-4, yCoord + (size/2)+5);
 	}
 }

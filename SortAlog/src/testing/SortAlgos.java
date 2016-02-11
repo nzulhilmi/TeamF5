@@ -8,12 +8,17 @@ import java.util.ArrayList;
  *
  */
 public class SortAlgos {
-	
+	/**
+	 * Bubble sort method
+	 * @param input An array that is to be sorted
+	 * @return An array list with the sorting process step by step
+	 */
 	public ArrayList<int[]> bubbleSort(int[] input){
 		 int n = input.length, 
 			 i,
 			 j,
 			 swap;
+		 //ArrayList of each step
 		 ArrayList<int[]> array = new ArrayList<int[]>();
 		 int[] currentStep = new int[n];
 		 currentStep = input;

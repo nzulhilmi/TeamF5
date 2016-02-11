@@ -1,6 +1,4 @@
 package testing;
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.Assert;

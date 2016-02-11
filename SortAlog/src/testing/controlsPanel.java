@@ -1,7 +1,5 @@
 package testing;
 
-import java.time.temporal.JulianFields;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -18,7 +16,7 @@ public class controlsPanel extends JPanel{
 			model.setSpeed(value);
 		});
 		slider.setSnapToTicks(true);
-		slider.setMajorTickSpacing(0 - 100/4);
+		slider.setMajorTickSpacing(100/4);
 		slider.setPaintLabels(true);
 		slider.setPaintTicks(true);
 		

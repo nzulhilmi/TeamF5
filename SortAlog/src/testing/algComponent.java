@@ -16,13 +16,13 @@ public class algComponent extends JPanel
 
 		JLabel title =  new JLabel();
 		String sortType = model.getSortTypeString();
-		//Capitalises first letter.
+		//Caps first letter.
 		String sortType1 = sortType.substring(0, 1).toUpperCase() + sortType.substring(1);
-		title.setText("Visulising : " + sortType1 + " Sort");
+		title.setText("Visualising : " + sortType1 + " Sort");
 		title.setHorizontalAlignment(getWidth()/2);
 		title.setFont(new Font("Helvetica", Font.BOLD, 20));
 		
-		visuliser vis = new visuliser(model);
+		visualiser vis = new visualiser(model, getWidth(), getHeight());
 		
 		add(title, BorderLayout.NORTH);
 		add(controlspanel, BorderLayout.SOUTH);

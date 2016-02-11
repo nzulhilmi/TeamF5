@@ -36,9 +36,16 @@ public class SortAlgos {
 		 }
 		 return array;
 	}
-
+	/**
+	 * Choosing the next pivot and swapping places
+	 * @param input
+	 * @param array
+	 * @param left
+	 * @param right
+	 * @return
+	 */
 	int partition(int input[],ArrayList<int[]> array, int left, int right)
-{
+	{
       int i = left, j = right;
       int tmp;
       int pivot = input[(left + right) / 2];
@@ -59,18 +66,29 @@ public class SortAlgos {
       };
      
       return i;
-}
- 
+	 }
+    /**
+     * 
+     * @param input
+     * @param array
+     * @param left
+     * @param right
+     */
 	public void quickSortHelper(int input[],ArrayList<int[]> array, int left, int right) {
       int index = partition(input, array, left, right);
       if (left < index - 1)
             quickSortHelper(input, array, left, index - 1);
       if (index < right)
             quickSortHelper(input, array, index, right);
-}
-
+	}
+	/**
+	 * Quick sort method
+	 * @param input An array that is to be sorted
+	 * @return An array list with the sorting process step by step
+	 */
 	public ArrayList<int[]> quickSort(int[] input){
 		 int n = input.length;
+		//ArrayList of each step
 		 ArrayList<int[]> array = new ArrayList<int[]>();
 		 int[] currentStep = new int[n];
 		 currentStep = input;
@@ -79,16 +97,6 @@ public class SortAlgos {
 		 
 		
 		 return array;
-	}
-	private void print2DArray(int[][] steps, int n) {
-		for(int r = 0 ; r < n; r++ ){
-			System.out.print("{ " );
-			for(int c = 0; c < n; c++){
-				System.out.print(steps[r][c] + ", " );
-			}
-			System.out.print(" }");
-		}
-		
 	}
 
 	public void printArrayList(ArrayList<int[]> sorted){

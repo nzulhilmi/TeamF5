@@ -14,8 +14,8 @@ public class TestMain {
 		int[] array = new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 		
 		ArrayList<int[]> sorted = new ArrayList<int[]>();
-		sorted = sorts.bubbleSort(array);
-		//sorted = sorts.quickSort(array);
+		//sorted = sorts.bubbleSort(array);
+		sorted = sorts.quickSort(array);
 		int[] result= sorted.get(sorted.size()-1);
 		
 		//Print the arraylist of arraylists

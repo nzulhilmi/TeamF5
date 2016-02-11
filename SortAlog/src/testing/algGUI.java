@@ -14,7 +14,7 @@ public class algGUI {
 	{
 		this.sortType = sortType;
 		JFrame frame = new JFrame("SortAlgo : " + sortType);
-		frame.setSize(550, 500);
+		frame.setSize(800, 400);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		sortingAlgs sort = new sortingAlgs(sortType);

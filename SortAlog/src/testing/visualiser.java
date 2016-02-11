@@ -12,8 +12,7 @@ public class visualiser extends JPanel{
 	private int panelHeight;
 	private	int xCoord;
 	private	int yCoord;
-	private	int Size = 100;
-	private int boxSize = 30;
+	private int boxSize = 50;
 	private int numBoxes = 10;//this is temp normally get from array length.
 	private box[] boxes = new box[numBoxes];;
 
@@ -37,9 +36,9 @@ public class visualiser extends JPanel{
 		{
 			if(i > 0)
 			{
-				xCoord = xCoord + Size;
+				xCoord = xCoord + boxSize + (boxSize/10);
 			}
-			 boxes[i] = new box(xCoord, yCoord, boxSize, "1");
+			 boxes[i] = new box(xCoord, yCoord, boxSize, String.valueOf(i+1)); //haneg content values
 		}
 	}
 	

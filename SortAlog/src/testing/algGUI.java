@@ -18,9 +18,9 @@ public class algGUI {
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		sortingAlgs sort = new sortingAlgs(sortType);
-		//sortingAlgsComponent comp = new sortingAlgsComponent(mainMenu); NOT MADE YET
+		algComponent comp = new algComponent(sort);
 		
-		//frame.add(comp);
+		frame.add(comp);
 		frame.setVisible(true);	
 	}
 

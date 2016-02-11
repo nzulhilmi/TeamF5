@@ -6,7 +6,9 @@ package testing;
  *
  */
 public class sortingAlgs {
+	public static String sortType;
 	public sortingAlgs(String sortType){
+		this.sortType = sortType;
 		switch (sortType) {
 		case "bubble":
 			bubbleSort();
@@ -19,6 +21,10 @@ public class sortingAlgs {
 	}
 	public void bubbleSort(){
 
+	}
+	
+	public static String getSortTypeString(){
+		return sortType;
 	}
 	
 }

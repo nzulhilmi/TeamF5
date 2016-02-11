@@ -19,6 +19,7 @@ public class mainMenu {
 			break;
 		case "PLACEHOLDER1":
 			System.out.println("PlaceHolder selected");
+			algGUI PLACEHOLDERGUI = new algGUI(sort);
 			break;
 		default:
 			break;

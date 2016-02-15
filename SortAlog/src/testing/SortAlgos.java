@@ -114,7 +114,7 @@ public class SortAlgos {
 	 * @return ArrayList<int[]> steps. Returns step
 	 * by step array list.
 	 */
-	public static ArrayList<int[]> algorithm(int[] input) {
+	public static ArrayList<int[]> insertionSort(int[] input) {
 		
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		steps.add(input.clone()); //add the input array to steps

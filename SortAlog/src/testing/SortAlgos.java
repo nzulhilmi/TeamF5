@@ -1,6 +1,7 @@
 package testing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Sorting algorithms to be used for visualisation
@@ -106,3 +107,37 @@ public class SortAlgos {
 	}
 }
 	
+
+	/**
+	 * Insertion sort algorithm.
+	 * @param input
+	 * @return ArrayList<int[]> steps. Returns step
+	 * by step array list.
+	 */
+	public static ArrayList<int[]> algorithm(int[] input) {
+		
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		steps.add(input.clone()); //add the input array to steps
+		
+		//the algorithm for insertion sort
+		int n = input.length;
+		for(int i = 1; i < n; i++) {
+						
+			int key = input[i]; //element to be compared
+			
+			int j = i - 1;
+			while( (j > -1) && (input[j] > key)) {
+				input[j+1] = input[j];
+				j--;
+			}
+			input[j+1] = key;
+			
+			//add to steps array list
+			steps.add(input.clone());
+		}
+		for(int i = 0; i < steps.size(); i++){
+			System.out.println(Arrays.toString(steps.get(i)));
+		}
+		
+		return steps;
+	}

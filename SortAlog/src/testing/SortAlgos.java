@@ -105,7 +105,7 @@ public class SortAlgos {
 			System.out.print(sorted.get(i)+", ");
 		}
 	}
-}
+
 	
 
 	/**
@@ -141,3 +141,4 @@ public class SortAlgos {
 		
 		return steps;
 	}
+}

@@ -1,5 +1,6 @@
 package testing;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,19 +12,21 @@ import javax.swing.Timer;
 public class controlsPanel extends JPanel{ 
 	algModel model;
 	private Timer timer;
-	private int Period;
+	private int period;
 	
-	JButton forward = new JButton(">>|");
+	JButton playSecret = new JButton("");
 	
 	public controlsPanel (algModel model){
 		super();
 		this.model = model;
-		this.Period = 1000;
-		this.timer = new Timer(1000, new MyTimerActionListener()); 
+		this.period = 1000;
+		this.timer = new Timer(period, new MyTimerActionListener()); 
 		JSlider slider = new JSlider();
 		slider.addChangeListener(e -> {
 			int value = slider.getValue();
 			model.setSpeed(value);
+			System.out.println("value: " + value);
+			period = 200 + 30*value;
 		});
 		slider.setSnapToTicks(true);
 		slider.setMajorTickSpacing(100/4);
@@ -39,22 +42,35 @@ public class controlsPanel extends JPanel{
 		JButton pause = new JButton("pause");
 		pause.addActionListener(e -> timer.stop());
 		
+		JButton forward = new JButton(">>|");
 		forward.addActionListener(e -> model.goForward());
 		
+		//JButton playSecret = new JButton("");
+		playSecret.addActionListener(e-> model.goForward());
+		//playSecret.setVisible(false);
+		//Color c = new Color(205-201-201);
+		playSecret.setOpaque(false);
+		playSecret.setContentAreaFilled(false);
+		playSecret.setBorderPainted(false);
+		
+		//forward.
 		add(slider);
 		add(back);
 		add(play);
 		add(pause);
 		add(forward);
+		add(playSecret);
+		
 	}
 	class MyTimerActionListener implements ActionListener {
 		  public void actionPerformed(ActionEvent e) {
 			if(model.getCurrent() < model.getBound()){
-				forward.doClick();
+				playSecret.doClick();
+				timer.setDelay(period);
 			}else{
 				timer.stop();
 			}
-		    System.out.println("1");
+		    //System.out.print("1");
 
 		  }
 		}

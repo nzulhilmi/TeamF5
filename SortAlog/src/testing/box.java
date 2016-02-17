@@ -35,4 +35,5 @@ public class box extends JComponent {
 		label.paint(g);
 		g.drawString(content, xCoord + (size/2)-4, yCoord + (size/2)+5);
 	}
+	
 }

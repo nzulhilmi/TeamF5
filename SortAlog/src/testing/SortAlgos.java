@@ -14,7 +14,7 @@ public class SortAlgos {
 	 * @param input An array that is to be sorted
 	 * @return An array list with the sorting process step by step
 	 */
-	public ArrayList<int[]> bubbleSort(int[] input){
+	public static ArrayList<int[]> bubbleSort(int[] input){
 		 int n = input.length, 
 			 i,
 			 j,
@@ -45,7 +45,7 @@ public class SortAlgos {
 	 * @param right
 	 * @return
 	 */
-	int partition(int input[],ArrayList<int[]> array, int left, int right)
+	static int partition(int input[],ArrayList<int[]> array, int left, int right)
 	{
       int i = left, j = right;
       int tmp;
@@ -75,7 +75,7 @@ public class SortAlgos {
      * @param left
      * @param right
      */
-	public void quickSortHelper(int input[],ArrayList<int[]> array, int left, int right) {
+	public static void quickSortHelper(int input[],ArrayList<int[]> array, int left, int right) {
       int index = partition(input, array, left, right);
       if (left < index - 1)
             quickSortHelper(input, array, left, index - 1);
@@ -87,7 +87,7 @@ public class SortAlgos {
 	 * @param input An array that is to be sorted
 	 * @return An array list with the sorting process step by step
 	 */
-	public ArrayList<int[]> quickSort(int[] input){
+	public static ArrayList<int[]> quickSort(int[] input){
 		 int n = input.length;
 		//ArrayList of each step
 		 ArrayList<int[]> array = new ArrayList<int[]>();

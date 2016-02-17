@@ -12,6 +12,9 @@ public class controlsPanel extends JPanel{
 	algModel model;
 	private Timer timer;
 	private int Period;
+	
+	JButton forward = new JButton(">>|");
+	
 	public controlsPanel (algModel model){
 		super();
 		this.model = model;
@@ -36,7 +39,6 @@ public class controlsPanel extends JPanel{
 		JButton pause = new JButton("pause");
 		pause.addActionListener(e -> timer.stop());
 		
-		JButton forward = new JButton(">>|");
 		forward.addActionListener(e -> model.goForward());
 		
 		add(slider);
@@ -48,7 +50,7 @@ public class controlsPanel extends JPanel{
 	class MyTimerActionListener implements ActionListener {
 		  public void actionPerformed(ActionEvent e) {
 			if(model.getCurrent() < model.getBound()){
-				model.goForward();
+				forward.doClick();
 			}else{
 				timer.stop();
 			}

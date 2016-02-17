@@ -65,8 +65,8 @@ public class controlsPanel extends JPanel{
 	class MyTimerActionListener implements ActionListener {
 		  public void actionPerformed(ActionEvent e) {
 			if(model.getCurrent() < model.getBound()){
-				playSecret.doClick();
 				timer.setDelay(period);
+				playSecret.doClick();
 			}else{
 				timer.stop();
 			}

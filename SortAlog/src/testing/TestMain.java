@@ -10,7 +10,8 @@ public class TestMain {
 	 */
 	public static void main(String[] args) {
 		SortAlgos sorts = new SortAlgos();
-		int[] array = new int[] {5, 7, 20, 13, 8, 2, 6, 19, 10, 17};
+		int[] array = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+		//int[] array = new int[] {5, 7, 20, 13, 8, 2, 6, 19, 10, 17};
 		//int[] array = new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 		
 		ArrayList<int[]> sorted = new ArrayList<int[]>();

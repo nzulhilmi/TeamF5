@@ -17,7 +17,7 @@ public class algGUI {
 		frame.setSize(800, 300);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
-		int[]input = {10, 2, 3, 4, 5, 6, 7, 8, 9, 1};
+		int[]input = {31, 56, 87, 12, 98, 22, 43, 131, 76, 5};
 		sortingAlgs sort = new sortingAlgs(sortType, input);
 		algComponent comp = new algComponent(sort);
 		

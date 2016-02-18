@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /**
  * Sorting algorithms to be used for visualisation
- * @author tanya
+ * @author Tanya
  *
  */
 public class SortAlgos {
@@ -100,6 +100,10 @@ public class SortAlgos {
 		 return array;
 	}
 
+	/**
+	 * Prints the passed Array List.
+	 * @param sorted the array list
+	 */
 	public void printArrayList(ArrayList<int[]> sorted){
 		for(int i=0; i<sorted.size(); i++){
 			System.out.print(sorted.get(i)+", ");

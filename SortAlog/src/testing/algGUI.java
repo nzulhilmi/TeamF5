@@ -16,8 +16,9 @@ public class algGUI {
 		JFrame frame = new JFrame("SortAlgo : " + sortType);
 		frame.setSize(800, 300);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-
-		sortingAlgs sort = new sortingAlgs(sortType);
+		
+		int[]input = {10, 2, 3, 4, 5, 6, 7, 8, 9, 1};
+		sortingAlgs sort = new sortingAlgs(sortType, input);
 		algComponent comp = new algComponent(sort);
 		
 		frame.add(comp);

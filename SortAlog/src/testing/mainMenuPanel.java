@@ -27,7 +27,7 @@ public class mainMenuPanel extends JPanel{
 		bubble.addActionListener(e -> model.setSort("bubble"));
 
 		JButton quick = new JButton("Quick");
-		quick.addActionListener(e -> model.setSort("Quick"));
+		quick.addActionListener(e -> model.setSort("quick"));
 		
 		JButton insertion = new JButton("Insertion");
 		insertion.addActionListener(e -> model.setSort("insertion"));

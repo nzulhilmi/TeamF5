@@ -11,7 +11,7 @@ public class mainMenuGUI extends JFrame {
 	public mainMenuGUI()
 	{
 		JFrame frame = new JFrame("SortAlgo Main Menu");
-		frame.setSize(200, 150);
+		frame.setSize(200, 250);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		mainMenu mainMenu = new mainMenu();

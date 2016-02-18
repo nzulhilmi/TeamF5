@@ -17,9 +17,13 @@ public class mainMenu {
 			System.out.println("bubble sort selected");
 			algGUI bubble = new algGUI(sort);
 			break;
-		case "PLACEHOLDER1":
-			System.out.println("PlaceHolder selected");
-			algGUI PLACEHOLDERGUI = new algGUI(sort);
+		case "quick":
+			System.out.println("quick sort selected");
+			algGUI quick = new algGUI("quick");
+			break;
+		case "insertion":
+			System.out.println("insertion sort selected");
+			algGUI insertion = new algGUI("insertion");
 			break;
 		default:
 			break;

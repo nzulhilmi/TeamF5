@@ -26,8 +26,11 @@ public class mainMenuPanel extends JPanel{
 		JButton bubble = new JButton("Bubble");
 		bubble.addActionListener(e -> model.setSort("bubble"));
 
-		JButton placeholder1 = new JButton("PLACEHOLDER1");
-		placeholder1.addActionListener(e -> model.setSort("PLACEHOLDER1"));
+		JButton quick = new JButton("Quick");
+		quick.addActionListener(e -> model.setSort("Quick"));
+		
+		JButton insertion = new JButton("Insertion");
+		insertion.addActionListener(e -> model.setSort("insertion"));
 
 		//can someone make this dynamic??????
 		//i'm out of ideas
@@ -40,10 +43,12 @@ public class mainMenuPanel extends JPanel{
 
 		ButtonGroup sorts = new ButtonGroup();
 		sorts.add(bubble);
-		sorts.add(placeholder1);
-
+		sorts.add(quick);
+		sorts.add(insertion);
+		
 		add(bubble);
-		add(placeholder1);
+		add(quick);
+		add(insertion);
 		add(menuButtonType);
 	}
 }

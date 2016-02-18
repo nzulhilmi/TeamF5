@@ -16,7 +16,7 @@ public class algComponent extends JPanel
 		//31, 56, 87, 12, 98, 22, 43, 131, 76, 5
 		int[]input = {10, 2, 3, 4, 5, 6, 7, 8, 9, 1};
 		
-		steps = SortAlgos.bubbleSort(input);
+		steps = sort.sorted;
 		
 		
 		algModel model = new algModel(sort, steps, null); //------------steps

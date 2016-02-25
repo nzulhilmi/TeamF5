@@ -153,7 +153,7 @@ public class SortAlgos {
 	 * @return An arraylist of steps.
 	 */
 	public static ArrayList<int[]> SelectionSort(ArrayList<int[]> steps, int[] input) {
-		
+		//add the input as the first step
 		steps.add(input.clone());
 		
 		int length = input.length;
@@ -169,6 +169,7 @@ public class SortAlgos {
 					input[i] = lower;
 					input[j] = higher;
 					
+					//add current step to array list of steps
 					steps.add(input.clone());
 					SelectionSort(steps, input);
 				}

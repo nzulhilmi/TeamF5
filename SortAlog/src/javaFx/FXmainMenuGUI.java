@@ -54,8 +54,13 @@ public class FXmainMenuGUI extends Application {
 		
 		BorderPane border = new BorderPane();
 		BorderPane borderTop = new BorderPane();
-		FlowPane pane = new FlowPane();
-		FlowPane pane2  = new FlowPane();
+		/*
+		 * the panes are where the the visulisation will run 
+		 * surronded by a scroll panel which will make it work.
+		 * will need to make an exit button too otherwise it will add endlessly
+		 */
+		//FXvisualiser pane = new FXvisualiser();
+		//FlowPane pane2  = new FlowPane();
 		
 		GridPane gridCenter = new GridPane(); 
 	    gridCenter.setStyle("-fx-background-color: red;-fx-padding: 10px;");

@@ -15,7 +15,7 @@ public class mainMenu {
 		switch (sort) {
 		case "bubble":
 			System.out.println("bubble sort selected");
-			FXvisualiser bubble = new FXvisualiser(sort);
+			//FXvisualiser bubble = new FXvisualiser();
 			break;
 		case "quick":
 			System.out.println("quick sort selected");

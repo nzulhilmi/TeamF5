@@ -1,8 +1,5 @@
 package working;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;

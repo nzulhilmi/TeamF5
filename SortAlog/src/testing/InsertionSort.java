@@ -1,7 +1,6 @@
 package testing;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Implementation of Insertion Sort algorithm.

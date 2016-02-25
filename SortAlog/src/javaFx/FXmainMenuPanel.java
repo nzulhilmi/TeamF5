@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 
 /**
  * Class containing all of the buttons for the main menu and relevant actions.
- * 
+ * USELESS
  * @author ElliottUpton
  *
  */

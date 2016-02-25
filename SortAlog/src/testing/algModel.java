@@ -1,10 +1,7 @@
 package testing;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Observable;
-
-import javax.swing.Timer;
 
 public class algModel extends Observable{
 	private int current;

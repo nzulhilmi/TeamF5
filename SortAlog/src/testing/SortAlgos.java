@@ -145,4 +145,35 @@ public class SortAlgos {
 		
 		return steps;
 	}
+	
+	/**
+	 * Selection sort algorithm
+	 * @param steps To store steps.
+	 * @param input
+	 * @return An arraylist of steps.
+	 */
+	public static ArrayList<int[]> SelectionSort(ArrayList<int[]> steps, int[] input) {
+		
+		steps.add(input.clone());
+		
+		int length = input.length;
+		
+		for (int i = 0; i < length - 1; i++) {
+			for (int j = i + 1; j < length; j++) {
+
+				if (input[j] < input[i]) {
+					
+					int lower = input[j];
+					int higher = input[i];
+
+					input[i] = lower;
+					input[j] = higher;
+					
+					steps.add(input.clone());
+					SelectionSort(steps, input);
+				}
+			}
+		}
+		return steps;
+	}
 }

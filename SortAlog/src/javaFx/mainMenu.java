@@ -15,15 +15,15 @@ public class mainMenu {
 		switch (sort) {
 		case "bubble":
 			System.out.println("bubble sort selected");
-			//TODO algGUI bubble = new algGUI(sort);
+			FXvisualiser bubble = new FXvisualiser(sort);
 			break;
 		case "quick":
 			System.out.println("quick sort selected");
-			//TODO algGUI quick = new algGUI("quick");
+			//algGUI quick = new algGUI("quick");
 			break;
 		case "insertion":
 			System.out.println("insertion sort selected");
-			//TODO algGUI insertion = new algGUI("insertion");
+			//algGUI insertion = new algGUI("insertion");
 			break;
 		default:
 			break;

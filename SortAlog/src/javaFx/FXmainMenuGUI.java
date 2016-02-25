@@ -5,6 +5,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -46,24 +49,45 @@ public class FXmainMenuGUI extends Application {
 		Text scenetitle = new Text("SortAlgo Main Menu");
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 		
+		Label scenetitle1 = new Label("SortAlgo Main Menu");
+		scenetitle1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		
+		BorderPane border = new BorderPane();
+		BorderPane borderTop = new BorderPane();
+		FlowPane pane = new FlowPane();
+		FlowPane pane2  = new FlowPane();
+		
+		GridPane gridCenter = new GridPane(); 
+	    gridCenter.setStyle("-fx-background-color: red;-fx-padding: 10px;");
+		gridCenter.setHgap(10); // spacing
+		gridCenter.setVgap(10); // spacing
+		gridCenter.setPadding(new Insets(10, 10, 10, 10));
+		
 		//set the layout method to grid - table
-		GridPane grid = new GridPane();
-		grid.setAlignment(Pos.TOP_CENTER); // location of the table
-		grid.setHgap(10); // spacing
-		grid.setVgap(10); // spacing
-		grid.setPadding(new Insets(10, 10, 10, 10)); // padding aroung the whole table
+		GridPane gridMenu = new GridPane();
+		gridMenu.setAlignment(Pos.TOP_LEFT); // location of the table
+		gridMenu.setHgap(10); // spacing
+		gridMenu.setVgap(10); // spacing
+		gridMenu.setPadding(new Insets(10, 10, 10, 10)); // padding aroung the whole table
+		
+		gridCenter.add(scenetitle1, 0, 0, 2, 1);
 
-		//create the scene
-		Scene scene = new Scene(grid, 200, 200);
 		
 		//add objects to the pane
-		grid.add(scenetitle, 0, 0, 2, 1);
-		grid.add(bubble, 1, 1);
-		grid.add(quick, 1, 2);
-		grid.add(insertion, 1, 3);
+		gridMenu.add(scenetitle, 0, 0, 2, 1);
+		gridMenu.add(bubble, 1, 1);
+		gridMenu.add(quick, 1, 2);
+		gridMenu.add(insertion, 1, 3);
+			
+		borderTop.setCenter(scenetitle);
+		border.setTop(borderTop);
+		border.setLeft(gridMenu);
+		border.setCenter(gridCenter);
 		
+		Scene menuScene = new Scene(border, 200, 200);
 		//add the scene to the pane
-		stage.setScene(scene);
+		stage.setScene(menuScene);
+		stage.setTitle("SortAlgo");
 		stage.show();
 	}
 }

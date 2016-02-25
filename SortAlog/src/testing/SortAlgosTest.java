@@ -260,4 +260,95 @@ public class SortAlgosTest {
 		result = array.get(array.size()-1);
 		Assert.assertTrue(Arrays.equals(expected10, result));
 	}
+	
+	//test methods for selection sort algorithm
+	@Test
+	public void SelectionSortEmptyLyst_ShouldReturnEmptyList() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual1);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected1, result));
+	}
+	
+	@Test
+	public void SelectionSortOneElement_ShouldReturnTheElement() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual2);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected2, result));
+	}
+	
+	@Test
+	public void SelectionSortTwoElementsInOrder_ShouldReturnSameList() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual3);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected3, result));
+	}
+	
+	@Test
+	public void SelectionSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual4);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected4, result));
+	}
+	
+	@Test
+	public void SelectionSortTwoEqualElements_ShouldReturnElementsInOrder() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual5);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected5, result));
+	}
+	
+	@Test
+	public void SelectionSortThreeElementsInOrder_ShouldReturnSortedList() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual6);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected6, result));
+	}
+	
+	@Test
+	public void SelectionSortThreeElementsLastTwoSwaped_ShouldReturnSortedList() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual7);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected7, result));
+	}
+	
+	@Test
+	public void SelectionSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual8);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected8, result));
+	}
+	
+	@Test
+	public void SelectionSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual9);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected9, result));
+	}
+	
+	@Test
+	public void SelectionSortNElementsRandomOrder_ShouldReturnSortedList() {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
+		int[] result= new int[expected1.length];
+		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual10);
+		result = array.get(array.size()-1);
+		Assert.assertTrue(Arrays.equals(expected10, result));
+	}
 }

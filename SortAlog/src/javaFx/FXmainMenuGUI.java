@@ -56,7 +56,8 @@ public class FXmainMenuGUI extends Application {
 		bubble.setOnAction(e -> {
 			//will need to pass the model as it contains all the variables
 			model.setSort("bubble");// this line might not be needed
-			flowPane.getChildren().add(new FXvisualiser(/*model*/)); //makes the flow pane
+			FXvisualiser vis = new FXvisualiser(/*model*/);
+			flowPane.getChildren().add(vis); //makes the flow pane
 		});
 
 		Button quick = new Button("Quick");

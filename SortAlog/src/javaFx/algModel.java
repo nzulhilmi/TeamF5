@@ -12,7 +12,7 @@ public class algModel extends Observable{
 	private visualiser vis;
 	private boolean loop;
 	private int n;
-	public algModel(sortingAlgs alg,ArrayList<int[]> steps, visualiser vis) {
+	public algModel(sortingAlgs alg, ArrayList<int[]> steps, visualiser vis) {
 		super();
 		this.current = 0;
 		this.steps = steps;

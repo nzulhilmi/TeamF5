@@ -18,9 +18,10 @@ public class FXcontrolPane extends GridPane {
 	algModel model;
 	private int period;
 
-	public FXcontrolPane(/* algModel model */) {
+	public FXcontrolPane(/* algModel model */) { //pass the model so it acts on the same thing
 		this.model = model;
 		this.period = 1000;
+		//make the slider, needs an action listener
 		Slider slider = new Slider();
 		slider.setSnapToTicks(true);
 		slider.setShowTickMarks(true);
@@ -30,7 +31,7 @@ public class FXcontrolPane extends GridPane {
 		slider.setValue(1);
 		slider.setMajorTickUnit(.5);
 
-
+		//buttons creation 
 		Button back = new Button("|<<");
 		back.setOnAction(e -> System.out.println("back") /* model.goBack() */);
 
@@ -43,12 +44,15 @@ public class FXcontrolPane extends GridPane {
 		Button forward = new Button(">>|");
 		forward.setOnAction(e -> System.out.println("forward") /* model.goForward() */);
 
+		//isn't working would be nice to get this working
 		Button close = new Button("Close");
 		//back.setOnAction(e -> getParent().close());
 		
+		//speed label
 		Text speed = new Text("Speed");
 		speed.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
 
+		//add all the controls into the grid
 		this.add(speed, 0, 1);
 		this.add(slider, 0, 2);
 		this.add(back, 1, 2);

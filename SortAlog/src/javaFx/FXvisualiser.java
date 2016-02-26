@@ -20,24 +20,25 @@ import testing.algModel;
 public class FXvisualiser extends BorderPane {
 	algModel model;
 
-	public FXvisualiser() {
+	public FXvisualiser() {//pass the model
 		this.model = model;
 		int numBoxes = 10;
 
-		Text panetitle = new Text(/* SortType + */"Sort");
+		Text panetitle = new Text(/* SortType + */"Sort"); // dynamically set the title
 		panetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 		
-		Pane pane = new Pane();
+		Pane pane = new Pane(); //visualiser
 		
-		this.setStyle("-fx-background-color: WHITE;");
-		this.setPrefSize(500, 300);
-		Circle circle = new Circle(50, Color.BLUE);
+		this.setStyle("-fx-background-color: WHITE;"); //background
+		this.setPrefSize(500, 300); //size
+		Circle circle = new Circle(50, Color.BLUE); //draw shape
 		circle.relocate(20, 20);
 		Rectangle rectangle = new Rectangle(100, 100, Color.RED);
 		rectangle.relocate(70, 70);
-		pane.getChildren().addAll(circle, rectangle);
+		pane.getChildren().addAll(circle, rectangle); //add everything to the pane
 		
-		FXcontrolPane controls = new FXcontrolPane();
+		FXcontrolPane controls = new FXcontrolPane();//add the controls to the paine
+		//set out the pain
 		this.setTop(panetitle);
 		this.setCenter(pane);
 		this.setBottom(controls);

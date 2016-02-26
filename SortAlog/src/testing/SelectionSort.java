@@ -6,6 +6,7 @@ public class SelectionSort {
 
     /**
      * @param args the command line arguments
+     * @author Simmi
      */
     public static void main(String[] args) {
      ArrayList<Integer> list = new ArrayList<Integer>();

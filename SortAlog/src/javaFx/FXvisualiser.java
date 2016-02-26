@@ -29,7 +29,7 @@ public class FXvisualiser extends BorderPane {
 		
 		Pane pane = new Pane();
 		
-		this.setStyle("-fx-background-color: PINK;");
+		this.setStyle("-fx-background-color: WHITE;");
 		this.setPrefSize(500, 300);
 		Circle circle = new Circle(50, Color.BLUE);
 		circle.relocate(20, 20);

@@ -43,7 +43,7 @@ public class FXmainMenuGUI extends Application {
 		FlowPane flowPane = new FlowPane();
 		ScrollPane scrollPane = new ScrollPane();
 		scrollPane.setContent(flowPane);
-		scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		border.setCenter(flowPane);
 		FlowPane flow = new FlowPane(Orientation.VERTICAL);
 		flow.setColumnHalignment(HPos.LEFT); // align labels on left
@@ -56,7 +56,6 @@ public class FXmainMenuGUI extends Application {
 		bubble.setOnAction(e -> {
 			model.setSort("bubble");// this line might not be needed
 			flowPane.getChildren().add(new FXvisualiser());
-			
 		});
 
 		Button quick = new Button("Quick");
@@ -71,7 +70,7 @@ public class FXmainMenuGUI extends Application {
 		Text scenetitle = new Text("SortAlgo Main Menu");
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
-		Label scenetitle1 = new Label("SortAlgo Main Menu");
+		Label scenetitle1 = new Label("SortAlgo");
 		scenetitle1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
 		BorderPane borderTop = new BorderPane();

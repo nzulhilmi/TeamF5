@@ -31,7 +31,7 @@ public class algComponent extends JPanel
 		title.setHorizontalAlignment(getWidth()/2);
 		title.setFont(new Font("Helvetica", Font.BOLD, 20));
 		
-		visualiser vis = new visualiser(model, getWidth(), getHeight(), steps, 0); //------------steps
+		Visualiser vis = new Visualiser(model, getWidth(), getHeight(), steps, 0); //------------steps
 		model.setVis(vis);
 		add(title, BorderLayout.NORTH);
 		add(controlspanel, BorderLayout.SOUTH);

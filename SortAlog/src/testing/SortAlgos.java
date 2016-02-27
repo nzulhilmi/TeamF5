@@ -201,26 +201,33 @@ public class SortAlgos {
 		int[] indexComparison = new int[2];
 
 		int length = input.length;
+		
+		
+		int temp;
+		for (int i = 0; i < length -1 ; i++) {
+			
+			int min=input[i];
+			int count=i;
+		for (int j = i + 1; j < length; j++) {
+				
 
-		for (int i = 0; i < length - 1; i++) {
-
-			for (int j = i + 1; j < length; j++) {
 				indexComparison[0] = i;
 				indexComparison[1] = j;
+				
 				steps.add(indexComparison.clone());
-				if (input[j] < input[i]) {
-
-					int lower = input[j];
-					int higher = input[i];
-
-					input[i] = lower;
-					input[j] = higher;
-
-					// add current step to array list of steps
-					steps.add(input.clone());
-					SelectionSort(steps, input);
+				if (input[j] < min) {
+				min=input[j];
+					
+				count++;
 				}
+				
+				
 			}
+		temp=input[i];
+		input[i]=min;
+		input[count]=temp;
+		steps.add(input.clone());
+		
 		}
 		return steps;
 	}

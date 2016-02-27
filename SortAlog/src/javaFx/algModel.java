@@ -9,14 +9,14 @@ import testing.visualiser;
 public class algModel extends Observable{
 	private int current;
 	private ArrayList<int[]> steps;
-	private visualiser vis;
+	private visualiser visualiser;
 	private boolean loop;
 	private int n;
 	public algModel(sortingAlgs alg, ArrayList<int[]> steps, visualiser vis) {
 		super();
 		this.current = 0;
 		this.steps = steps;
-		this.vis = vis;
+		this.visualiser = vis;
 		this.loop = false;
 		this.n = 20;
 
@@ -25,9 +25,9 @@ public class algModel extends Observable{
 	public void goBack(){
 		if(current > 0){
 			current--;
-			vis.setCurrentIndex(current);
+			visualiser.setCurrentIndex(current);
 			//vis.validate();
-			vis.forceRepaint();
+			visualiser.forceRepaint();
 		}
 		System.out.println("Current step: "+ (current+1));
 	}
@@ -48,8 +48,8 @@ public class algModel extends Observable{
 	public void goForward(){
 		if(current < steps.size()-1){
 			current++;
-			vis.setCurrentIndex(current);
-			vis.forceRepaint();
+			visualiser.setCurrentIndex(current);
+			visualiser.forceRepaint();
 		}
 		System.out.println("Current step: "+ (current+1));
 	}
@@ -82,7 +82,7 @@ public class algModel extends Observable{
 		
 	}
 	public void setVis(visualiser vis) {
-		this.vis = vis;
+		this.visualiser = vis;
 		
 	}
 	

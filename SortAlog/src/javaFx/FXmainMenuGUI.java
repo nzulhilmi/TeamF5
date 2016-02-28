@@ -38,8 +38,8 @@ public class FXmainMenuGUI extends Application {
 	public void start(Stage stage) {
 		mainMenu menu = new mainMenu(); // the core code
 		mainMenuModel model = new mainMenuModel(menu); // model
-		
-		
+
+
 		BorderPane border = new BorderPane(); // sets the top level to a border layout
 		FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
 		ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flow pane so that it is scrollable
@@ -49,7 +49,7 @@ public class FXmainMenuGUI extends Application {
 		FlowPane flow = new FlowPane(Orientation.VERTICAL);
 		flow.setColumnHalignment(HPos.LEFT); // align labels on left
 		flow.setPrefWrapLength(100); // preferred height = 200
-		
+
 		// button creation
 		Button bubble = new Button();
 		bubble.setText("Bubble"); //set test
@@ -59,17 +59,10 @@ public class FXmainMenuGUI extends Application {
 			model.setSort("bubble");// this line might not be needed
 			FXvisualiser vis = new FXvisualiser(/*model*/);
 			flowPane.getChildren().add(vis); //makes the flow pane
-			
-			//stage.setWidth(650);
-			//stage.setHeight(500);
-			
-			//Tanya&Simmi
-			//Managed to get the stage resized after adding the animation pane
-			//stage.setFullScreen(true); Don't want full screen
-			//stage.sizeToScene();
-		
+			stage.sizeToScene();
+
 		});
-		
+
 		Button quick = new Button("Quick");
 		quick.setMaxWidth(Double.MAX_VALUE);
 		quick.setOnAction(e -> model.setSort("quick"));
@@ -107,7 +100,7 @@ public class FXmainMenuGUI extends Application {
 		border.setTop(borderTop); //add the center to the top
 		border.setLeft(gridMenu); //add the main menu
 
-		Scene menuScene = new Scene(border, 200, 200); //create the scene
+		Scene menuScene = new Scene(border); //create the scene
 		// add the scene to the pane
 		stage.setScene(menuScene);
 		stage.setTitle("SortAlgo");

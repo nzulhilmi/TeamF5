@@ -6,11 +6,11 @@ import java.util.Observable;
 public class algModel extends Observable {
 	private int current;
 	private ArrayList<int[]> steps;
-	private Visualiser visualiser;
+	private visualiser visualiser;
 	private boolean loop;
 	private int n;
 
-	public algModel(sortingAlgs alg, ArrayList<int[]> steps, Visualiser vis) {
+	public algModel(sortingAlgs alg, ArrayList<int[]> steps, visualiser vis) {
 		super();
 		this.current = 0;
 		this.steps = steps;
@@ -70,7 +70,7 @@ public class algModel extends Observable {
 
 	}
 
-	public void setVis(Visualiser vis) {
+	public void setVis(visualiser vis) {
 		this.visualiser = vis;
 
 	}

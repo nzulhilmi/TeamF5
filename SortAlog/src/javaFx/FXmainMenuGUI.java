@@ -65,16 +65,14 @@ public class FXmainMenuGUI extends Application {
 			
 			//Tanya&Simmi
 			//Managed to get the stage resized after adding the animation pane
-			stage.setFullScreen(true);
+			//stage.setFullScreen(true); Don't want full screen
 			//stage.sizeToScene();
 		
 		});
 		
 		Button quick = new Button("Quick");
 		quick.setMaxWidth(Double.MAX_VALUE);
-		quick.setOnAction(e -> {
-			model.setSort("quick");
-				});
+		quick.setOnAction(e -> model.setSort("quick"));
 
 		Button insertion = new Button("Insertion");
 		insertion.setMaxWidth(Double.MAX_VALUE);

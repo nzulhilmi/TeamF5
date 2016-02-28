@@ -1,7 +1,6 @@
 package javaFx;
 
 import javafx.application.Application;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,14 +18,14 @@ import javafx.stage.Stage;
 
 /***
  * Create the Main Menu of the Application.
- * 
- * @author ElliottUpton
+ *
+ * @author ElliottUpton, Kiril N.
  *
  */
 public class FXmainMenuGUI extends Application {
 	/**
 	 * Create the Main Menu of the Application.
-	 * 
+	 *
 	 * @return
 	 */
 	public FXmainMenuGUI(Stage stage) {
@@ -43,21 +42,22 @@ public class FXmainMenuGUI extends Application {
 	@Override
 	public void start(Stage stage) {
 		mainMenu menu = new mainMenu(); // the core code
-		mainMenuModel model = new mainMenuModel(menu); // model
-		
+		int[] testInput = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+		//algModel algModel = new algModel(null, null, null); // model
+
 
 		BorderPane border = new BorderPane(); // sets the top level to a border layout
 		FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
 	    flowPane.setPadding(new Insets(10)); //padding 20 because of scroll bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
-		
+
 		ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flow pane so that it is scrollable
 	    scrollPane.setStyle("-fx-background-color:transparent;"); //no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
-		
-		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border 
+
+		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border
 
 
 		// button creation
@@ -66,25 +66,27 @@ public class FXmainMenuGUI extends Application {
 		bubble.setMaxWidth(Double.MAX_VALUE); //Makes the buttons all have the same size
 		bubble.setOnAction(e -> {
 			//will need to pass the model as it contains all the variables
-			model.setSort("bubble");// this line might not be needed
-			FXvisualiser vis = new FXvisualiser(/*model*/);
+			algModel algModel = new algModel(testInput,"bubble");
+			FXvisualiser vis = new FXvisualiser(algModel);
+			//model.setSort("bubble");// this line might not be needed
+			algModel.setVis(vis);
 			flowPane.getChildren().add(vis); //makes the flow pane
 			scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
 			scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen+1) + " Algorithms");
-			
+
 			//This stops the screen resizing past visible.
 			numOfSortsOnScreen++;
 			if(numOfSortsOnScreen <= 3)
-			stage.sizeToScene();
+				stage.sizeToScene();
 		});
 
 		Button quick = new Button("Quick");
 		quick.setMaxWidth(Double.MAX_VALUE);
-		quick.setOnAction(e -> model.setSort("quick"));
+		quick.setOnAction(e -> System.out.println("quick")/*model.setSort("quick")*/);
 
 		Button insertion = new Button("Insertion");
 		insertion.setMaxWidth(Double.MAX_VALUE);
-		insertion.setOnAction(e -> model.setSort("insertion"));
+		insertion.setOnAction(e -> System.out.println("insertion") /*model.setSort("insertion")*/);
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font selection
@@ -98,7 +100,7 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.setAlignment(Pos.TOP_LEFT); // location of the table
 		gridMenu.setHgap(10); // spacing
 		gridMenu.setVgap(10); // spacing
-		gridMenu.setPadding(new Insets(10, 10, 10, 10)); // padding around the table 
+		gridMenu.setPadding(new Insets(10, 10, 10, 10)); // padding around the table
 
 		// add objects to the grid pane
 		gridMenu.add(scenetitle, 0, 0, 2, 1);

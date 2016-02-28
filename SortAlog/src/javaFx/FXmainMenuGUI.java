@@ -33,22 +33,25 @@ public class FXmainMenuGUI extends Application {
 	public FXmainMenuGUI(Stage stage) {
 		start(stage);
 	}
-
+	public int numOfSortsOnScreen =0;
 	@Override
 	public void start(Stage stage) {
 		mainMenu menu = new mainMenu(); // the core code
 		mainMenuModel model = new mainMenuModel(menu); // model
-
+		
 
 		BorderPane border = new BorderPane(); // sets the top level to a border layout
 		FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
+		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
+	    flowPane.setPadding(new Insets(10)); //padding 20 because of scroll bars
+		
 		ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flow pane so that it is scrollable
+	    scrollPane.setStyle("-fx-background-color:transparent;"); //no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
-		border.setCenter(flowPane); // set the position of the scrollPane to the centre of the border 
-		FlowPane flow = new FlowPane(Orientation.VERTICAL);
-		flow.setColumnHalignment(HPos.LEFT); // align labels on left
-		flow.setPrefWrapLength(100); // preferred height = 200
+		
+		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border 
+
 
 		// button creation
 		Button bubble = new Button();
@@ -59,8 +62,12 @@ public class FXmainMenuGUI extends Application {
 			model.setSort("bubble");// this line might not be needed
 			FXvisualiser vis = new FXvisualiser(/*model*/);
 			flowPane.getChildren().add(vis); //makes the flow pane
+			scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+			
+			//This stops the screen resizing past visible.
+			numOfSortsOnScreen++;
+			if(numOfSortsOnScreen <= 3)
 			stage.sizeToScene();
-
 		});
 
 		Button quick = new Button("Quick");

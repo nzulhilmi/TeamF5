@@ -31,7 +31,7 @@ public class algModel extends Observable{
 		SortAlgos alg = new SortAlgos(type, input);
 		this.current = 0;
 		this.steps = alg.getSortedList();
-		//System.out.println(steps.get(0).length);
+		System.out.println(steps.get(0).length);
 		this.visualiser = vis;
 		this.loop = false;
 		this.n = 20;
@@ -43,7 +43,7 @@ public class algModel extends Observable{
 		SortAlgos alg = new SortAlgos(type, input);
 		this.current = 0;
 		this.steps = alg.getSortedList();
-		//System.out.println(steps.get(0).length);
+		System.out.println(steps.get(0)[0] +" "+ steps.get(0)[1]+" "+ steps.get(0)[2]);
 		//this.visualiser = vis;
 		this.loop = false;
 		this.n = 20;
@@ -75,6 +75,7 @@ public class algModel extends Observable{
 	public void goForward(){
 		if(current < steps.size()-1){
 			current++;
+			
 			//visualiser.setCurrentIndex(current);
 			//visualiser.forceRepaint();
 		}

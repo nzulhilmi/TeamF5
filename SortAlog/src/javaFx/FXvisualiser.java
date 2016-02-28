@@ -53,7 +53,7 @@ public class FXvisualiser extends BorderPane {
 		}
 		pane.getChildren().addAll(rectList); //add the sqares
 		pane.getChildren().addAll(textList); //add the text
-		FXcontrolPane controls = new FXcontrolPane();//add the controls to the pane
+		FXcontrolPane controls = new FXcontrolPane(model);//add the controls to the pane
 		//set out the pain
 		this.setTop(panetitle);
 		this.setCenter(pane);

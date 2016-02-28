@@ -67,7 +67,7 @@ public class FXmainMenuGUI extends Application {
 		bubble.setMaxWidth(Double.MAX_VALUE); //Makes the buttons all have the same size
 		bubble.setOnAction(e -> {
 			//will need to pass the model as it contains all the variables
-			algModel algModel = new algModel(testInput,"bubble");
+			algModel algModel = new algModel(testInput.clone(),"bubble");
 			FXvisualiser vis = new FXvisualiser(algModel);
 			//model.setSort("bubble");// this line might not be needed
 			algModel.setVis(vis);

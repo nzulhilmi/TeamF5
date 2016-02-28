@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 
 /**
  * Controls panel for the visualisation
- * 
+ *
  * @author ElliottUpton
  *
  */
@@ -19,7 +19,7 @@ public class FXcontrolPane extends GridPane {
 	algModel model;
 	private int period;
 
-	public FXcontrolPane(/* algModel model */) { //pass the model so it acts on the same thing
+	public FXcontrolPane(algModel model ) { //pass the model so it acts on the same thing
 		this.model = model;
 		this.period = 1000;
 		//make the slider, needs an action listener
@@ -32,23 +32,35 @@ public class FXcontrolPane extends GridPane {
 		slider.setValue(1);
 		slider.setMajorTickUnit(.5);
 
-		//buttons creation 
+		//buttons creation
 		Button back = new Button("|<<");
-		back.setOnAction(e -> System.out.println("back") /* model.goBack() */);
+		back.setOnAction(e -> {
+			System.out.println("back");
+			model.goBack();
+			});
 
 		Button play = new Button("play");
-		play.setOnAction(e -> System.out.println("play") /* timer.start() */);
+		play.setOnAction(e ->{
+			System.out.println("play");
+			//timer.start();
+			});
 
 		Button pause = new Button("pause");
-		pause.setOnAction(e -> System.out.println("pause")/* timer.stop() */);
+		pause.setOnAction(e ->{
+			System.out.println("pause");
+			//timer.stop();});
+		});
 
 		Button forward = new Button(">>|");
-		forward.setOnAction(e -> System.out.println("forward") /* model.goForward() */);
+		forward.setOnAction(e ->{
+			System.out.println("forward");
+			model.goForward();
+		});
 
 		//isn't working would be nice to get this working
 		Button close = new Button("Close");
 		//back.setOnAction(e -> getParent().getParent().remove(vis));
-		
+
 		//speed label
 		Text speed = new Text("Speed");
 		speed.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));

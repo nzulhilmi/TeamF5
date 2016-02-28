@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>application</name>
+			<type>2</type>
+			<location>/Users/ElliottUpton/Documents/OneDrive/University/Year2/Sem2/TeamProject/Code/testing/src/application</location>
+		</link>
+	</linkedResources>
 </projectDescription>

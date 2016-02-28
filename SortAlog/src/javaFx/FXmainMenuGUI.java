@@ -1,6 +1,7 @@
 package javaFx;
 
 import javafx.application.Application;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,14 +32,14 @@ public class FXmainMenuGUI extends Application {
 	public FXmainMenuGUI(Stage stage) {
 		start(stage);
 	}
-	
+
 	public int numOfSortsOnScreen = 0;
 	// new border pane so that the title is in the center
 	BorderPane borderTop = new BorderPane();
-	
+
 	//Secondary title for when a sort is opened
 	Label scenetitle = new Label("SortAlgo Main Menu");
-	
+
 	@Override
 	public void start(Stage stage) {
 		mainMenu menu = new mainMenu(); // the core code

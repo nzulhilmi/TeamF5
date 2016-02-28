@@ -3,7 +3,6 @@ package javaFx;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,7 +32,14 @@ public class FXmainMenuGUI extends Application {
 	public FXmainMenuGUI(Stage stage) {
 		start(stage);
 	}
-	public int numOfSortsOnScreen =0;
+	
+	public int numOfSortsOnScreen = 0;
+	// new border pane so that the title is in the center
+	BorderPane borderTop = new BorderPane();
+	
+	//Secondary title for when a sort is opened
+	Label scenetitle = new Label("SortAlgo Main Menu");
+	
 	@Override
 	public void start(Stage stage) {
 		mainMenu menu = new mainMenu(); // the core code
@@ -44,6 +50,7 @@ public class FXmainMenuGUI extends Application {
 		FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
 	    flowPane.setPadding(new Insets(10)); //padding 20 because of scroll bars
+		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
 		
 		ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flow pane so that it is scrollable
 	    scrollPane.setStyle("-fx-background-color:transparent;"); //no border
@@ -63,6 +70,7 @@ public class FXmainMenuGUI extends Application {
 			FXvisualiser vis = new FXvisualiser(/*model*/);
 			flowPane.getChildren().add(vis); //makes the flow pane
 			scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+			scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen+1) + " Algorithms");
 			
 			//This stops the screen resizing past visible.
 			numOfSortsOnScreen++;
@@ -79,15 +87,10 @@ public class FXmainMenuGUI extends Application {
 		insertion.setOnAction(e -> model.setSort("insertion"));
 
 		// Title Creation
-		Text scenetitle = new Text("SortAlgo Main Menu");
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font selection
 
-		//Secondary title for when a sort is opened
-		Label scenetitle1 = new Label("SortAlgo");
-		scenetitle1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-
 		// new border pane so that the title is in the center
-		BorderPane borderTop = new BorderPane();
+//		BorderPane borderTop = new BorderPane();
 
 		//Main Menu
 		// set the layout method to grid - table

@@ -1,7 +1,13 @@
 package javaFx;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -18,6 +24,7 @@ import javafx.scene.text.Text;
 public class FXcontrolPane extends GridPane {
 	algModel model;
 	private int period;
+	TextArea logdisplay = new TextArea();
 
 	public FXcontrolPane(algModel model ) { //pass the model so it acts on the same thing
 		this.model = model;
@@ -64,6 +71,14 @@ public class FXcontrolPane extends GridPane {
 		//speed label
 		Text speed = new Text("Speed");
 		speed.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
+		
+		//log
+		Button log = new Button("Log"); //to display the console
+		log.setOnAction(e-> {
+			System.out.println("log");
+			logdisplay.setPrefSize(200, 100); //size of the text area
+			this.add(logdisplay, 10, 1);
+		});
 
 		//add all the controls into the grid
 		this.add(speed, 0, 1);
@@ -73,6 +88,44 @@ public class FXcontrolPane extends GridPane {
 		this.add(pause, 3, 2);
 		this.add(forward, 4, 2);
 		this.add(close, 6, 2);
+		this.add(log, 7, 2);
+		
+		//for some strange/unexplained reasons, a thread is needed to run redirectSystemStreams.
+		new Thread () {
+			@Override public void run () {
+				redirectSystemStreams();
+			}
+		}.start();
+	}
+	
+	private void updateTextArea(final String text) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				logdisplay.appendText(text);
+			}
+		});
+	}
+		 
+	private void redirectSystemStreams() {
+		OutputStream out = new OutputStream() {
+			
+			@Override
+			public void write(int b) throws IOException {
+				updateTextArea(String.valueOf((char) b));
+			}
+		 
+		    @Override
+		    public void write(byte[] b, int off, int len) throws IOException {
+		    	updateTextArea(new String(b, off, len));
+		    }
+		 
+		    @Override
+		    public void write(byte[] b) throws IOException {
+		    	write(b, 0, b.length);
+		    }
+		};
 
+		System.setOut(new PrintStream(out, true));
+		System.setErr(new PrintStream(out, true));
 	}
 }

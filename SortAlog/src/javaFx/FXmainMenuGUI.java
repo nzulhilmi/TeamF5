@@ -1,6 +1,12 @@
 package javaFx;
 
+import java.io.Console;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -39,6 +46,8 @@ public class FXmainMenuGUI extends Application {
 
 	//Secondary title for when a sort is opened
 	Label scenetitle = new Label("SortAlgo Main Menu");
+	
+	TextArea logdisplay = new TextArea();
 
 	@Override
 	public void start(Stage stage) {
@@ -88,6 +97,22 @@ public class FXmainMenuGUI extends Application {
 		Button insertion = new Button("Insertion");
 		insertion.setMaxWidth(Double.MAX_VALUE);
 		insertion.setOnAction(e -> System.out.println("insertion") /*model.setSort("insertion")*/);
+		
+		
+		logdisplay.setPrefSize(200, 100); //size of the text area
+		logdisplay.setVisible(false);
+		
+		//log
+		Button log = new Button("Log"); //to display the console
+		log.setOnAction(e-> {
+			System.out.println("log");
+			if(logdisplay.isVisible()) {
+				logdisplay.setVisible(false);
+			}
+			else {
+				logdisplay.setVisible(true);
+			}
+		});
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font selection
@@ -108,15 +133,55 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(bubble, 1, 1);
 		gridMenu.add(quick, 1, 2);
 		gridMenu.add(insertion, 1, 3);
+		gridMenu.add(log, 1, 4);
 
 		borderTop.setCenter(scenetitle); //add the title to the center
 		border.setTop(borderTop); //add the center to the top
 		border.setLeft(gridMenu); //add the main menu
+		border.setRight(logdisplay); //add the console log
 
 		Scene menuScene = new Scene(border); //create the scene
 		// add the scene to the pane
 		stage.setScene(menuScene);
 		stage.setTitle("SortAlgo");
 		stage.show(); //show the stage
+		
+		new Thread () {
+			@Override
+			public void run () {
+				redirectSystemStreams();
+			}
+		}.start();
+	}
+	
+	private void updateTextArea(final String text) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				logdisplay.appendText(text);
+			}
+		});
+	}
+		 
+	private void redirectSystemStreams() {
+		OutputStream out = new OutputStream() {
+			
+			@Override
+			public void write(int b) throws IOException {
+				updateTextArea(String.valueOf((char) b));
+			}
+		 
+		    @Override
+		    public void write(byte[] b, int off, int len) throws IOException {
+		    	updateTextArea(new String(b, off, len));
+		    }
+		 
+		    @Override
+		    public void write(byte[] b) throws IOException {
+		    	write(b, 0, b.length);
+		    }
+		};
+
+		System.setOut(new PrintStream(out, true));
+		System.setErr(new PrintStream(out, true));
 	}
 }

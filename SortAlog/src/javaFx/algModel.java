@@ -5,9 +5,12 @@ package javaFx;
 
 import java.util.ArrayList;
 import java.util.Observable;
-
+import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import testing.sortingAlgs;
 import testing.visualiser;
+import javafx.scene.text.Text;
 /**
  * The .....
  * @author Kiril N.
@@ -53,6 +56,15 @@ public class algModel extends Observable{
 	public void goBack(){
 		if(current > 0){
 			current--;
+			for(int i=10;i<20;i++){
+				int a = steps.get(current)[i-10];
+				((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(i)).setText(Integer.toString(a));
+			}
+			Rectangle rect = ((Rectangle) ((Pane) visualiser.getChildren().get(1)).getChildren().get(1));
+			visualiser.animation(rect);
+			//System.out.println(visualiser.getChildren().get(1).toString());
+			//((Rectangle) ((Pane) visualiser.getChildren().get(1)).getChildren().get(1)).setFill(Color.BLUE);
+			//((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(10)).setText("0");
 			//visualiser.setCurrentIndex(current);
 			//visualiser.forceRepaint();
 		}
@@ -75,7 +87,10 @@ public class algModel extends Observable{
 	public void goForward(){
 		if(current < steps.size()-1){
 			current++;
-			
+			for(int i=10;i<20;i++){
+				int a = steps.get(current)[i-10];
+				((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(i)).setText(Integer.toString(a));
+			}
 			//visualiser.setCurrentIndex(current);
 			//visualiser.forceRepaint();
 		}

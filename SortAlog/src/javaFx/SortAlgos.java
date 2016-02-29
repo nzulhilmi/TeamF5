@@ -70,16 +70,17 @@ public class SortAlgos {
 		// The sorting loop
 		for (i = 0; i < (n - 1); i++) {
 			for (j = 0; j < (n - i - 1); j++) {
-				indexComparison[0] = j;
-				indexComparison[1] = j + 1;
-				steps.add(indexComparison.clone());
-
 				// The comparison
 				if (currentStep[j] > currentStep[j + 1]) {
 					swap = currentStep[j];
 					currentStep[j] = currentStep[j + 1];
 					currentStep[j + 1] = swap;
 					steps.add(currentStep.clone());
+				}else{
+					indexComparison[0] = j;
+					indexComparison[1] = j + 1;
+					steps.add(indexComparison.clone());
+
 				}
 			}
 		}

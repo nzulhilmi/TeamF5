@@ -1,14 +1,20 @@
 package javaFx;
 
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
+import javafx.util.Duration;
 
 
 /**
@@ -47,6 +53,7 @@ public class FXvisualiser extends BorderPane {
 			rectList[i].setArcHeight(15);
 			rectList[i].setArcWidth(15);
 			rectList[i].relocate(50+50*i, 50);
+			//rectList[i].
 			textList[i] = new Text(model.getCurrentBoxContent(i));
 			textList[i].setBoundsType(TextBoundsType.VISUAL);
 			textList[i].relocate(65+50*i, 65);
@@ -58,6 +65,20 @@ public class FXvisualiser extends BorderPane {
 		this.setTop(panetitle);
 		this.setCenter(pane);
 		this.setBottom(controls);
+	}
+	public void animation(Rectangle rect){
+		Path path = new Path();
+		path.getElements().add(new MoveTo(20,20));
+		path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
+		path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
+		PathTransition pathTransition = new PathTransition();
+		pathTransition.setDuration(Duration.millis(4000));
+		pathTransition.setPath(path);
+		pathTransition.setNode(rect);
+		pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathTransition.setCycleCount(Timeline.INDEFINITE);
+		pathTransition.setAutoReverse(true);
+		pathTransition.play();
 	}
 
 	//public void setCurrentIndex(int current) {}

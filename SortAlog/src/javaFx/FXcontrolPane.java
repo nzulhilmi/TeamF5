@@ -74,10 +74,18 @@ public class FXcontrolPane extends GridPane {
 		
 		//log
 		Button log = new Button("Log"); //to display the console
+		
+		logdisplay.setPrefSize(200, 100); //size of the text area
+		logdisplay.setVisible(false);
+		
 		log.setOnAction(e-> {
 			System.out.println("log");
-			logdisplay.setPrefSize(200, 100); //size of the text area
-			this.add(logdisplay, 10, 1);
+			if(logdisplay.isVisible()) {
+				logdisplay.setVisible(false);
+			}
+			else {
+				logdisplay.setVisible(true);
+			}
 		});
 
 		//add all the controls into the grid
@@ -89,6 +97,7 @@ public class FXcontrolPane extends GridPane {
 		this.add(forward, 4, 2);
 		this.add(close, 6, 2);
 		this.add(log, 7, 2);
+		this.add(logdisplay, 10, 2);
 		
 		//for some strange/unexplained reasons, a thread is needed to run redirectSystemStreams.
 		new Thread () {

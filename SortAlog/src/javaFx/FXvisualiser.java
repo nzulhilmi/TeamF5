@@ -36,7 +36,8 @@ public class FXvisualiser extends BorderPane {
 		int numBoxes = model.getSize();
 		//System.out.println("model size = "+ model.getSize());
 
-		Text panetitle = new Text(/* SortType + */"Sort"); // dynamically set the title
+		Text panetitle = new Text(model.getSortTypeString() + " Sort"); // dynamically set the title
+		System.err.println(model.getSortTypeString());
 		panetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
 		Pane pane = new Pane(); //visualiser

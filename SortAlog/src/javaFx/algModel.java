@@ -1,6 +1,3 @@
-/*
- *
- */
 package javaFx;
 
 import java.util.ArrayList;
@@ -13,7 +10,7 @@ import testing.visualiser;
 import javafx.scene.text.Text;
 /**
  * The .....
- * @author Kiril N.
+ * @author Kiril N. Elliott Upton
  *
  */
 public class algModel extends Observable{
@@ -22,6 +19,7 @@ public class algModel extends Observable{
 	private FXvisualiser visualiser;
 	private boolean loop;
 	private int n;
+	public String type;
 
 	/**
 	 * Instantiates a new algorithm model.
@@ -31,6 +29,7 @@ public class algModel extends Observable{
 	 */
 	public algModel(int[] input, FXvisualiser vis,String type) {
 		super();
+		this.type = type;
 		SortAlgos alg = new SortAlgos(type, input);
 		this.current = 0;
 		this.steps = alg.getSortedList();
@@ -133,8 +132,8 @@ public class algModel extends Observable{
 	}
 
 	public String getSortTypeString() {
-		String sort = sortingAlgs.getSortTypeString();
-		return sort;
+		//String sort = sortingAlgs.getSortTypeString();
+		return type;
 	}
 	public int getBound() {
 		return steps.size() -1;

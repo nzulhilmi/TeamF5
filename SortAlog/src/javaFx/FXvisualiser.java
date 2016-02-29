@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcTo;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.MoveTo;
@@ -56,7 +57,9 @@ public class FXvisualiser extends BorderPane {
 			//rectList[i].
 			textList[i] = new Text(model.getCurrentBoxContent(i));
 			textList[i].setBoundsType(TextBoundsType.VISUAL);
-			textList[i].relocate(65+50*i, 65);
+			textList[i].relocate(50+50*i, 50);
+			textList[i].translateXProperty().set(20);
+			textList[i].translateYProperty().set(25);
 		}
 		pane.getChildren().addAll(rectList); //add the sqares
 		pane.getChildren().addAll(textList); //add the text
@@ -66,19 +69,29 @@ public class FXvisualiser extends BorderPane {
 		this.setCenter(pane);
 		this.setBottom(controls);
 	}
-	public void animation(Rectangle rect){
+	public void animation(Rectangle rect, Text text){
 		Path path = new Path();
 		path.getElements().add(new MoveTo(20,20));
-		path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
-		path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
+		path.getElements().add(new ArcTo(50, 50, 50, 200, 20, false, false));
+		//path.getElements().add(new CubicCurveTo(20, 100, 20, 200, 20, 200));
+		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
+		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(4000));
+		pathTransition.setDuration(Duration.millis(2000));
+		PathTransition pathTransition2 =new PathTransition();
+		pathTransition2.setDuration(Duration.millis(2000));
 		pathTransition.setPath(path);
+		pathTransition2.setPath(path);
 		pathTransition.setNode(rect);
-		pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathTransition2.setNode(text);
+		//pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 		pathTransition.setCycleCount(Timeline.INDEFINITE);
 		pathTransition.setAutoReverse(true);
+		//pathTransition2.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathTransition2.setCycleCount(Timeline.INDEFINITE);
+		pathTransition2.setAutoReverse(true);
 		pathTransition.play();
+		pathTransition2.play();
 	}
 
 	//public void setCurrentIndex(int current) {}

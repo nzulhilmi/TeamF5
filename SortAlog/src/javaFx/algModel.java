@@ -58,10 +58,13 @@ public class algModel extends Observable{
 			current--;
 			for(int i=10;i<20;i++){
 				int a = steps.get(current)[i-10];
-				((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(i)).setText(Integer.toString(a));
+				((Text)((Pane) visualiser.getChildren().get(1)).getChildren().get(i)).setText(Integer.toString(a));
+
 			}
+			Text text =	((Text)((Pane) visualiser.getChildren().get(1)).getChildren().get(11));
 			Rectangle rect = ((Rectangle) ((Pane) visualiser.getChildren().get(1)).getChildren().get(1));
-			visualiser.animation(rect);
+			visualiser.animation(rect, text);
+
 			//System.out.println(visualiser.getChildren().get(1).toString());
 			//((Rectangle) ((Pane) visualiser.getChildren().get(1)).getChildren().get(1)).setFill(Color.BLUE);
 			//((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(10)).setText("0");

@@ -57,21 +57,36 @@ public class algModel extends Observable{
 	public void goBack(){
 		if(current > 0){
 			current--;
-			for(int i=10;i<20;i++){
-				int a = steps.get(current)[i-10];
-				((Text)((Pane) visualiser.getChildren().get(1)).getChildren().get(i)).setText(Integer.toString(a));
-
+			visualiser.resetRectColor();
+			visualiser.resetRectangles();
+			if (steps.get(current).length!=2){
+				int right = steps.get(current+1)[0];
+				int left = steps.get(current+1)[1];
+				Text text = ((Text)((Pane) 				visualiser.getChildren().get(1)).getChildren().get(10+left));
+				Rectangle rect = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
+				Text text2 = ((Text)((Pane) 			visualiser.getChildren().get(1)).getChildren().get(10+right));
+				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
+				visualiser.animationBotRight(rect, text,right - left);
+				visualiser.animationTopLeft(rect2, text2,right- left);
+			}else{
+				int right = steps.get(current)[0];
+				int left = steps.get(current)[1];
+				Rectangle rect = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
+				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
+				visualiser.animationComparison(rect, rect2);
 			}
-			Text text =	((Text)((Pane) visualiser.getChildren().get(1)).getChildren().get(11));
-			Rectangle rect = ((Rectangle) ((Pane) visualiser.getChildren().get(1)).getChildren().get(1));
-			visualiser.animation(rect, text);
 
+		}
 			//System.out.println(visualiser.getChildren().get(1).toString());
 			//((Rectangle) ((Pane) visualiser.getChildren().get(1)).getChildren().get(1)).setFill(Color.BLUE);
 			//((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(10)).setText("0");
 			//visualiser.setCurrentIndex(current);
 			//visualiser.forceRepaint();
-		}
+			/*
+			for(int i=10;i<20;i++){
+			int a = steps.get(current)[i-10];
+			((Text)((Pane) visualiser.getChildren().get(1)).getChildren().get(i)).setText(Integer.toString(a));
+			*/
 		System.out.println("Current step: "+ (current+1));
 	}
 
@@ -91,13 +106,34 @@ public class algModel extends Observable{
 	public void goForward(){
 		if(current < steps.size()-1){
 			current++;
+			visualiser.resetRectColor();
+			visualiser.resetRectangles();
+			if (steps.get(current).length!=2){
+				int right = steps.get(current-1)[0];
+				int left = steps.get(current-1)[1];
+				Text text = ((Text)((Pane) 				visualiser.getChildren().get(1)).getChildren().get(10+left));
+				Rectangle rect = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
+				Text text2 = ((Text)((Pane) 			visualiser.getChildren().get(1)).getChildren().get(10+right));
+				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
+				visualiser.animationBotRight(rect, text,right - left);
+				visualiser.animationTopLeft(rect2, text2,right- left);
+			}else{
+				int right = steps.get(current)[0];
+				int left = steps.get(current)[1];
+				Rectangle rect = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
+				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
+				visualiser.animationComparison(rect, rect2);
+			}
+
+			/*
 			for(int i=10;i<20;i++){
 				int a = steps.get(current)[i-10];
 				((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(i)).setText(Integer.toString(a));
-			}
+			}*/
+
 			//visualiser.setCurrentIndex(current);
 			//visualiser.forceRepaint();
-		}
+			}
 		System.out.println("Current step: "+ (current+1));
 	}
 	/*
@@ -152,7 +188,7 @@ public class algModel extends Observable{
 		res = getCurrentList()[i];
 		return String.valueOf(res);
 	}
-	
+
 	public int getID() {
 		return this.intID;
 	}

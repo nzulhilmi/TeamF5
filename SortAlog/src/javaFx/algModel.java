@@ -44,6 +44,7 @@ public class algModel extends Observable{
 	public algModel(int[] input, String type, int m) {
 		super();
 		SortAlgos alg = new SortAlgos(type, input);
+		this.type = type;
 		this.current = 0;
 		this.steps = alg.getSortedList();
 		System.out.println(steps.get(0)[0] +" "+ steps.get(0)[1]+" "+ steps.get(0)[2]);

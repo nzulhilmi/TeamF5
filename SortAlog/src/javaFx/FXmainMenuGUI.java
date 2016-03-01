@@ -1,12 +1,8 @@
 package javaFx;
 
-import java.io.Console;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
-
 import javafx.application.Application;
-import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,14 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /***
@@ -104,22 +99,6 @@ public class FXmainMenuGUI extends Application {
 		Button insertion = new Button("Insertion");
 		insertion.setMaxWidth(Double.MAX_VALUE);
 		insertion.setOnAction(e -> System.out.println("insertion") /*model.setSort("insertion")*/);
-		
-		
-		/*logdisplay.setPrefSize(200, 100); //size of the text area
-		logdisplay.setVisible(false);
-		
-		//log
-		Button log = new Button("Log"); //to display the console
-		log.setOnAction(e-> {
-			System.out.println("log");
-			if(logdisplay.isVisible()) {
-				logdisplay.setVisible(false);
-			}
-			else {
-				logdisplay.setVisible(true);
-			}
-		});*/
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font selection
@@ -150,6 +129,18 @@ public class FXmainMenuGUI extends Application {
 		stage.setScene(menuScene);
 		stage.setTitle("SortAlgo");
 		stage.show(); //show the stage
+		
+		//this listens to see if the size of the pane changes then resizes the stage
+		//minor bug
+		//any ideas
+	    scrollPane.widthProperty().addListener(new ChangeListener<Number>() {
+	    	  @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+	    	   resizeStage();
+	    	  }
+	    	});
+		
+		
+		
 	}
 	
 	public static void removeVis(String s) {
@@ -158,4 +149,6 @@ public class FXmainMenuGUI extends Application {
 	public void resizeStage() {
 		stage.sizeToScene();
 	}
+	
+	
 }

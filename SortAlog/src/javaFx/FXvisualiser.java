@@ -31,7 +31,7 @@ public class FXvisualiser extends BorderPane {
 	private Rectangle[] rectList;
 	private Text[] textList;
 
-	public FXvisualiser(algModel model) {//pass the model
+	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
 		int numBoxes = model.getSize();
 		//System.out.println("model size = "+ model.getSize());
@@ -47,6 +47,9 @@ public class FXvisualiser extends BorderPane {
 		/*
 		Circle circle = new Circle(50, Color.BLUE); //draw shape
 		circle.relocate(20, 20);*/
+		
+		String stringID = Integer.toString(n);
+		this.setId(stringID);
 
 		rectList = new Rectangle[numBoxes];
 		textList = new Text[numBoxes];

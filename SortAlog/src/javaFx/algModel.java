@@ -20,6 +20,7 @@ public class algModel extends Observable{
 	private boolean loop;
 	private int n;
 	public String type;
+	private int intID;
 
 	/**
 	 * Instantiates a new algorithm model.
@@ -40,7 +41,7 @@ public class algModel extends Observable{
 
 	}
 
-	public algModel(int[] input, String type) {
+	public algModel(int[] input, String type, int m) {
 		super();
 		SortAlgos alg = new SortAlgos(type, input);
 		this.current = 0;
@@ -49,7 +50,7 @@ public class algModel extends Observable{
 		//this.visualiser = vis;
 		this.loop = false;
 		this.n = 20;
-
+		this.intID = m;
 	}
 
 	public void goBack(){
@@ -149,5 +150,9 @@ public class algModel extends Observable{
 		int res= 0;
 		res = getCurrentList()[i];
 		return String.valueOf(res);
+	}
+	
+	public int getID() {
+		return this.intID;
 	}
 }

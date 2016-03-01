@@ -65,7 +65,14 @@ public class FXcontrolPane extends GridPane {
 
 		//isn't working would be nice to get this working
 		Button close = new Button("Close");
-		//back.setOnAction(e -> getParent().getParent().remove(vis));
+		close.setOnAction(e->{
+			int intID = this.model.getID();
+			String stringID = Integer.toString(intID);
+			String ID = "#" + stringID;
+			
+			System.out.println("close");
+			FXmainMenuGUI.removeVis(ID);
+		});
 
 		//speed label
 		Text speed = new Text("Speed");

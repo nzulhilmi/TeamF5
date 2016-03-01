@@ -47,7 +47,9 @@ public class FXmainMenuGUI extends Application {
 	//Secondary title for when a sort is opened
 	Label scenetitle = new Label("SortAlgo Main Menu");
 	
-	TextArea logdisplay = new TextArea();
+	TextArea logdisplay = new TextArea(); //to display the console
+	int intID = 0; //to set the id of each visualisation pane (to be converted to string)
+	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
 
 	@Override
 	public void start(Stage stage) {
@@ -57,7 +59,7 @@ public class FXmainMenuGUI extends Application {
 
 
 		BorderPane border = new BorderPane(); // sets the top level to a border layout
-		FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
+		
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
 	    flowPane.setPadding(new Insets(10)); //padding 20 because of scroll bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
@@ -76,8 +78,8 @@ public class FXmainMenuGUI extends Application {
 		bubble.setMaxWidth(Double.MAX_VALUE); //Makes the buttons all have the same size
 		bubble.setOnAction(e -> {
 			//will need to pass the model as it contains all the variables
-			algModel algModel = new algModel(testInput.clone(),"bubble");
-			FXvisualiser vis = new FXvisualiser(algModel);
+			algModel algModel = new algModel(testInput.clone(),"bubble", intID);
+			FXvisualiser vis = new FXvisualiser(algModel, intID);
 			//model.setSort("bubble");// this line might not be needed
 			algModel.setVis(vis);
 			flowPane.getChildren().add(vis); //makes the flow pane
@@ -88,6 +90,9 @@ public class FXmainMenuGUI extends Application {
 			numOfSortsOnScreen++;
 			if(numOfSortsOnScreen <= 3)
 				stage.sizeToScene();
+			
+			//increment intID so each pane will have unique ID
+			intID++;
 		});
 
 		Button quick = new Button("Quick");
@@ -183,5 +188,9 @@ public class FXmainMenuGUI extends Application {
 
 		System.setOut(new PrintStream(out, true));
 		System.setErr(new PrintStream(out, true));
+	}
+	
+	public static void removeVis(String s) {
+		flowPane.getChildren().remove(flowPane.lookup(s));
 	}
 }

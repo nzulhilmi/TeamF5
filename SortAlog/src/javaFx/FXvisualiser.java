@@ -83,7 +83,7 @@ public class FXvisualiser extends BorderPane {
 			TextArea textArea=  new TextArea();
 			textArea.setText("This is our log panel which the stage should auto resize to accomodate");
 			textArea.setPrefSize(200, 100);
-			this.setRight(textArea); 
+			this.setRight(textArea);
 		});
 
 		//set out the pain++
@@ -92,7 +92,7 @@ public class FXvisualiser extends BorderPane {
 		this.setTop(panetitle);
 		this.setCenter(pane);
 		this.setBottom(bottomLayout);
-		FXcontrolPane controls = new FXcontrolPane(model);//add the controls to the pane
+
 		//set out the pain++
 		this.setTop(panetitle);
 		this.setCenter(pane);

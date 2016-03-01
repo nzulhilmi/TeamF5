@@ -37,12 +37,12 @@ public class FXmainMenuGUI extends Application {
 		start(stage);
 	}
 
-	public int numOfSortsOnScreen = 0;
+	public static int numOfSortsOnScreen = 0;
 	// new border pane so that the title is in the center
 	BorderPane borderTop = new BorderPane();
 
 	// Secondary title for when a sort is opened
-	Label scenetitle = new Label("SortAlgo Main Menu");
+	static Label scenetitle = new Label("SortAlgo Main Menu");
 
 	int intID = 0; // to set the id of each visualisation pane (to be converted
 	// to string)
@@ -85,6 +85,7 @@ public class FXmainMenuGUI extends Application {
 		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the
 		// same size
 		bubble.setOnAction(e -> {
+			numOfSortsOnScreen++;
 			// will need to pass the model as it contains all the variables
 			algModel algModel = new algModel(testInput.clone(), "bubble", intID);
 			FXvisualiser vis = new FXvisualiser(algModel, intID);
@@ -92,10 +93,9 @@ public class FXmainMenuGUI extends Application {
 			algModel.setVis(vis);
 			flowPane.getChildren().add(vis); // makes the flow pane
 			scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-			scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen + 1) + " Algorithms");
+			scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 
 			// This stops the screen resizing past visible.
-			numOfSortsOnScreen++;
 			if (numOfSortsOnScreen <= 3)
 				stage.sizeToScene();
 
@@ -155,6 +155,14 @@ public class FXmainMenuGUI extends Application {
 
 	public static void removeVis(String s) {
 		flowPane.getChildren().remove(flowPane.lookup(s));
+		numOfSortsOnScreen--;
+		
+		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
+		
+		if(numOfSortsOnScreen == 0) {
+			scenetitle.setText("");
+		}
+		
 	}
 
 	public void resizeStage() {

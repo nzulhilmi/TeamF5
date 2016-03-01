@@ -76,8 +76,7 @@ public class FXvisualiser extends BorderPane {
 			TextArea textArea=  new TextArea();
 			textArea.setText("This is our log panel which the stage should auto resize to accomodate");
 			textArea.setPrefSize(200, 100);
-			this.setRight(textArea);
-			System.out.println(this.getParent().getParent().getParent().getParent().getParent().toString());
+			this.setRight(textArea); 
 		});
 		
 		//set out the pain++

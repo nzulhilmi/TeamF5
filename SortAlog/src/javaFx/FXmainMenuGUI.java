@@ -44,7 +44,6 @@ public class FXmainMenuGUI extends Application {
 	// Secondary title for when a sort is opened
 	Label scenetitle = new Label("SortAlgo Main Menu");
 
-	TextArea logdisplay = new TextArea(); // to display the console
 	int intID = 0; // to set the id of each visualisation pane (to be converted
 	// to string)
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be
@@ -106,13 +105,11 @@ public class FXmainMenuGUI extends Application {
 
 		Button quick = new Button("Quick");
 		quick.setMaxWidth(Double.MAX_VALUE);
-		quick.setOnAction(
-				e -> System.out.println("quick")/* model.setSort("quick") */);
+		quick.setOnAction(e -> System.out.println("quick")/* model.setSort("quick") */);
 
 		Button insertion = new Button("Insertion");
 		insertion.setMaxWidth(Double.MAX_VALUE);
-		insertion.setOnAction(e -> System.out
-				.println("insertion") /* model.setSort("insertion") */);
+		insertion.setOnAction(e -> System.out.println("insertion") /* model.setSort("insertion") */);
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font
@@ -128,7 +125,6 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.setHgap(10); // spacing
 		gridMenu.setVgap(10); // spacing
 		gridMenu.setPadding(new Insets(10, 10, 10, 10)); // padding around the
-		// table
 
 		// add objects to the grid pane
 		gridMenu.add(scenetitle, 0, 0, 2, 1);
@@ -146,19 +142,6 @@ public class FXmainMenuGUI extends Application {
 		stage.setTitle("SortAlgo");
 		stage.show(); // show the stage
 
-		// this listens to see if the size of the pane changes then resizes the
-		// stage
-		// minor bug
-		// any ideas
-		// scrollPane.widthProperty().addListener(new ChangeListener<Number>() {
-		// @Override
-		// public void changed(ObservableValue<? extends Number>
-		// observableValue, Number oldSceneWidth,
-		// Number newSceneWidth) {
-		// resizeStage();
-		// scrollPane.requestLayout();
-		// }
-		// });
 		flowPane.widthProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth,

@@ -1,5 +1,7 @@
 package javaFx;
 
+import java.awt.BorderLayout;
+
 import javafx.animation.PathTransition;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -38,7 +40,7 @@ public class FXvisualiser extends BorderPane {
 		this.model = model;
 		this.numBoxes = model.getSize();
 
-		BorderPane bottomLayout =new BorderPane();
+		BorderPane bottomLayout = new BorderPane();
 		//System.out.println("model size = "+ model.getSize());
 
 		Text panetitle = new Text(model.getSortTypeString() + " Sort"); // dynamically set the title
@@ -96,7 +98,6 @@ public class FXvisualiser extends BorderPane {
 		//set out the pain++
 		this.setTop(panetitle);
 		this.setCenter(pane);
-		this.setBottom(controls);
 	}
 	public void setStage() {
 

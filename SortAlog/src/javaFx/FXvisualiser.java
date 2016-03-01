@@ -95,9 +95,6 @@ public class FXvisualiser extends BorderPane {
 		this.setCenter(pane);
 		this.setBottom(bottomLayout);
 
-		//set out the pain++
-		this.setTop(panetitle);
-		this.setCenter(pane);
 	}
 	public void setStage() {
 
@@ -135,6 +132,7 @@ public class FXvisualiser extends BorderPane {
 	}
 	public void animationTopLeft(Rectangle rect, Text text,int n){
 		Path path = new Path();
+		System.out.println(rect.toString());
 		path.getElements().add(new MoveTo(20,20));
 		path.getElements().add(new LineTo(20, -30));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 - 50*n, -30, false, false));
@@ -172,15 +170,16 @@ public class FXvisualiser extends BorderPane {
 		Rectangle rectangleMove;
 		for(int i=0;i<numBoxes;i++){
 			rectangleMove = (Rectangle) pane.getChildren().get(i);
-			System.out.println(rectangleMove.toString());
-			rectangleMove.relocate(50+50*i, 50);
+			//System.out.println(rectangleMove.getX() + "   "+i);
+			int n =i*50;
+			rectangleMove.relocate(50+n, 50);
+			//System.out.println(rectangleMove.getX() + "   "+i);
 		}
 	}
 	public void resetRectColor() {
 		Rectangle colorR;
 		for(int i=0;i<numBoxes;i++){
 			colorR = (Rectangle)(pane.getChildren().get(i));
-
 			colorR.setFill(Color.ORANGE);
 		}
 

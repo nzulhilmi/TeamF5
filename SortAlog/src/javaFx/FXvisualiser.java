@@ -65,7 +65,7 @@ public class FXvisualiser extends BorderPane {
 		pane.getChildren().addAll(rectList); //add the sqares
 		pane.getChildren().addAll(textList); //add the text
 		FXcontrolPane controls = new FXcontrolPane(model);//add the controls to the pane
-		//set out the pain
+		//set out the pain++
 		this.setTop(panetitle);
 		this.setCenter(pane);
 		this.setBottom(controls);
@@ -73,7 +73,7 @@ public class FXvisualiser extends BorderPane {
 	public void animation(Rectangle rect, Text text){
 		Path path = new Path();
 		path.getElements().add(new MoveTo(20,20));
-		path.getElements().add(new ArcTo(50, 50, 50, 200, 20, false, false));
+		path.getElements().add(new ArcTo(50, 50, 50, 220, 20, false, false));
 		//path.getElements().add(new CubicCurveTo(20, 100, 20, 200, 20, 200));
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));

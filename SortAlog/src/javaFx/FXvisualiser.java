@@ -2,12 +2,12 @@ package javaFx;
 
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
@@ -34,6 +34,8 @@ public class FXvisualiser extends BorderPane {
 	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
 		int numBoxes = model.getSize();
+		
+		BorderPane bottomLayout =new BorderPane();
 		//System.out.println("model size = "+ model.getSize());
 
 		Text panetitle = new Text(model.getSortTypeString() + " Sort"); // dynamically set the title
@@ -43,7 +45,7 @@ public class FXvisualiser extends BorderPane {
 		Pane pane = new Pane(); //visualiser
 
 		this.setStyle("-fx-background-color: WHITE;"); //background
-		//this.setPrefSize(400, 250); //size if you remove this it will give you the smallest panel possible
+		//this.setPrefSize(800, 250); //size if you remove this it will give you the smallest panel possible
 		/*
 		Circle circle = new Circle(50, Color.BLUE); //draw shape
 		circle.relocate(20, 20);*/
@@ -68,11 +70,24 @@ public class FXvisualiser extends BorderPane {
 		pane.getChildren().addAll(rectList); //add the sqares
 		pane.getChildren().addAll(textList); //add the text
 		FXcontrolPane controls = new FXcontrolPane(model);//add the controls to the pane
+		
+		Button log = new Button("Show log");
+		log.setOnAction(e -> { 
+			TextArea textArea=  new TextArea();
+			textArea.setText("This is our log panel which the stage should auto resize to accomodate");
+			textArea.setPrefSize(200, 100);
+			this.setRight(textArea);
+			System.out.println(this.getParent().getParent().getParent().getParent().getParent().toString());
+		});
+		
 		//set out the pain++
+		bottomLayout.setLeft(controls);
+		bottomLayout.setRight(log);
 		this.setTop(panetitle);
 		this.setCenter(pane);
-		this.setBottom(controls);
+		this.setBottom(bottomLayout);
 	}
+	
 	public void animation(Rectangle rect, Text text){
 		Path path = new Path();
 		path.getElements().add(new MoveTo(20,20));
@@ -97,6 +112,4 @@ public class FXvisualiser extends BorderPane {
 		pathTransition.play();
 		pathTransition2.play();
 	}
-
-	//public void setCurrentIndex(int current) {}
 }

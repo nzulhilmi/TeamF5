@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -72,7 +73,7 @@ public class FXcontrolPane extends GridPane {
 			
 			System.out.println("close");
 			FXmainMenuGUI.removeVis(ID);
-		});
+		}); 
 
 		//speed label
 		Text speed = new Text("Speed");

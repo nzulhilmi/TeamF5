@@ -51,8 +51,10 @@ public class FXmainMenuGUI extends Application {
 	int intID = 0; //to set the id of each visualisation pane (to be converted to string)
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
 
+	Stage stage;
 	@Override
 	public void start(Stage stage) {
+		this.stage = stage;
 		mainMenu menu = new mainMenu(); // the core code
 		int[] testInput = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 		//algModel algModel = new algModel(null, null, null); // model
@@ -104,7 +106,7 @@ public class FXmainMenuGUI extends Application {
 		insertion.setOnAction(e -> System.out.println("insertion") /*model.setSort("insertion")*/);
 		
 		
-		logdisplay.setPrefSize(200, 100); //size of the text area
+		/*logdisplay.setPrefSize(200, 100); //size of the text area
 		logdisplay.setVisible(false);
 		
 		//log
@@ -117,7 +119,7 @@ public class FXmainMenuGUI extends Application {
 			else {
 				logdisplay.setVisible(true);
 			}
-		});
+		});*/
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font selection
@@ -138,59 +140,22 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(bubble, 1, 1);
 		gridMenu.add(quick, 1, 2);
 		gridMenu.add(insertion, 1, 3);
-		gridMenu.add(log, 1, 4);
 
 		borderTop.setCenter(scenetitle); //add the title to the center
 		border.setTop(borderTop); //add the center to the top
 		border.setLeft(gridMenu); //add the main menu
-		border.setRight(logdisplay); //add the console log
 
 		Scene menuScene = new Scene(border); //create the scene
 		// add the scene to the pane
 		stage.setScene(menuScene);
 		stage.setTitle("SortAlgo");
 		stage.show(); //show the stage
-		
-		new Thread () {
-			@Override
-			public void run () {
-				redirectSystemStreams();
-			}
-		}.start();
-	}
-	
-	private void updateTextArea(final String text) {
-		Platform.runLater(new Runnable() {
-			public void run() {
-				logdisplay.appendText(text);
-			}
-		});
-	}
-		 
-	private void redirectSystemStreams() {
-		OutputStream out = new OutputStream() {
-			
-			@Override
-			public void write(int b) throws IOException {
-				updateTextArea(String.valueOf((char) b));
-			}
-		 
-		    @Override
-		    public void write(byte[] b, int off, int len) throws IOException {
-		    	updateTextArea(new String(b, off, len));
-		    }
-		 
-		    @Override
-		    public void write(byte[] b) throws IOException {
-		    	write(b, 0, b.length);
-		    }
-		};
-
-		System.setOut(new PrintStream(out, true));
-		System.setErr(new PrintStream(out, true));
 	}
 	
 	public static void removeVis(String s) {
 		flowPane.getChildren().remove(flowPane.lookup(s));
+	}
+	public void resizeStage() {
+		stage.sizeToScene();
 	}
 }

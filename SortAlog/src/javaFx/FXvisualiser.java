@@ -34,6 +34,7 @@ public class FXvisualiser extends BorderPane {
 	private Text[] textList;
 	private int numBoxes;
 	private Pane pane;
+	private TextArea logText=  new TextArea();
 
 
 	public FXvisualiser(algModel model, int n) {//pass the model
@@ -76,16 +77,14 @@ public class FXvisualiser extends BorderPane {
 		pane.getChildren().setAll();
 		pane.getChildren().addAll(rectList); //add the sqares
 		pane.getChildren().addAll(textList); //add the text
-		// TODO Auto-generated method stub
-
-		FXcontrolPane controls = new FXcontrolPane(model);//add the controls to the pane
+		
+		FXcontrolPane controls = new FXcontrolPane(model,logText);//add the controls to the pane
 
 		Button log = new Button("Show log");
 		log.setOnAction(e -> {
-			TextArea textArea=  new TextArea();
-			textArea.setText("This is our log panel which the stage should auto resize to accomodate");
-			textArea.setPrefSize(200, 100);
-			this.setRight(textArea);
+			logText.setText("This is our log panel which the stage should auto resize to accomodate");
+			logText.setPrefSize(200, 100);
+			this.setRight(logText);
 		});
 
 		//set out the pain++

@@ -26,7 +26,7 @@ public class FXcontrolPane extends GridPane {
 	algModel model;
 	private int period;
 
-	public FXcontrolPane(algModel model ) { //pass the model so it acts on the same thing
+	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
 		this.period = 1000;
 		//make the slider, needs an action listener
@@ -43,24 +43,28 @@ public class FXcontrolPane extends GridPane {
 		Button back = new Button("|<<");
 		back.setOnAction(e -> {
 			System.out.println("back");
+			logText.appendText("\n back");
 			model.goBack();
 			});
 
 		Button play = new Button("play");
 		play.setOnAction(e ->{
 			System.out.println("play");
+			logText.appendText("\n play");
 			//timer.start();
 			});
 
 		Button pause = new Button("pause");
 		pause.setOnAction(e ->{
 			System.out.println("pause");
+			logText.appendText("\n pause");
 			//timer.stop();});
 		});
 
 		Button forward = new Button(">>|");
 		forward.setOnAction(e ->{
 			System.out.println("forward");
+			logText.appendText("\n forward");
 			model.goForward();
 		});
 
@@ -72,6 +76,7 @@ public class FXcontrolPane extends GridPane {
 			String ID = "#" + stringID;
 			
 			System.out.println("close");
+			logText.appendText("\n close");
 			FXmainMenuGUI.removeVis(ID);
 		}); 
 

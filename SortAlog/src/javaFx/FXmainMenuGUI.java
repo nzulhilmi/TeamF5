@@ -160,7 +160,7 @@ public class FXmainMenuGUI extends Application {
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 		
 		if(numOfSortsOnScreen == 0) {
-			scenetitle.setText("");
+			scenetitle.setText("SortAlgo Main Menu");
 		}
 		
 	}

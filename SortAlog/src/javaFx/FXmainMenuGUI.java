@@ -177,7 +177,7 @@ public class FXmainMenuGUI extends Application {
 		
 		//add the two panes to border pane
 		BorderPane advancedPane = new BorderPane();
-		advancedPane.setTop(advancedTop);
+		advancedPane.setLeft(advancedTop);
 		advancedPane.setCenter(advancedBottom);
 		
 		border.setBottom(advancedPane); //add the border pane to the parent border pane

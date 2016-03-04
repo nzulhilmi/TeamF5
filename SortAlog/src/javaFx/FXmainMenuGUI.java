@@ -49,7 +49,7 @@ public class FXmainMenuGUI extends Application {
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be
 	// added dynamically
 
-	Stage stage;
+	static Stage stage;
 
 	@Override
 	public void start(Stage stage) {
@@ -161,11 +161,12 @@ public class FXmainMenuGUI extends Application {
 		
 		if(numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
+			resizeStage();
 		}
 		
 	}
 
-	public void resizeStage() {
+	public static void resizeStage() {
 		stage.sizeToScene();
 	}
 

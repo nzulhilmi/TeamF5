@@ -1,5 +1,7 @@
 package javaFx;
 
+import java.util.Random;
+
 import org.junit.experimental.max.MaxCore;
 
 import javafx.application.Application;
@@ -17,6 +19,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -49,13 +52,14 @@ public class FXmainMenuGUI extends Application {
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be
 	// added dynamically
 
+	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+	
 	static Stage stage;
 
 	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
 		mainMenu menu = new mainMenu(); // the core code
-		int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 		// algModel algModel = new algModel(null, null, null); // model
 
 		BorderPane border = new BorderPane(); // sets the top level to a border
@@ -117,6 +121,79 @@ public class FXmainMenuGUI extends Application {
 
 		// new border pane so that the title is in the center
 		// BorderPane borderTop = new BorderPane();
+		
+		GridPane advancedTop = new GridPane();
+		GridPane advancedBottom = new GridPane();
+		
+		Label advancedLabel = new Label("Choose input: ");
+		//buttons for custom inputs
+		
+		Button sorted = new Button("Sorted");
+		sorted.setMaxWidth(Double.MAX_VALUE);
+		sorted.setOnAction(e -> {
+			testInput = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+			System.out.println("sorted input");
+		});
+		
+		Button random = new Button("Random");
+		random.setMaxWidth(Double.MAX_VALUE);
+		random.setOnAction(e -> {
+			System.out.println("random input");
+			shuffleArray(testInput); //shuffle the array
+		});
+		
+		Button reverse = new Button("Reversed");
+		reverse.setMaxWidth(Double.MAX_VALUE);
+		reverse.setOnAction(e -> {
+			testInput = new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+			System.out.println("reversed input");
+		});
+		
+		TextArea customInput = new TextArea(); //text area to fill custom inputs
+		customInput.setPrefSize(200, 50);
+		
+		Button submit = new Button("Submit");
+		submit.setMaxWidth(Double.MAX_VALUE);
+		submit.setOnAction(e -> {
+			String getInput = customInput.getText(); //get input from text area
+			String[] split = getInput.split(","); //split the string into elements separated by ','
+			int[] output = new int[10]; 
+			for(int i = 0; i < split.length; i++) {
+				output[i] = Integer.parseInt(split[i]); //copy the elements into another array
+			}
+			testInput = output;
+		});
+		
+		Label customInputLabel = new Label("Insert custom input. e.g 1,2,3,4,5,6,7,8,9,10");
+		
+		//add all the button and labels for advanced menu feature
+		advancedTop.add(advancedLabel, 1, 0);
+		advancedTop.add(sorted, 1, 2);
+		advancedTop.add(reverse, 2, 2);
+		advancedTop.add(random, 3, 2);
+		advancedBottom.add(customInputLabel, 0, 0);
+		advancedBottom.add(customInput, 0, 1);
+		advancedBottom.add(submit, 1, 1);
+		
+		//add the two panes to border pane
+		BorderPane advancedPane = new BorderPane();
+		advancedPane.setTop(advancedTop);
+		advancedPane.setCenter(advancedBottom);
+		
+		border.setBottom(advancedPane); //add the border pane to the parent border pane
+		advancedPane.setVisible(false);
+		
+		Button advanced = new Button("Advanced Menu");
+		advanced.setMaxWidth(Double.MAX_VALUE);
+		advanced.setOnAction(e -> {
+			if(advancedPane.isVisible()) {
+				advancedPane.setVisible(false);
+			}
+			else {
+				advancedPane.setVisible(true);
+			}
+			resizeStage();
+		});
 
 		// Main Menu
 		// set the layout method to grid - table
@@ -131,6 +208,7 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(bubble, 1, 1);
 		gridMenu.add(quick, 1, 2);
 		gridMenu.add(insertion, 1, 3);
+		gridMenu.add(advanced, 1, 4);
 
 		borderTop.setCenter(scenetitle); // add the title to the center
 		border.setTop(borderTop); // add the center to the top
@@ -161,13 +239,29 @@ public class FXmainMenuGUI extends Application {
 		
 		if(numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
-			resizeStage();
 		}
+		resizeStage();
 		
 	}
 
 	public static void resizeStage() {
 		stage.sizeToScene();
+	}
+	
+	public void shuffleArray(int[] array)
+	{
+	    int index;
+	    Random random = new Random();
+	    for (int i = array.length - 1; i > 0; i--)
+	    {
+	        index = random.nextInt(i + 1);
+	        if (index != i)
+	        {
+	            array[index] ^= array[i];
+	            array[i] ^= array[index];
+	            array[index] ^= array[i];
+	        }
+	    }
 	}
 
 }

@@ -177,21 +177,13 @@ public class FXmainMenuGUI extends Application {
 		
 		//add the two panes to border pane
 		BorderPane advancedPane = new BorderPane();
-		advancedPane.setLeft(advancedTop);
+		advancedPane.setTop(advancedTop);
 		advancedPane.setCenter(advancedBottom);
-		
-		border.setBottom(advancedPane); //add the border pane to the parent border pane
-		advancedPane.setVisible(false);
 		
 		Button advanced = new Button("Advanced Menu");
 		advanced.setMaxWidth(Double.MAX_VALUE);
 		advanced.setOnAction(e -> {
-			if(advancedPane.isVisible()) {
-				advancedPane.setVisible(false);
-			}
-			else {
-				advancedPane.setVisible(true);
-			}
+			border.setBottom(advancedPane); //add the border pane to the parent border pane
 			resizeStage();
 		});
 

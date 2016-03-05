@@ -52,6 +52,11 @@ public class FXmainMenuGUI extends Application {
 	// to string)
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be
 	// added dynamically
+	
+	BorderPane advancedPane = new BorderPane();
+	
+	private BorderPane border = new BorderPane(); // sets the top level to a border
+	// layout
 
 	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 	
@@ -63,8 +68,7 @@ public class FXmainMenuGUI extends Application {
 		mainMenu menu = new mainMenu(); // the core code
 		// algModel algModel = new algModel(null, null, null); // model
 
-		BorderPane border = new BorderPane(); // sets the top level to a border
-		// layout
+		
 
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being
 		// huge
@@ -177,6 +181,12 @@ public class FXmainMenuGUI extends Application {
 		
 		Label customInputLabel = new Label("Insert custom input. e.g 1,2,3,4,5,6,7,8,9,10");
 		
+		Button close = new Button("Close");
+		close.setOnAction(e -> {
+			removeAdvanced();
+			resizeStage();
+		});
+		
 		//add all the button and labels for advanced menu feature
 		advancedTop.getChildren().add(advancedLabel);
 		advancedTop.getChildren().add(sorted);
@@ -185,9 +195,10 @@ public class FXmainMenuGUI extends Application {
 		advancedBottom.add(customInputLabel, 0, 0);
 		advancedBottom.add(customInput, 0, 1);
 		advancedBottom.add(submit, 1, 1);
+		advancedBottom.add(close, 2, 1);
 		
 		//add the two panes to border pane
-		BorderPane advancedPane = new BorderPane();
+		advancedPane.setId("advanced");
 		advancedPane.setTop(advancedTop);
 		advancedPane.setCenter(advancedBottom);
 		
@@ -246,6 +257,10 @@ public class FXmainMenuGUI extends Application {
 		}
 		resizeStage();
 		
+	}
+	
+	public void removeAdvanced() {
+		border.getChildren().remove(border.lookup("#advanced"));
 	}
 
 	public static void resizeStage() {

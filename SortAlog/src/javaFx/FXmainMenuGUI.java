@@ -20,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -122,35 +123,45 @@ public class FXmainMenuGUI extends Application {
 		// new border pane so that the title is in the center
 		// BorderPane borderTop = new BorderPane();
 		
-		GridPane advancedTop = new GridPane();
+		TilePane advancedTop = new TilePane();
+		advancedTop.setPadding(new Insets(10, 10, 2, 10));
+		advancedTop.setVgap(5);
+		advancedTop.setHgap(5);
+		advancedTop.setAlignment(Pos.CENTER);
+		
 		GridPane advancedBottom = new GridPane();
+		advancedBottom.setPadding(new Insets(2, 10, 10, 10));
+		advancedBottom.setVgap(5);
+		advancedBottom.setHgap(5);
+		advancedBottom.setAlignment(Pos.CENTER);
 		
 		Label advancedLabel = new Label("Choose input: ");
 		//buttons for custom inputs
 		
 		Button sorted = new Button("Sorted");
-		sorted.setMaxWidth(Double.MAX_VALUE);
+		//sorted.setMaxWidth(Double.MAX_VALUE);
 		sorted.setOnAction(e -> {
 			testInput = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 			System.out.println("sorted input");
 		});
 		
 		Button random = new Button("Random");
-		random.setMaxWidth(Double.MAX_VALUE);
+		//random.setMaxWidth(Double.MAX_VALUE);
 		random.setOnAction(e -> {
 			System.out.println("random input");
 			shuffleArray(testInput); //shuffle the array
 		});
 		
 		Button reverse = new Button("Reversed");
-		reverse.setMaxWidth(Double.MAX_VALUE);
+		//reverse.setMaxWidth(Double.MAX_VALUE);
 		reverse.setOnAction(e -> {
 			testInput = new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 			System.out.println("reversed input");
 		});
 		
 		TextArea customInput = new TextArea(); //text area to fill custom inputs
-		customInput.setPrefSize(200, 50);
+		customInput.setPrefSize(200, 10);
+		customInput.setMaxHeight(10);
 		
 		Button submit = new Button("Submit");
 		submit.setMaxWidth(Double.MAX_VALUE);
@@ -167,10 +178,10 @@ public class FXmainMenuGUI extends Application {
 		Label customInputLabel = new Label("Insert custom input. e.g 1,2,3,4,5,6,7,8,9,10");
 		
 		//add all the button and labels for advanced menu feature
-		advancedTop.add(advancedLabel, 1, 0);
-		advancedTop.add(sorted, 1, 2);
-		advancedTop.add(reverse, 2, 2);
-		advancedTop.add(random, 3, 2);
+		advancedTop.getChildren().add(advancedLabel);
+		advancedTop.getChildren().add(sorted);
+		advancedTop.getChildren().add(reverse);
+		advancedTop.getChildren().add(random);
 		advancedBottom.add(customInputLabel, 0, 0);
 		advancedBottom.add(customInput, 0, 1);
 		advancedBottom.add(submit, 1, 1);
@@ -205,6 +216,7 @@ public class FXmainMenuGUI extends Application {
 		borderTop.setCenter(scenetitle); // add the title to the center
 		border.setTop(borderTop); // add the center to the top
 		border.setLeft(gridMenu); // add the main menu
+		//border.setStyle("-fx-background-color: #CD5C5C;");
 
 		Scene menuScene = new Scene(border); // create the scene
 		// add the scene to the pane

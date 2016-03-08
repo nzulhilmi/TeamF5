@@ -107,11 +107,20 @@ public class algModel extends Observable{
 				Text text2 = ((Text)((Pane) 			visualiser.getChildren().get(1)).getChildren().get(10+right));
 				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
 				*/
-				Text text1 = getText(left);
-				Text text2 = getText(right);
-				Rectangle rect1 = getRect(left);
-				Rectangle rect2 = getRect(right);
+				Text text1 = this.texts[left];
+				Text text2 = this.texts[right];
+				System.out.println("Tanslate: X= "+ rects[left].getTranslateX()+" Y= "+ rects[left].getTranslateY());
+				System.out.println("Layout:   X= "+ rects[left].getLayoutX()+   " Y= "+ rects[left].getLayoutY());
+				fixTranslate(rects[left]);
+				//fixTranslateText(texts[left]);
+				System.out.println("Tanslate: X= "+ rects[left].getTranslateX()+" Y= "+ rects[left].getTranslateY());
+				System.out.println("Layout:   X= "+ rects[left].getLayoutX()+   " Y= "+ rects[left].getLayoutY());
+				Rectangle rect1 = this.rects[left];
+				Rectangle rect2 = this.rects[right];
 				System.out.println("Left: "+left+" Right: " + right);
+				//System.out.println("Before: "+ rects[left].getTranslateX()+" Y= "+ rects[left].getTranslateY());
+				//System.out.println("Before: X= "+ rects[left].getLayoutX()+" Y= "+ rects[left].getLayoutY());
+				//System.out.println("Before: X= "+ rects[right].getLayoutX()+" Y= "+ rects[right].getLayoutY());
 				visualiser.animationBotRight(rect1, text1,right - left);
 				visualiser.animationTopLeft(rect2, text2,right- left);
 				changeIndex(left, right);
@@ -122,8 +131,8 @@ public class algModel extends Observable{
 				//Collections.swap(((Pane) (visualiser.getChildren().get(1))).getChildren(), left, right);
 				//Collections.swap(((Pane) (visualiser.getChildren().get(1))).getChildren(), left+10, right+10);
 			}else{
-				int right = steps.get(current)[0];
-				int left = steps.get(current)[1];
+				int left = steps.get(current)[0];
+				int right = steps.get(current)[1];
 				Rectangle rect = getRect(left);
 				Rectangle rect2 = getRect(right);
 				visualiser.animationComparison(rect, rect2);
@@ -138,8 +147,24 @@ public class algModel extends Observable{
 			//visualiser.setCurrentIndex(current);
 			//visualiser.forceRepaint();
 			}
-		System.out.println("Current step: "+ (current+1));
+		//System.out.println("Current step: "+ (current+1));
 	}
+	private void fixTranslate(Rectangle rectangle) {
+		double x = rectangle.getTranslateX() + rectangle.getLayoutX();
+		double y = rectangle.getTranslateY() + rectangle.getLayoutY();
+		System.out.println(x +"  y="+y);
+		rectangle.setTranslateX(0);
+		rectangle.setTranslateY(0);
+		rectangle.relocate(x, y);
+	}
+	private void fixTranslateText(Text Text) {
+		double x = Text.getTranslateX() + Text.getLayoutX();
+		double y = Text.getTranslateY() + Text.getLayoutY();
+		Text.setTranslateX(0);
+		Text.setTranslateY(0);
+		Text.relocate(x, y);
+	}
+
 	/*
 	public void pause(){
 		this.loop = false;
@@ -179,12 +204,17 @@ public class algModel extends Observable{
 		}
 	}
 	public void changeIndex(int n1, int n2) {
-		System.out.println("changing "+n1+" to "+n2+".");
+//		System.out.println("swapping "+n1+" to "+n2+".");
 		Rectangle swapR1 = this.rects[n1];
 		Rectangle swapR2 = this.rects[n2];
-		
+//		System.out.println("Before: X= "+ rects[n1].getLayoutX()+" Y= "+ rects[n1].getLayoutY());
+//		System.out.println("Before: X= "+ rects[n2].getLayoutX()+" Y= "+ rects[n2].getLayoutY());
+//		System.out.println("RECTs: X= "+ swapR1.getLayoutX()+" Y= "+ swapR1.getLayoutY());
+//		System.out.println("RECTs: X= "+ swapR2.getLayoutX()+" Y= "+ swapR2.getLayoutY());
 		this.rects[n1] = swapR2;
 		this.rects[n2] = swapR1;
+//		System.out.println("after: X= "+ rects[n1].getLayoutX()+" Y= "+ rects[n1].getLayoutY());
+//		System.out.println("after: X= "+ rects[n2].getLayoutX()+" Y= "+ rects[n2].getLayoutY());
 		Text swapT1 = this.texts[n1];
 		Text swapT2 = this.texts[n2];
 		this.texts[n1] = swapT2;

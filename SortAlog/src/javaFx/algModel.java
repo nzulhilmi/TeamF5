@@ -109,12 +109,14 @@ public class algModel extends Observable{
 				*/
 				Text text1 = this.texts[left];
 				Text text2 = this.texts[right];
-				System.out.println("Tanslate: X= "+ rects[left].getTranslateX()+" Y= "+ rects[left].getTranslateY());
-				System.out.println("Layout:   X= "+ rects[left].getLayoutX()+   " Y= "+ rects[left].getLayoutY());
+				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
+				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
+				System.out.println("XY:   X= "+ texts[left].getX()+   " Y= "+ texts[left].getY());
 				fixTranslate(rects[left]);
-				//fixTranslateText(texts[left]);
-				System.out.println("Tanslate: X= "+ rects[left].getTranslateX()+" Y= "+ rects[left].getTranslateY());
-				System.out.println("Layout:   X= "+ rects[left].getLayoutX()+   " Y= "+ rects[left].getLayoutY());
+				fixTranslateText(texts[left]);
+				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
+				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
+				System.out.println("XY:   X= "+ texts[left].getX()+   " Y= "+ texts[left].getY());
 				Rectangle rect1 = this.rects[left];
 				Rectangle rect2 = this.rects[right];
 				System.out.println("Left: "+left+" Right: " + right);
@@ -158,10 +160,11 @@ public class algModel extends Observable{
 		rectangle.relocate(x, y);
 	}
 	private void fixTranslateText(Text Text) {
-		double x = Text.getTranslateX() + Text.getLayoutX();
-		double y = Text.getTranslateY() + Text.getLayoutY();
-		Text.setTranslateX(0);
-		Text.setTranslateY(0);
+
+		double x = Text.getTranslateX() + Text.getLayoutX()- 12.5;
+		double y = Text.getLayoutY() + Text.getTranslateY() -25;
+		//Text.setTranslateX(20);
+		//Text.setTranslateY(25);
 		Text.relocate(x, y);
 	}
 

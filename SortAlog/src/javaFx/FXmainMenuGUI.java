@@ -1,5 +1,6 @@
 package javaFx;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.experimental.max.MaxCore;
@@ -52,14 +53,14 @@ public class FXmainMenuGUI extends Application {
 	// to string)
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be
 	// added dynamically
-	
+
 	BorderPane advancedPane = new BorderPane();
-	
+
 	private BorderPane border = new BorderPane(); // sets the top level to a border
 	// layout
 
 	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-	
+
 	static Stage stage;
 
 	@Override
@@ -115,67 +116,81 @@ public class FXmainMenuGUI extends Application {
 
 		// new border pane so that the title is in the center
 		// BorderPane borderTop = new BorderPane();
-		
+
 		TilePane advancedTop = new TilePane();
-		advancedTop.setPadding(new Insets(10, 10, 2, 10));
+		advancedTop.setPadding(new Insets(2, 10, 2, 10));
 		advancedTop.setVgap(5);
 		advancedTop.setHgap(5);
 		advancedTop.setAlignment(Pos.CENTER);
-		
+
 		GridPane advancedBottom = new GridPane();
-		advancedBottom.setPadding(new Insets(2, 10, 10, 10));
+		advancedBottom.setPadding(new Insets(2, 10, 2, 10));
 		advancedBottom.setVgap(5);
 		advancedBottom.setHgap(5);
 		advancedBottom.setAlignment(Pos.CENTER);
-		
+
 		Label advancedLabel = new Label("Choose input: ");
+
+		TextArea customInput = new TextArea(); //text area to fill custom inputs
+		customInput.setPrefSize(200, 10);
+		customInput.setMaxHeight(10);
+
 		//buttons for custom inputs
-		
 		Button sorted = new Button("Sorted");
 		//sorted.setMaxWidth(Double.MAX_VALUE);
 		sorted.setOnAction(e -> {
 			testInput = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+			customInput.setText("1,2,3,4,5,6,7,8,9,10");
 			System.out.println("sorted input");
 		});
-		
+
 		Button random = new Button("Random");
 		//random.setMaxWidth(Double.MAX_VALUE);
 		random.setOnAction(e -> {
 			System.out.println("random input");
 			shuffleArray(testInput); //shuffle the array
+			String s = Arrays.toString(testInput); //convert array to string
+			s = s.replaceAll("\\s+", ""); //remove all the whitespaces
+			s = s.substring(1, s.length()-1); //remove the '[' and ']'
+			customInput.setText(s);
 		});
-		
+
 		Button reverse = new Button("Reversed");
 		//reverse.setMaxWidth(Double.MAX_VALUE);
 		reverse.setOnAction(e -> {
 			testInput = new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+			customInput.setText("10,9,8,7,6,5,4,3,2,1");
 			System.out.println("reversed input");
 		});
-		
-		TextArea customInput = new TextArea(); //text area to fill custom inputs
-		customInput.setPrefSize(200, 10);
-		customInput.setMaxHeight(10);
-		
+
 		Button submit = new Button("Submit");
 		submit.setMaxWidth(Double.MAX_VALUE);
 		submit.setOnAction(e -> {
 			String getInput = customInput.getText(); //get input from text area
+			getInput = getInput.replaceAll("\\s+", "");
+			String s = getInput.replaceAll(",", "");
+			String regex = "[0-9]+";
 			String[] split = getInput.split(","); //split the string into elements separated by ','
-			int[] output = new int[10]; 
-			for(int i = 0; i < split.length; i++) {
-				output[i] = Integer.parseInt(split[i]); //copy the elements into another array
+			if(s.matches(regex) && split.length == 10) {
+        			int[] output = new int[10];
+        			for(int i = 0; i < split.length; i++) {
+        				output[i] = Integer.parseInt(split[i]); //copy the elements into another array
+        			}
+        			testInput = output;
 			}
-			testInput = output;
+			else {
+			    customInput.setText("Invalid input. Try again.");
+			}
 		});
-		
+
 		Label customInputLabel = new Label("Insert custom input. e.g 1,2,3,4,5,6,7,8,9,10");
-		
+
 		Button close = new Button("Close");
 		close.setOnAction(e -> {
 			removeAdvanced();
 			resizeStage();
 		});
-		
+
 		//add all the button and labels for advanced menu feature
 		advancedTop.getChildren().add(advancedLabel);
 		advancedTop.getChildren().add(sorted);
@@ -185,12 +200,12 @@ public class FXmainMenuGUI extends Application {
 		advancedBottom.add(customInput, 0, 1);
 		advancedBottom.add(submit, 1, 1);
 		advancedBottom.add(close, 2, 1);
-		
+
 		//add the two panes to border pane
 		advancedPane.setId("advanced");
 		advancedPane.setTop(advancedTop);
 		advancedPane.setCenter(advancedBottom);
-		
+
 		Button advanced = new Button("Advanced Menu");
 		advanced.setMaxWidth(Double.MAX_VALUE);
 		advanced.setOnAction(e -> {
@@ -212,12 +227,12 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(quick, 1, 2);
 		gridMenu.add(insertion, 1, 3);
 		gridMenu.add(advanced, 1, 4);
-		
+
 		BorderPane borderLeft = new BorderPane();//layout for the left
 		ExplanationPane explanationPane = new ExplanationPane();
 		borderLeft.setTop(gridMenu);
 		borderLeft.setCenter(explanationPane);
-		
+
 		borderTop.setCenter(scenetitle); // add the title to the center
 		border.setTop(borderTop); // add the center to the top
 		border.setLeft(borderLeft); // add the main menu
@@ -243,16 +258,16 @@ public class FXmainMenuGUI extends Application {
 	public static void removeVis(String s) {
 		flowPane.getChildren().remove(flowPane.lookup(s));
 		numOfSortsOnScreen--;
-		
+
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
-		
+
 		if(numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
 		}
 		resizeStage();
-		
+
 	}
-	
+
 	public void removeAdvanced() {
 		border.getChildren().remove(border.lookup("#advanced"));
 	}
@@ -260,7 +275,7 @@ public class FXmainMenuGUI extends Application {
 	public static void resizeStage() {
 		stage.sizeToScene();
 	}
-	
+
 	public void shuffleArray(int[] array)
 	{
 	    int index;

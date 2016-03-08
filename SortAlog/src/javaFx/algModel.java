@@ -1,8 +1,11 @@
 package javaFx;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 import javafx.scene.shape.Rectangle;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import testing.sortingAlgs;
@@ -21,26 +24,14 @@ public class algModel extends Observable{
 	private int n;
 	public String type;
 	private int intID;
-
+	private Text[] texts;
+	private Rectangle[] rects ;
 	/**
 	 * Instantiates a new algorithm model.
 	 *
 	 * @param steps the steps
 	 * @param vis the visualizer
 	 */
-	public algModel(int[] input, FXvisualiser vis,String type) {
-		super();
-		this.type = type;
-		SortAlgos alg = new SortAlgos(type, input);
-		this.current = 0;
-		this.steps = alg.getSortedList();
-		System.out.println(steps.get(0).length);
-		this.visualiser = vis;
-		this.loop = false;
-		this.n = 20;
-
-	}
-
 	public algModel(int[] input, String type, int m) {
 		super();
 		SortAlgos alg = new SortAlgos(type, input);
@@ -58,7 +49,6 @@ public class algModel extends Observable{
 		if(current > 0){
 			current--;
 			visualiser.resetRectColor();
-			visualiser.resetRectangles();
 			if (steps.get(current).length!=2){
 				int right = steps.get(current+1)[0];
 				int left = steps.get(current+1)[1];
@@ -107,21 +97,35 @@ public class algModel extends Observable{
 		if(current < steps.size()-1){
 			current++;
 			visualiser.resetRectColor();
-			visualiser.resetRectangles();
 			if (steps.get(current).length!=2){
-				int right = steps.get(current-1)[0];
-				int left = steps.get(current-1)[1];
-				Text text = ((Text)((Pane) 				visualiser.getChildren().get(1)).getChildren().get(10+left));
-				Rectangle rect = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
+
+				int left = steps.get(current-1)[0];
+				int right = steps.get(current-1)[1];
+				/*
+				Text text1 = ((Text)((Pane) 				visualiser.getChildren().get(1)).getChildren().get(10+left));
+				Rectangle rect1 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
 				Text text2 = ((Text)((Pane) 			visualiser.getChildren().get(1)).getChildren().get(10+right));
 				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
-				visualiser.animationBotRight(rect, text,right - left);
+				*/
+				Text text1 = getText(left);
+				Text text2 = getText(right);
+				Rectangle rect1 = getRect(left);
+				Rectangle rect2 = getRect(right);
+				System.out.println("Left: "+left+" Right: " + right);
+				visualiser.animationBotRight(rect1, text1,right - left);
 				visualiser.animationTopLeft(rect2, text2,right- left);
+				changeIndex(left, right);
+//				ObservableList<Node> workingCollection = ((Pane) (visualiser.getChildren().get(1))).getChildren();
+//				((Pane) (visualiser.getChildren().get(1))).getChildren().removeAll(workingCollection);
+//				Collections.swap(workingCollection, 0, 1);
+//				((Pane) (visualiser.getChildren().get(1))).getChildren().setAll(workingCollection);
+				//Collections.swap(((Pane) (visualiser.getChildren().get(1))).getChildren(), left, right);
+				//Collections.swap(((Pane) (visualiser.getChildren().get(1))).getChildren(), left+10, right+10);
 			}else{
 				int right = steps.get(current)[0];
 				int left = steps.get(current)[1];
-				Rectangle rect = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
-				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
+				Rectangle rect = getRect(left);
+				Rectangle rect2 = getRect(right);
 				visualiser.animationComparison(rect, rect2);
 			}
 
@@ -166,7 +170,25 @@ public class algModel extends Observable{
 	}
 	public void setVis(FXvisualiser vis) {
 		this.visualiser = vis;
-
+		int numberEl = getSize();
+		this.rects = new Rectangle[numberEl];
+		this.texts = new Text[numberEl];
+		for(int i=0;i<numberEl;i++){
+			rects[i] = ((Rectangle) ((Pane) visualiser.getChildren().get(1)).getChildren().get(i));
+			texts[i] = ((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(i+numberEl));
+		}
+	}
+	public void changeIndex(int n1, int n2) {
+		System.out.println("changing "+n1+" to "+n2+".");
+		Rectangle swapR1 = this.rects[n1];
+		Rectangle swapR2 = this.rects[n2];
+		
+		this.rects[n1] = swapR2;
+		this.rects[n2] = swapR1;
+		Text swapT1 = this.texts[n1];
+		Text swapT2 = this.texts[n2];
+		this.texts[n1] = swapT2;
+		this.texts[n2] = swapT1;
 	}
 
 	public String getSortTypeString() {
@@ -176,9 +198,7 @@ public class algModel extends Observable{
 	public int getBound() {
 		return steps.size() -1;
 	}
-
 	public int getSize() {
-		// TODO Auto-generated method stub
 		int[] p = steps.get(0);
 		return p.length;
 	}
@@ -188,7 +208,12 @@ public class algModel extends Observable{
 		res = getCurrentList()[i];
 		return String.valueOf(res);
 	}
-
+	public Rectangle getRect(int n) {
+		return this.rects[n];
+	}
+	public Text getText(int n) {
+		return this.texts[n];
+	}
 	public int getID() {
 		return this.intID;
 	}

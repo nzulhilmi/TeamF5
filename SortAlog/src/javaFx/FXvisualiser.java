@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcTo;
+import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -77,7 +78,7 @@ public class FXvisualiser extends BorderPane {
 		pane.getChildren().setAll();
 		pane.getChildren().addAll(rectList); //add the sqares
 		pane.getChildren().addAll(textList); //add the text
-		
+
 		FXcontrolPane controls = new FXcontrolPane(model,logText);//add the controls to the pane
 
 		Button log = new Button("Show log");
@@ -102,7 +103,8 @@ public class FXvisualiser extends BorderPane {
 
 	public void animationBotRight(Rectangle rect, Text text,int n){
 		Path path = new Path();
-		path.getElements().add(new MoveTo(20,20));
+		path.getElements().add(new MoveTo(20+(n-1)*50,20));
+		System.out.println("bot rigt: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		path.getElements().add(new LineTo(20, 70));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 + 50*n, 70, false, false));
 		path.getElements().add(new LineTo(20 + 50*n, 20));
@@ -131,8 +133,8 @@ public class FXvisualiser extends BorderPane {
 	}
 	public void animationTopLeft(Rectangle rect, Text text,int n){
 		Path path = new Path();
-		System.out.println(rect.toString());
-		path.getElements().add(new MoveTo(20,20));
+		System.out.println("top Left: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
+		path.getElements().add(new MoveTo(20+(n-1)*50,20));
 		path.getElements().add(new LineTo(20, -30));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 - 50*n, -30, false, false));
 		path.getElements().add(new LineTo(20 - 50*n, 20));
@@ -165,16 +167,16 @@ public class FXvisualiser extends BorderPane {
 		rect2.setFill(Color.YELLOW);
 
 	}
-	public void resetRectangles(){
-		Rectangle rectangleMove;
-		for(int i=0;i<numBoxes;i++){
-			rectangleMove = (Rectangle) pane.getChildren().get(i);
-			//System.out.println(rectangleMove.getX() + "   "+i);
-			int n =i*50;
-			rectangleMove.relocate(50+n, 50);
-			//System.out.println(rectangleMove.getX() + "   "+i);
-		}
-	}
+//	public void resetRectangles(){
+//		Rectangle rectangleMove;
+//		for(int i=0;i<numBoxes;i++){
+//			rectangleMove = (Rectangle) pane.getChildren().get(i);
+//			//System.out.println(rectangleMove.getX() + "   "+i);
+//			int n =i*50;
+//			rectangleMove.relocate(50+n, 50);
+//			//System.out.println(rectangleMove.getX() + "   "+i);
+//		}
+//	}
 	public void resetRectColor() {
 		Rectangle colorR;
 		for(int i=0;i<numBoxes;i++){

@@ -67,32 +67,21 @@ public class FXmainMenuGUI extends Application {
 		this.stage = stage;
 		mainMenu menu = new mainMenu(); // the core code
 		// algModel algModel = new algModel(null, null, null); // model
-
-		
-
-		flowPane.setPrefWrapLength(100); // This line stops the main menu being
-		// huge
-		flowPane.setPadding(new Insets(10)); // padding 20 because of scroll
-		// bars
+		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
+		flowPane.setPadding(new Insets(10)); // padding 20 because of scroll bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
 
-		ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flow
-		// pane so that it is
-		// scrollable
+		ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
-		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll
-		// bars as and
-		// when required
+		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
 
-		border.setCenter(scrollPane); // set the position of the scrollPane to
-		// the centre of the border
+		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border
 
 		// button creation
 		Button bubble = new Button();
 		bubble.setText("Bubble"); // set test
-		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the
-		// same size
+		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the same size
 		bubble.setOnAction(e -> {
 			numOfSortsOnScreen++;
 			// will need to pass the model as it contains all the variables
@@ -223,10 +212,15 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(quick, 1, 2);
 		gridMenu.add(insertion, 1, 3);
 		gridMenu.add(advanced, 1, 4);
-
+		
+		BorderPane borderLeft = new BorderPane();//layout for the left
+		ExplanationPane explanationPane = new ExplanationPane();
+		borderLeft.setTop(gridMenu);
+		borderLeft.setCenter(explanationPane);
+		
 		borderTop.setCenter(scenetitle); // add the title to the center
 		border.setTop(borderTop); // add the center to the top
-		border.setLeft(gridMenu); // add the main menu
+		border.setLeft(borderLeft); // add the main menu
 		//border.setStyle("-fx-background-color: #CD5C5C;");
 
 		Scene menuScene = new Scene(border); // create the scene

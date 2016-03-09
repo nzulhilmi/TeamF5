@@ -2,9 +2,6 @@ package javaFx;
 
 import java.util.Arrays;
 import java.util.Random;
-
-import org.junit.experimental.max.MaxCore;
-
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,13 +11,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -135,28 +133,31 @@ public class FXmainMenuGUI extends Application {
 		customInput.setPrefSize(200, 10);
 		customInput.setMaxHeight(10);
 
+		ToggleGroup group = new ToggleGroup();
+
 		//buttons for custom inputs
-		Button sorted = new Button("Sorted");
-		//sorted.setMaxWidth(Double.MAX_VALUE);
+		RadioButton sorted = new RadioButton("Sorted");
+		sorted.setToggleGroup(group);
+		//sorted.setSelected(true);
 		sorted.setOnAction(e -> {
 			testInput = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 			customInput.setText("1,2,3,4,5,6,7,8,9,10");
 			System.out.println("sorted input");
 		});
 
-		Button random = new Button("Random");
-		//random.setMaxWidth(Double.MAX_VALUE);
+		RadioButton random = new RadioButton("Random");
+		random.setToggleGroup(group);
 		random.setOnAction(e -> {
 			System.out.println("random input");
 			shuffleArray(testInput); //shuffle the array
 			String s = Arrays.toString(testInput); //convert array to string
-			s = s.replaceAll("\\s+", ""); //remove all the whitespaces
+			s = s.replaceAll("\\s+", ""); //remove all the white spaces
 			s = s.substring(1, s.length()-1); //remove the '[' and ']'
 			customInput.setText(s);
 		});
 
-		Button reverse = new Button("Reversed");
-		//reverse.setMaxWidth(Double.MAX_VALUE);
+		RadioButton reverse = new RadioButton("Reversed");
+		reverse.setToggleGroup(group);
 		reverse.setOnAction(e -> {
 			testInput = new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 			customInput.setText("10,9,8,7,6,5,4,3,2,1");
@@ -164,14 +165,19 @@ public class FXmainMenuGUI extends Application {
 		});
 
 		Button submit = new Button("Submit");
-		submit.setMaxWidth(Double.MAX_VALUE);
 		submit.setOnAction(e -> {
 			String getInput = customInput.getText(); //get input from text area
-			getInput = getInput.replaceAll("\\s+", "");
+			getInput = getInput.replaceAll("\\s+", ""); //remove all the white spaces
 			String s = getInput.replaceAll(",", "");
 			String regex = "[0-9]+";
 			String[] split = getInput.split(","); //split the string into elements separated by ','
-			if(s.matches(regex) && split.length == 10) {
+			boolean b1 = true;
+			for(int i = 0; i < getInput.length()-2; i++) { //check if there's two commas side by side
+			    if(getInput.charAt(i) == ',' && getInput.charAt(i+1) == ',') {
+				b1 = false;
+			    }
+			}
+			if(s.matches(regex) && split.length == 10 && b1 && getInput.charAt(0) != ',') {
         			int[] output = new int[10];
         			for(int i = 0; i < split.length; i++) {
         				output[i] = Integer.parseInt(split[i]); //copy the elements into another array

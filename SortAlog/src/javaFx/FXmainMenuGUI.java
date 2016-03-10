@@ -55,7 +55,7 @@ public class FXmainMenuGUI extends Application {
 	BorderPane advancedPane = new BorderPane();
 
 	private BorderPane border = new BorderPane(); // sets the top level to a border layout
-	ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
+	private ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
 
 	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 
@@ -64,7 +64,6 @@ public class FXmainMenuGUI extends Application {
 	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
-		mainMenu menu = new mainMenu(); // the core code
 		// algModel algModel = new algModel(null, null, null); // model
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
 		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll bars
@@ -240,13 +239,10 @@ public class FXmainMenuGUI extends Application {
 
 		flowPane.widthProperty().addListener(new ChangeListener<Number>() {
 			@Override
-			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth,
-					Number newSceneWidth) {
+			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
 				resizeStage();
-				// scrollPane.set;
 			}
 		});
-
 	}
 
 	public static void removeVis(String s) {

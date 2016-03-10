@@ -26,16 +26,16 @@ public class SortAlgos {
 
 			switch (sortType) {
 
-			case "bubble":
+			case "Bubble":
 				this.sorted = SortAlgos.bubbleSort(toBesorted);
 				break;
-			case "quick" :
+			case "Quick" :
 				this.sorted = SortAlgos.quickSort(toBesorted);
 				break;
-			case "insertion" :
+			case "Insertion" :
 				this.sorted = SortAlgos.insertionSort(toBesorted);
 				break;
-			case "merge" :
+			case "Merge" :
 				this.sorted = SortAlgos.insertionSort(toBesorted);
 				break;
 			default:

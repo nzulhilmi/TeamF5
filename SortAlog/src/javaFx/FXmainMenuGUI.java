@@ -81,19 +81,19 @@ public class FXmainMenuGUI extends Application {
 		Button bubble = new Button();
 		bubble.setText("Bubble"); // set test
 		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the same size
-		bubble.setOnAction(e -> onClickVisulisation("bubble")); //calls the code to create a new visualization
+		bubble.setOnAction(e -> onClickVisulisation("Bubble")); //calls the code to create a new visualization
 
 		Button quick = new Button("Quick");
 		quick.setMaxWidth(Double.MAX_VALUE);
-		quick.setOnAction(e -> System.out.println("quick")/* model.setSort("quick") */);
+		quick.setOnAction(e -> System.out.println("Quick"));
 
 		Button insertion = new Button("Insertion");
 		insertion.setMaxWidth(Double.MAX_VALUE);
-		insertion.setOnAction(e -> onClickVisulisation("insertion"));
+		insertion.setOnAction(e -> onClickVisulisation("Insertion"));
 		
 		Button merge = new Button("Merge");
 		merge.setMaxWidth(Double.MAX_VALUE);
-		merge.setOnAction(e -> onClickVisulisation("merge"));
+		merge.setOnAction(e -> onClickVisulisation("Merge"));
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font
@@ -306,7 +306,6 @@ public class FXmainMenuGUI extends Application {
 		// This stops the screen resizing past visible.
 		if (numOfSortsOnScreen <= 3)
 			stage.sizeToScene();
-
 		// increment intID so each pane will have unique ID
 		intID++;
 	}

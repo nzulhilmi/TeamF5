@@ -90,7 +90,7 @@ public class FXmainMenuGUI extends Application {
 		Button insertion = new Button("Insertion");
 		insertion.setMaxWidth(Double.MAX_VALUE);
 		insertion.setOnAction(e -> onClickVisulisation("Insertion"));
-		
+
 		Button merge = new Button("Merge");
 		merge.setMaxWidth(Double.MAX_VALUE);
 		merge.setOnAction(e -> onClickVisulisation("Merge"));
@@ -160,26 +160,26 @@ public class FXmainMenuGUI extends Application {
 			String[] split = getInput.split(","); //split the string into elements separated by ','
 			boolean b1 = true;
 			for(int i = 0; i < getInput.length()-2; i++) { //check if there's two commas side by side
-			    if(getInput.charAt(i) == ',' && getInput.charAt(i+1) == ',') {
-				b1 = false;
-			    }
+				if(getInput.charAt(i) == ',' && getInput.charAt(i+1) == ',') {
+					b1 = false;
+				}
 			}
 			if(s.matches(regex) && split.length == 10 && b1 && getInput.charAt(0) != ',') {
-        			int[] output = new int[10];
-        			for(int i = 0; i < split.length; i++) {
-        				output[i] = Integer.parseInt(split[i]); //copy the elements into another array
-        			}
-        			testInput = output;
+				int[] output = new int[10];
+				for(int i = 0; i < split.length; i++) {
+					output[i] = Integer.parseInt(split[i]); //copy the elements into another array
+				}
+				testInput = output;
 			}
 			else {
-			    customInput.setText("Invalid input. Try again.");
+				customInput.setText("Invalid input. Try again.");
 			}
 		});
 
 		Label customInputLabel = new Label("Insert custom input. e.g 1,2,3,4,5,6,7,8,9,10");
 
-		Button close = new Button("Close");
-		close.setOnAction(e -> {
+		Button closeAdv = new Button("Close");
+		closeAdv.setOnAction(e -> {
 			removeAdvanced();
 			resizeStage();
 		});
@@ -192,7 +192,7 @@ public class FXmainMenuGUI extends Application {
 		advancedBottom.add(customInputLabel, 0, 0);
 		advancedBottom.add(customInput, 0, 1);
 		advancedBottom.add(submit, 1, 1);
-		advancedBottom.add(close, 2, 1);
+		advancedBottom.add(closeAdv, 2, 1);
 
 		//add the two panes to border pane
 		advancedPane.setId("advanced");
@@ -257,8 +257,10 @@ public class FXmainMenuGUI extends Application {
 
 		if(numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
+			resizeStage();
+		} else if (numOfSortsOnScreen <=3) {
+			resizeStage();
 		}
-		resizeStage();
 
 	}
 
@@ -272,18 +274,18 @@ public class FXmainMenuGUI extends Application {
 
 	public void shuffleArray(int[] array)
 	{
-	    int index;
-	    Random random = new Random();
-	    for (int i = array.length - 1; i > 0; i--)
-	    {
-	        index = random.nextInt(i + 1);
-	        if (index != i)
-	        {
-	            array[index] ^= array[i];
-	            array[i] ^= array[index];
-	            array[index] ^= array[i];
-	        }
-	    }
+		int index;
+		Random random = new Random();
+		for (int i = array.length - 1; i > 0; i--)
+		{
+			index = random.nextInt(i + 1);
+			if (index != i)
+			{
+				array[index] ^= array[i];
+				array[i] ^= array[index];
+				array[index] ^= array[i];
+			}
+		}
 	}
 	/**
 	 * This method creates the visulisation based on the passed sortType paramater.

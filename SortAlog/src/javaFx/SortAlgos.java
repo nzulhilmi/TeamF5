@@ -35,6 +35,9 @@ public class SortAlgos {
 			case "insertion" :
 				this.sorted = SortAlgos.insertionSort(toBesorted);
 				break;
+			case "merge" :
+				this.sorted = SortAlgos.insertionSort(toBesorted);
+				break;
 			default:
 				break;
 			}

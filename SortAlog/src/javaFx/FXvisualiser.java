@@ -53,9 +53,6 @@ public class FXvisualiser extends BorderPane {
 
 		this.setStyle("-fx-background-color: WHITE;"); //background
 		//this.setPrefSize(800, 250); //size if you remove this it will give you the smallest panel possible
-		/*
-		Circle circle = new Circle(50, Color.BLUE); //draw shape
-		circle.relocate(20, 20);*/
 
 		String stringID = Integer.toString(n);
 		this.setId(stringID);

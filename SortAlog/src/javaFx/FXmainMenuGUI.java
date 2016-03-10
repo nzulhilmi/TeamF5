@@ -54,8 +54,8 @@ public class FXmainMenuGUI extends Application {
 
 	BorderPane advancedPane = new BorderPane();
 
-	private BorderPane border = new BorderPane(); // sets the top level to a border
-	// layout
+	private BorderPane border = new BorderPane(); // sets the top level to a border layout
+	ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
 
 	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 
@@ -67,10 +67,10 @@ public class FXmainMenuGUI extends Application {
 		mainMenu menu = new mainMenu(); // the core code
 		// algModel algModel = new algModel(null, null, null); // model
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
-		flowPane.setPadding(new Insets(10)); // padding 20 because of scroll bars
+		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
 
-		ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
+
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
@@ -81,24 +81,7 @@ public class FXmainMenuGUI extends Application {
 		Button bubble = new Button();
 		bubble.setText("Bubble"); // set test
 		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the same size
-		bubble.setOnAction(e -> {
-			numOfSortsOnScreen++;
-			// will need to pass the model as it contains all the variables
-			algModel algModel = new algModel(testInput.clone(), "bubble", intID);
-			FXvisualiser vis = new FXvisualiser(algModel, intID);
-			// model.setSort("bubble");// this line might not be needed
-			algModel.setVis(vis);
-			flowPane.getChildren().add(vis); // makes the flow pane
-			scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-			scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
-
-			// This stops the screen resizing past visible.
-			if (numOfSortsOnScreen <= 3)
-				stage.sizeToScene();
-
-			// increment intID so each pane will have unique ID
-			intID++;
-		});
+		bubble.setOnAction(e -> onClickVisulisation("bubble")); //calls the code to create a new visualization
 
 		Button quick = new Button("Quick");
 		quick.setMaxWidth(Double.MAX_VALUE);
@@ -106,24 +89,11 @@ public class FXmainMenuGUI extends Application {
 
 		Button insertion = new Button("Insertion");
 		insertion.setMaxWidth(Double.MAX_VALUE);
-		insertion.setOnAction(e -> {
-		numOfSortsOnScreen++;
-		// will need to pass the model as it contains all the variables
-		algModel algModel = new algModel(testInput.clone(), "insertion", intID);
-		FXvisualiser vis = new FXvisualiser(algModel, intID);
-		// model.setSort("bubble");// this line might not be needed
-		algModel.setVis(vis);
-		flowPane.getChildren().add(vis); // makes the flow pane
-		scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
-
-		// This stops the screen resizing past visible.
-		if (numOfSortsOnScreen <= 3)
-			stage.sizeToScene();
-
-		// increment intID so each pane will have unique ID
-		intID++;}
-		);
+		insertion.setOnAction(e -> onClickVisulisation("insertion"));
+		
+		Button merge = new Button("Merge");
+		merge.setMaxWidth(Double.MAX_VALUE);
+		merge.setOnAction(e -> onClickVisulisation("merge"));
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font
@@ -249,7 +219,8 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(bubble, 1, 1);
 		gridMenu.add(quick, 1, 2);
 		gridMenu.add(insertion, 1, 3);
-		gridMenu.add(advanced, 1, 4);
+		gridMenu.add(merge, 1, 4);
+		gridMenu.add(advanced, 1, 5);
 
 		BorderPane borderLeft = new BorderPane();//layout for the left
 		ExplanationPane explanationPane = new ExplanationPane();
@@ -313,6 +284,31 @@ public class FXmainMenuGUI extends Application {
 	            array[index] ^= array[i];
 	        }
 	    }
+	}
+	/**
+	 * This method creates the visulisation based on the passed sortType paramater.
+	 * Configures the model and generates a flowpane
+	 * 
+	 * @param sort The sort type
+	 * 
+	 */
+	public void onClickVisulisation(String sort){
+		numOfSortsOnScreen++;
+		// will need to pass the model as it contains all the variables
+		algModel algModel = new algModel(testInput.clone(), sort, intID);
+		FXvisualiser vis = new FXvisualiser(algModel, intID);
+		algModel.setVis(vis);
+		flowPane.getChildren().add(vis); // makes the flow pane
+		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
+
+		// This stops the screen resizing past visible.
+		if (numOfSortsOnScreen <= 3)
+			stage.sizeToScene();
+
+		// increment intID so each pane will have unique ID
+		intID++;
 	}
 
 }

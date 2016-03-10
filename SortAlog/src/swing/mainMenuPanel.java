@@ -1,4 +1,4 @@
-package testing;
+package swing;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;

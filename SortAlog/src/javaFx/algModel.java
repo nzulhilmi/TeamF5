@@ -8,9 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import testing.sortingAlgs;
-import testing.visualiser;
 import javafx.scene.text.Text;
+import swing.sortingAlgs;
+import swing.visualiser;
 /**
  * The .....
  * @author Kiril N. Elliott Upton

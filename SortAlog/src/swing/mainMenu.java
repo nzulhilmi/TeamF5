@@ -1,4 +1,4 @@
-package testing;
+package swing;
 /**
  * The code which supports the building of the model.
  * 

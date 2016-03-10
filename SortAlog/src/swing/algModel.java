@@ -1,4 +1,4 @@
-package testing;
+package swing;
 
 import java.util.ArrayList;
 import java.util.Observable;

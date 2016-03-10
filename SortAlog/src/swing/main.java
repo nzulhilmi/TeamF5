@@ -1,4 +1,4 @@
-package testing;
+package swing;
 /**
  * the main class which should run and control everything
  * @author ElliottUpton

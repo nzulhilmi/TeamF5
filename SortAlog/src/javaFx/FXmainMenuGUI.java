@@ -106,7 +106,24 @@ public class FXmainMenuGUI extends Application {
 
 		Button insertion = new Button("Insertion");
 		insertion.setMaxWidth(Double.MAX_VALUE);
-		insertion.setOnAction(e -> System.out.println("insertion") /* model.setSort("insertion") */);
+		insertion.setOnAction(e -> {
+		numOfSortsOnScreen++;
+		// will need to pass the model as it contains all the variables
+		algModel algModel = new algModel(testInput.clone(), "insertion", intID);
+		FXvisualiser vis = new FXvisualiser(algModel, intID);
+		// model.setSort("bubble");// this line might not be needed
+		algModel.setVis(vis);
+		flowPane.getChildren().add(vis); // makes the flow pane
+		scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
+
+		// This stops the screen resizing past visible.
+		if (numOfSortsOnScreen <= 3)
+			stage.sizeToScene();
+
+		// increment intID so each pane will have unique ID
+		intID++;}
+		);
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font

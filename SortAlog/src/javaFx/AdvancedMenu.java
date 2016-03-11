@@ -17,7 +17,8 @@ import javafx.stage.Stage;
 public class AdvancedMenu extends BorderPane{
     private Stage stage;
     private BorderPane border;
-    private int[] input =  {10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+    private static int[] input = {1,2,3,4,5,6,7,8,9,10};
+    private Boolean textArea = false;
 
     public AdvancedMenu(Stage stage, BorderPane border) {
 	this.setId("advanced");
@@ -38,16 +39,22 @@ public class AdvancedMenu extends BorderPane{
 
 	Label advancedLabel = new Label("Choose input: ");
 
-	TextArea customInput = new TextArea(); //text area to fill custom inputs
+	TextArea customInput = new TextArea("1,2,3,4,5,6,7,8,9,10"); //text area to fill custom inputs
 	customInput.setPrefSize(200, 10);
 	customInput.setMaxHeight(10);
+	customInput.setOnMouseClicked(e-> {
+	    if(textArea) {
+		customInput.setText("");
+		textArea = false;
+	    }
+	});
 
 	ToggleGroup group = new ToggleGroup();
 
 	//buttons for custom inputs
 	RadioButton sorted = new RadioButton("Sorted");
 	sorted.setToggleGroup(group);
-	//sorted.setSelected(true);
+	sorted.setSelected(true);
 	sorted.setOnAction(e -> {
 	    input = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 	    customInput.setText("1,2,3,4,5,6,7,8,9,10");
@@ -97,6 +104,7 @@ public class AdvancedMenu extends BorderPane{
 	    }
 	    else {
 		customInput.setText("Invalid input. Try again.");
+		textArea = true;
 	    }
 	});
 
@@ -104,6 +112,7 @@ public class AdvancedMenu extends BorderPane{
 	closeAdv.setOnAction(e -> {
 	    removeAdvanced();
 	    resizeStage();
+	    FXmainMenuGUI.setBoolean(false);
 	});
 
 	advancedTop.getChildren().add(advancedLabel);
@@ -143,7 +152,7 @@ public class AdvancedMenu extends BorderPane{
 	}
     }
 
-    public int[] getInput() {
+    public static int[] getInput() {
 	return input;
     }
 }

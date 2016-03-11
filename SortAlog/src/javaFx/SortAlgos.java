@@ -17,31 +17,33 @@ public class SortAlgos {
 	/**
 	 * Instantiates a new sortAlgos which holds and uses the sorting algorythms.
 	 *
-	 * @param sortType the sort type
-	 * @param toBesorted the to the array we want to sort
+	 * @param sortType
+	 *            the sort type
+	 * @param toBesorted
+	 *            the to the array we want to sort
 	 */
-	public SortAlgos(String sortType, int[] toBesorted){
-			this.sortType = sortType;
-			this.toBesorted = toBesorted;
+	public SortAlgos(String sortType, int[] toBesorted) {
+		this.sortType = sortType;
+		this.toBesorted = toBesorted;
 
-			switch (sortType) {
+		switch (sortType) {
 
-			case "Bubble":
-				this.sorted = SortAlgos.bubbleSort(toBesorted);
-				break;
-			case "Quick" :
-				this.sorted = SortAlgos.quickSort(toBesorted);
-				break;
-			case "Insertion" :
-				this.sorted = SortAlgos.insertionSort(toBesorted);
-				break;
-			case "Merge" :
-				this.sorted = SortAlgos.insertionSort(toBesorted);
-				break;
-			default:
-				break;
-			}
+		case "Bubble":
+			this.sorted = SortAlgos.bubbleSort(toBesorted);
+			break;
+		case "Quick":
+			this.sorted = SortAlgos.quickSort(toBesorted);
+			break;
+		case "Insertion":
+			this.sorted = SortAlgos.insertionSort(toBesorted);
+			break;
+		case "Merge":
+			this.sorted = SortAlgos.insertionSort(toBesorted);
+			break;
+		default:
+			break;
 		}
+	}
 
 	public String getSortTypeString() {
 		return sortType;
@@ -65,7 +67,7 @@ public class SortAlgos {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] currentStep = new int[n];
 
-		//  An array of the index of the two elements that are being compared
+		// An array of the index of the two elements that are being compared
 		int[] indexComparison = new int[2];
 		currentStep = input;
 		steps.add(input.clone());
@@ -245,27 +247,25 @@ public class SortAlgos {
 
 		int length = input.length;
 
-		int temp;
 		for (int i = 0; i < length - 1; i++) {
+			int temp;
+			int min = i;
 
-			int min = input[i];
-			int count = i;
 			for (int j = i + 1; j < length; j++) {
 
 				indexComparison[0] = i;
 				indexComparison[1] = j;
 
 				steps.add(indexComparison.clone());
-				if (input[j] < min) {
-					min = input[j];
+				if (input[j] < input[min]) {
+					min = j;
 
-					count++;
 				}
 
 			}
-			temp = input[i];
-			input[i] = min;
-			input[count] = temp;
+			temp = input[min];
+			input[min] = input[i];
+			input[i] = temp;
 			steps.add(input.clone());
 
 		}

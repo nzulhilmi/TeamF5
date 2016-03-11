@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Test;
-import swing.SortAlgos;
+import javaFx.SortAlgos;
 
 /**
  * A JUnit testing of the algorithms
@@ -14,7 +14,6 @@ import swing.SortAlgos;
  *
  */
 public class SortAlgosTest {
-	SortAlgos SortAlgos = new SortAlgos();
 
 	// no input\
 	int[] expected1 = new int[1];

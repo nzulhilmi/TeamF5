@@ -201,33 +201,26 @@ public class SortAlgos {
 		int[] indexComparison = new int[2];
 
 		int length = input.length;
-		
-		
-		int temp;
-		for (int i = 0; i < length -1 ; i++) {
-			
-			int min=input[i];
-			int count=i;
-		for (int j = i + 1; j < length; j++) {
-				
+
+		for (int i = 0; i < length - 1; i++) {
+			int temp;
+			int min = i;
+			for (int j = i + 1; j < length; j++) {
 
 				indexComparison[0] = i;
 				indexComparison[1] = j;
-				
+
 				steps.add(indexComparison.clone());
-				if (input[j] < min) {
-				min=input[j];
-					
-				count++;
+				if (input[j] < input[min]) {
+					min = j;
 				}
-				
-				
+
 			}
-		temp=input[i];
-		input[i]=min;
-		input[count]=temp;
-		steps.add(input.clone());
-		
+			temp = input[min];
+			input[min] = input[i];
+			input[i] = temp;
+			steps.add(input.clone());
+
 		}
 		return steps;
 	}

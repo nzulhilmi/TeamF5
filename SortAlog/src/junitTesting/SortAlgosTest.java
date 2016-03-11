@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Test;
-import testing.SortAlgos;
+import swing.SortAlgos;
 
 /**
  * A JUnit testing of the algorithms
@@ -186,9 +186,7 @@ public class SortAlgosTest {
 			j--;
 		}
 		result = array.get(j);
-		Assert.assertTrue(Arrays.equals(expected1, result)); // (expected1,
-																// result))
-																// expected1.equals(result));
+		Assert.assertTrue(Arrays.equals(expected1, result));
 	}
 
 	@Test
@@ -344,7 +342,6 @@ public class SortAlgosTest {
 
 		while (array.get(j).length == 2) {
 			j--;
-			System.out.println(j);
 		}
 
 		result = array.get(j);
@@ -486,14 +483,12 @@ public class SortAlgosTest {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual7);
 		int j = array.size() - 1;
-		System.out.println(j);
-
+		
 		while (array.get(j).length == 2) {
 			j--;
 		}
 
 		result = array.get(j);
-		System.out.println(j);
 		Assert.assertTrue(Arrays.equals(expected7, result));
 	}
 
@@ -519,9 +514,19 @@ public class SortAlgosTest {
 		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual9);
 		int j = array.size() - 1;
 
+		System.out.println("Selection ThreeElementsInReverseOrder before while loop" + j);
+		for(int i = 0; i < array.size(); i++){
+			for(int z = 0; z < array.get(i).length; z++){
+				System.out.print(array.get(i)[z] + ", ");
+			}
+			System.out.println("");
+		}
+		
 		while (array.get(j).length == 2) {
+			System.out.println("Selection ThreeElementsInReverseOrder in the while loop" + j);
 			j--;
 		}
+		System.out.println("Selection ThreeElementsInReverseOrder after while loop" + j);
 
 		result = array.get(j);
 		Assert.assertTrue(Arrays.equals(expected9, result));

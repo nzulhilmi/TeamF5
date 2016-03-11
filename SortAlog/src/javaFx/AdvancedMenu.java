@@ -56,6 +56,7 @@ public class AdvancedMenu extends BorderPane{
 	sorted.setToggleGroup(group);
 	sorted.setSelected(true);
 	sorted.setOnAction(e -> {
+	    textArea = false;
 	    input = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 	    customInput.setText("1,2,3,4,5,6,7,8,9,10");
 	    System.out.println("sorted input");
@@ -64,6 +65,7 @@ public class AdvancedMenu extends BorderPane{
 	RadioButton random = new RadioButton("Random");
 	random.setToggleGroup(group);
 	random.setOnAction(e -> {
+	    textArea = false;
 	    System.out.println("random input");
 	    shuffleArray(input); //shuffle the array
 	    String s = Arrays.toString(input); //convert array to string
@@ -75,6 +77,7 @@ public class AdvancedMenu extends BorderPane{
 	RadioButton reverse = new RadioButton("Reversed");
 	reverse.setToggleGroup(group);
 	reverse.setOnAction(e -> {
+	    textArea = false;
 	    input = new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 	    customInput.setText("10,9,8,7,6,5,4,3,2,1");
 	    System.out.println("reversed input");
@@ -95,7 +98,11 @@ public class AdvancedMenu extends BorderPane{
 		    b1 = false;
 		}
 	    }
-	    if(s.matches(regex) && split.length == 10 && b1 && getInput.charAt(0) != ',') {
+	    boolean b2 = true;
+	    if(getInput.charAt(getInput.length()-1) == ',') {
+		b1 = false;
+	    }
+	    if(s.matches(regex) && split.length == 10 && b1 && getInput.charAt(0) != ',' && b2) {
 		int[] output = new int[10];
 		for(int i = 0; i < split.length; i++) {
 		    output[i] = Integer.parseInt(split[i]); //copy the elements into another array

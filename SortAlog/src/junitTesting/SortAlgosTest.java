@@ -478,10 +478,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with empty array
 	 */
 	@Test
-	public void SelectionSortEmptyLyst_ShouldReturnEmptyList() {
+	public void selectionSortEmptyLyst_ShouldReturnEmptyList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual1);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual1);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -496,10 +496,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with one element in the array
 	 */
 	@Test
-	public void SelectionSortOneElement_ShouldReturnTheElement() {
+	public void selectionSortOneElement_ShouldReturnTheElement() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual2);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual2);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -514,10 +514,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with two elements in order
 	 */
 	@Test
-	public void SelectionSortTwoElementsInOrder_ShouldReturnSameList() {
+	public void selectionSortTwoElementsInOrder_ShouldReturnSameList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual3);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual3);
 		result = array.get(array.size() - 1);
 		Assert.assertTrue(Arrays.equals(expected3, result));
 	}
@@ -526,10 +526,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with two elements in reverse order
 	 */
 	@Test
-	public void SelectionSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
+	public void selectionSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual4);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual4);
 		result = array.get(array.size() - 1);
 		Assert.assertTrue(Arrays.equals(expected4, result));
 	}
@@ -538,10 +538,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with two equal elements
 	 */
 	@Test
-	public void SelectionSortTwoEqualElements_ShouldReturnElementsInOrder() {
+	public void selectionSortTwoEqualElements_ShouldReturnElementsInOrder() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual5);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual5);
 		result = array.get(array.size() - 1);
 		Assert.assertTrue(Arrays.equals(expected5, result));
 	}
@@ -550,10 +550,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with three elements in order 
 	 */
 	@Test
-	public void SelectionSortThreeElementsInOrder_ShouldReturnSortedList() {
+	public void selectionSortThreeElementsInOrder_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual6);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual6);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -568,10 +568,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with three elements where the last two are swapped
 	 */
 	@Test
-	public void SelectionSortThreeElementsLastTwoSwaped_ShouldReturnSortedList() {
+	public void selectionSortThreeElementsLastTwoSwaped_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual7);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual7);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -586,10 +586,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with three elements where the first two are swapped
 	 */
 	@Test
-	public void SelectionSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {
+	public void selectionSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual8);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual8);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -604,10 +604,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with three elements in reverse order
 	 */
 	@Test
-	public void SelectionSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
+	public void selectionSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual9);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual9);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -622,10 +622,10 @@ public class SortAlgosTest {
 	 * Testing selection sort with N elements in random order
 	 */
 	@Test
-	public void SelectionSortNElementsRandomOrder_ShouldReturnSortedList() {
+	public void selectionSortNElementsRandomOrder_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.SelectionSort(steps, actual10);
+		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual10);
 		int j = array.size() - 1;
 		while (array.get(j).length == 2) {
 			j--;

@@ -238,18 +238,16 @@ public class SortAlgos {
 	 *         step.
 	 */
 	public static ArrayList<int[]> selectionSort(int[] input) {
+		int length = input.length;
+		int temp;
 		ArrayList<int[]> steps = new ArrayList<int[]>();
-		// add the input as the first step
 		steps.add(input.clone());
 		/*
 		 * An array of the index of the two elements that are being compared
 		 */
 		int[] indexComparison = new int[2];
 
-		int length = input.length;
-
 		for (int i = 0; i < length - 1; i++) {
-			int temp;
 			int min = i;
 
 			for (int j = i + 1; j < length; j++) {
@@ -259,15 +257,13 @@ public class SortAlgos {
 
 				steps.add(indexComparison.clone());
 				if (input[j] < input[min]) {
-					min = j;
-
+					temp = input[j];
+					input[j] = input[i];
+					input[i] = temp;
+					steps.add(input.clone());
 				}
 
 			}
-			temp = input[min];
-			input[min] = input[i];
-			input[i] = temp;
-			steps.add(input.clone());
 
 		}
 		return steps;

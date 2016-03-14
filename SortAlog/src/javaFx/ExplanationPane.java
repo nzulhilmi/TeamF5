@@ -22,7 +22,7 @@ public class ExplanationPane extends GridPane {
 		Label ExplanationTitle = new Label();
 		ExplanationTitle.setText("Sorting Explanations: ");
 
-		ObservableList<String> options = FXCollections.observableArrayList("Bubble", "Quick", "Selection");
+		ObservableList<String> options = FXCollections.observableArrayList("Bubble", "Quick", "Insertion", "Selection");
 		final ComboBox<String> comboBox = new ComboBox<String>(options);
 
 		explanation.setWrapText(true);

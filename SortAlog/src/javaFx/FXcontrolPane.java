@@ -1,16 +1,9 @@
 package javaFx;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
-
-import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -25,6 +18,9 @@ import javafx.scene.text.Text;
 public class FXcontrolPane extends GridPane {
 	algModel model;
 	private int period;
+	public Boolean btnDisabled;
+	public Button forward;
+	public Button back;
 
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
@@ -40,19 +36,19 @@ public class FXcontrolPane extends GridPane {
 		slider.setMajorTickUnit(.5);
 
 		//buttons creation
-		Button back = new Button("|<<");
+		back = new Button("|<<");
 		back.setOnAction(e -> {
 			System.out.println("back");
 			logText.appendText("\n back");
 			model.goBack();
-			});
+		});
 
 		Button play = new Button("play");
 		play.setOnAction(e ->{
 			System.out.println("play");
 			logText.appendText("\n play");
 			//timer.start();
-			});
+		});
 
 		Button pause = new Button("pause");
 		pause.setOnAction(e ->{
@@ -61,7 +57,7 @@ public class FXcontrolPane extends GridPane {
 			//timer.stop();});
 		});
 
-		Button forward = new Button(">>|");
+		forward = new Button(">>|");
 		forward.setOnAction(e ->{
 			System.out.println("forward");
 			logText.appendText("\n forward");
@@ -74,7 +70,7 @@ public class FXcontrolPane extends GridPane {
 			int intID = this.model.getID();
 			String stringID = Integer.toString(intID);
 			String ID = "#" + stringID;
-			
+
 			System.out.println("close");
 			logText.appendText("\n close");
 			FXmainMenuGUI.removeVis(ID);
@@ -92,5 +88,23 @@ public class FXcontrolPane extends GridPane {
 		this.add(pause, 3, 2);
 		this.add(forward, 4, 2);
 		this.add(close, 6, 2);
+	}
+
+	/**
+	 * enables/disables the forward button
+	 * 
+	 * @param state Boolean: true = disabled, false = enabled.
+	 */
+	public void setBtnStateFwd(Boolean state){
+		forward.setDisable(state);
+	}
+	
+	/**
+	 * enables/disables the back button
+	 * 
+	 * @param state Boolean: true = disabled, false = enabled.
+	 */
+	public void setBtnStateBK(Boolean state){
+		back.setDisable(state);
 	}
 }

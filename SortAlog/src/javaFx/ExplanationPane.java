@@ -22,7 +22,7 @@ public class ExplanationPane extends GridPane {
 		Label ExplanationTitle = new Label();
 		ExplanationTitle.setText("Sorting Explanations: ");
 
-		ObservableList<String> options = FXCollections.observableArrayList("Bubble", "Quick", "Merge");
+		ObservableList<String> options = FXCollections.observableArrayList("Bubble", "Quick", "Selection");
 		final ComboBox<String> comboBox = new ComboBox<String>(options);
 
 		explanation.setWrapText(true);
@@ -46,8 +46,11 @@ public class ExplanationPane extends GridPane {
 			return text = "Quick Sort \n Quick sort firstly picks a pivot element. All other element are then compared to the pivot and placed to the left if they are smaller or to the right if they are larger, splitting the array. \n The pivot is then marked as sorted. \n The algorithm then runs simltaniously on both the left and right sides.";
 		case "PlaceHolder":
 			return text = "This is placeholder Sort";
-		case "Merge":
-		 return text = "Merge Sort \n Merge sort takes the list of elements and splits it into two and continually splits these list into smaller and smaller lists until it has 2 elements. \n It then sorts these two elements. Once many small lists are sorted the merging begins. Merging the smaller lists is done by comparing the first element (the smallest) with the first of the second list and the putting smallest of the two lists in first place. This continues until the two lists have been merged inorder and then starts on the next level up. Eventually leading to the two halves of the list being sorted and reuireing one final merge. ";
+		case "Selection":
+		 return text = "Selection Sort \n "
+		 		+ "Selection sort starts with the element in the first position or the list assuming that this is the minimum value in the list. \n "
+		 		+ "Then the algorithm compares it with each element in the list and when it find an element with smaller value the algorithm saves the possition of this element as being the current minimum. At the point when it has reached the end of the list the algorithm would have saved the position of the smallest element in the list. Then it will swap it with the first element in the list as this is the position that we want to get sorted first. \n"
+		 		+ "Now we have the first element sorted and the same cycle is repeated for each next position in the list without going back to the leading positions.";
 		default:
 			break;
 		}

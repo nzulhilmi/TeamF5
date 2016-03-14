@@ -90,9 +90,9 @@ public class FXmainMenuGUI extends Application {
 		insertion.setMaxWidth(Double.MAX_VALUE);
 		insertion.setOnAction(e -> onClickVisulisation("Insertion"));
 
-		Button merge = new Button("Merge");
+		Button merge = new Button("Selection");
 		merge.setMaxWidth(Double.MAX_VALUE);
-		merge.setOnAction(e -> onClickVisulisation("Merge"));
+		merge.setOnAction(e -> onClickVisulisation("Selection"));
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font

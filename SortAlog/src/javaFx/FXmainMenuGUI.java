@@ -16,6 +16,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -68,31 +70,34 @@ public class FXmainMenuGUI extends Application {
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
 		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
-
-
+		 
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
-
+		
 		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border
 
 		// button creation
 		Button bubble = new Button();
 		bubble.setText("Bubble"); // set test
+		bubble.getStyleClass().add("sortButtons");
 		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the same size
 		bubble.setOnAction(e -> onClickVisulisation("Bubble")); //calls the code to create a new visualization
 
 		Button quick = new Button("Quick");
+		quick.getStyleClass().add("sortButtons");
 		quick.setMaxWidth(Double.MAX_VALUE);
 		quick.setOnAction(e -> System.out.println("Quick"));
 
 		Button insertion = new Button("Insertion");
+		insertion.getStyleClass().add("sortButtons");
 		insertion.setMaxWidth(Double.MAX_VALUE);
 		insertion.setOnAction(e -> onClickVisulisation("Insertion"));
 
-		Button merge = new Button("Selection");
-		merge.setMaxWidth(Double.MAX_VALUE);
-		merge.setOnAction(e -> onClickVisulisation("Selection"));
+		Button selection = new Button("Selection");
+		selection.getStyleClass().add("sortButtons");
+		selection.setMaxWidth(Double.MAX_VALUE);
+		selection.setOnAction(e -> onClickVisulisation("Selection"));
 
 		// Title Creation
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font
@@ -124,7 +129,7 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(bubble, 1, 1);
 		gridMenu.add(quick, 1, 2);
 		gridMenu.add(insertion, 1, 3);
-		gridMenu.add(merge, 1, 4);
+		gridMenu.add(selection, 1, 4);
 		gridMenu.add(advanced, 1, 5);
 
 		BorderPane borderLeft = new BorderPane();//layout for the left
@@ -139,6 +144,7 @@ public class FXmainMenuGUI extends Application {
 
 		Scene menuScene = new Scene(border); // create the scene
 		// add the scene to the pane
+		menuScene.getStylesheets().add("menuDesign.css");
 		stage.setScene(menuScene);
 		stage.setTitle("SortAlgo");
 		stage.show(); // show the stage

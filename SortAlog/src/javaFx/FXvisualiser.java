@@ -116,9 +116,9 @@ public class FXvisualiser extends BorderPane {
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(500*n));
+		pathTransition.setDuration(Duration.millis(500));
 		PathTransition pathTransition2 =new PathTransition();
-		pathTransition2.setDuration(Duration.millis(500*n));
+		pathTransition2.setDuration(Duration.millis(500));
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path);
 		pathTransition.setNode(rect);
@@ -147,9 +147,9 @@ public class FXvisualiser extends BorderPane {
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(500*n));
+		pathTransition.setDuration(Duration.millis(500));
 		PathTransition pathTransition2 =new PathTransition();
-		pathTransition2.setDuration(Duration.millis(500*n));
+		pathTransition2.setDuration(Duration.millis(500));
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path);
 		pathTransition.setNode(rect);

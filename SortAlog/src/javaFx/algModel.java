@@ -102,7 +102,7 @@ public class algModel extends Observable{
 				//getting the left and right indexess
 				int left = steps.get(current-1)[0];
 				int right = steps.get(current-1)[1];
-				System.out.println("Current left: "+left +"right: "+right);
+				System.out.println("Current left: "+left +"  right: "+right);
 
 				//checking the translate layout and X Y properties
 				System.out.println("Tanslate: X= " 	+ texts[left].getTranslateX()	+ " Y= " 	+ texts[left].getTranslateY());

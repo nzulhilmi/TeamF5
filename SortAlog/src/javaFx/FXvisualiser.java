@@ -60,13 +60,20 @@ public class FXvisualiser extends BorderPane {
 			rectList[i] = new Rectangle (40, 40, Color.ORANGE);
 			rectList[i].setArcHeight(15);
 			rectList[i].setArcWidth(15);
-			rectList[i].relocate(50+50*i, 50);
+			rectList[i].relocate(50+(50*i), 50);
 			//rectList[i].
 			textList[i] = new Text(model.getCurrentBoxContent(i));
 			//textList[i].setBoundsType(TextBoundsType.VISUAL);
-			textList[i].relocate(50+50*i, 50);
-			textList[i].translateXProperty().set(20);
-			textList[i].translateYProperty().set(25);
+			textList[i].relocate(65+(50*i), 65);
+			System.out.println("textN: "+i+ " TA: "+textList[i].getY() +
+											" Y: "+textList[i].getX() +
+											" TX: "+textList[i].getTranslateX() +
+											" TY: "+textList[i].getTranslateY() +
+											" LX: "+textList[i].getLayoutX() +
+											" LY: "+textList[i].getLayoutY()
+											);
+			//textList[i].translateXProperty().set(20);
+			//textList[i].translateYProperty().set(25);
 		}
 		pane.getChildren().setAll();
 		pane.getChildren().addAll(rectList); //add the sqares
@@ -126,7 +133,8 @@ public class FXvisualiser extends BorderPane {
 	}
 	public void animationTopLeft(Rectangle rect, Text text,int n){
 		Path path = new Path();
-		//System.out.println("top Left: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
+		System.out.println("top Left:left: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
+		System.out.println("top Left:right: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		path.getElements().add(new MoveTo(20+(n-1)*50,20));
 		path.getElements().add(new LineTo(20, -30));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 - 50*n, -30, false, false));

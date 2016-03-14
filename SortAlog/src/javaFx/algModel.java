@@ -49,7 +49,7 @@ public class algModel extends Observable{
 	public void goBack(){
 		if(current > 0){
 			current--;
-			visualiser.resetRectColor();
+			visualiser.resetRectColor();/*
 			if (steps.get(current).length!=2){
 				int right = steps.get(current+1)[0];
 				int left = steps.get(current+1)[1];
@@ -65,7 +65,7 @@ public class algModel extends Observable{
 				Rectangle rect = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
 				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
 				visualiser.animationComparison(rect, rect2);
-			}
+			}*/
 
 		}
 			//System.out.println(visualiser.getChildren().get(1).toString());
@@ -103,19 +103,14 @@ public class algModel extends Observable{
 				int left = steps.get(current-1)[0];
 				int right = steps.get(current-1)[1];
 				System.out.println("Current left: "+left +"right: "+right);
-				//getting the text and rectangles at the specified indexed
 
-				Text text1 = this.texts[left];
-				Text text2 = this.texts[right];
-				Rectangle rect1 = this.rects[left];
-				Rectangle rect2 = this.rects[right];
 				//checking the translate layout and X Y properties
-				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
-				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
-				System.out.println("XY:   X= "+ texts[left].getX()+   " Y= "+ texts[left].getY());
+				System.out.println("Tanslate: X= " 	+ texts[left].getTranslateX()	+ " Y= " 	+ texts[left].getTranslateY());
+				System.out.println("Layout:   X= " 	+ texts[left].getLayoutX()		+ " Y= " 	+ texts[left].getLayoutY());
 				//trying to fix them
-//				fixTranslate(rects[left]);
-//				fixTranslateText(texts[left]);
+				fixTranslate(rects[left]);
+				fixTranslate(rects[right]);
+				//fixTranslateText(texts[left]);
 				//checking if the fix worked
 //				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
 //				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
@@ -124,8 +119,8 @@ public class algModel extends Observable{
 				//System.out.println("Before: "+ rects[left].getTranslateX()+" Y= "+ rects[left].getTranslateY());
 				//System.out.println("Before: X= "+ rects[left].getLayoutX()+" Y= "+ rects[left].getLayoutY());
 				//System.out.println("Before: X= "+ rects[right].getLayoutX()+" Y= "+ rects[right].getLayoutY());
-				visualiser.animationBotRight(rect1, text1,right - left);
-				visualiser.animationTopLeft(rect2, text2,right- left);
+				visualiser.animationBotRight(rects[left], texts[left],right - left);
+				visualiser.animationTopLeft(rects[right], texts[right],right- left);
 				//fixTranslate(rects[left]);
 				//fixTranslateText(texts[left]);
 				changeIndex(left, right);

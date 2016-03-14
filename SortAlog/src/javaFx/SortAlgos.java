@@ -187,7 +187,7 @@ public class SortAlgos {
 	 *         step.
 	 */
 	public static ArrayList<int[]> insertionSort(int[] input) {
-
+		int n = input.length;
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		/*
 		 * An array of the index of the two elements that are being compared
@@ -197,7 +197,6 @@ public class SortAlgos {
 		steps.add(input.clone()); // add the input array to steps
 
 		// the algorithm for insertion sort
-		int n = input.length;
 		for (int i = 1; i < n; i++) {
 
 			int key = input[i]; // element to be compared

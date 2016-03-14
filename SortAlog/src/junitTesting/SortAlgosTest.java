@@ -481,7 +481,7 @@ public class SortAlgosTest {
 	public void selectionSortEmptyLyst_ShouldReturnEmptyList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual1);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual1);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -499,7 +499,7 @@ public class SortAlgosTest {
 	public void selectionSortOneElement_ShouldReturnTheElement() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual2);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual2);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -517,7 +517,7 @@ public class SortAlgosTest {
 	public void selectionSortTwoElementsInOrder_ShouldReturnSameList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual3);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual3);
 		result = array.get(array.size() - 1);
 		Assert.assertTrue(Arrays.equals(expected3, result));
 	}
@@ -529,7 +529,7 @@ public class SortAlgosTest {
 	public void selectionSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual4);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual4);
 		result = array.get(array.size() - 1);
 		Assert.assertTrue(Arrays.equals(expected4, result));
 	}
@@ -541,7 +541,7 @@ public class SortAlgosTest {
 	public void selectionSortTwoEqualElements_ShouldReturnElementsInOrder() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual5);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual5);
 		result = array.get(array.size() - 1);
 		Assert.assertTrue(Arrays.equals(expected5, result));
 	}
@@ -553,7 +553,7 @@ public class SortAlgosTest {
 	public void selectionSortThreeElementsInOrder_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual6);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual6);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -571,7 +571,7 @@ public class SortAlgosTest {
 	public void selectionSortThreeElementsLastTwoSwaped_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual7);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual7);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -589,7 +589,7 @@ public class SortAlgosTest {
 	public void selectionSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual8);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual8);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -607,7 +607,7 @@ public class SortAlgosTest {
 	public void selectionSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual9);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual9);
 		int j = array.size() - 1;
 
 		while (array.get(j).length == 2) {
@@ -625,7 +625,7 @@ public class SortAlgosTest {
 	public void selectionSortNElementsRandomOrder_ShouldReturnSortedList() {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
-		ArrayList<int[]> array = SortAlgos.selectionSort(steps, actual10);
+		ArrayList<int[]> array = SortAlgos.selectionSort(actual10);
 		int j = array.size() - 1;
 		while (array.get(j).length == 2) {
 			j--;

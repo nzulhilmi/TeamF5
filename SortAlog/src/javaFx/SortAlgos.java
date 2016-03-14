@@ -207,23 +207,26 @@ public class SortAlgos {
 			indexComparison[0] = j;
 			indexComparison[1] = i;
 			steps.add(indexComparison.clone());
-
+			int count = 0;
+			int i2 = i;
 			while ((j > -1) && (input[j] > key)) {
 				indexComparison[0] = j;
 				indexComparison[1] = i;
-				steps.add(indexComparison.clone());
+				if(count != 0) {
+				    i2--;
+				    indexComparison[1] = i2;
+				    steps.add(indexComparison.clone());
+				}
+				int temp = input[j+1]; //to swap elements
 				input[j + 1] = input[j];
+				input[j] = temp;
 				j--;
+				steps.add(input.clone());
+				count++;
 			}
 			input[j + 1] = key;
-
-			// add to steps array list
-			steps.add(input.clone());
+			count = 0;
 		}
-		/*
-		 * for(int i = 0; i < steps.size(); i++){
-		 * System.out.println(Arrays.toString(steps.get(i))); }
-		 */
 		return steps;
 	}
 

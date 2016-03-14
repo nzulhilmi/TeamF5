@@ -67,7 +67,7 @@ public class FXvisualiser extends BorderPane {
 			rectList[i].relocate(50+50*i, 50);
 			//rectList[i].
 			textList[i] = new Text(model.getCurrentBoxContent(i));
-			textList[i].setBoundsType(TextBoundsType.VISUAL);
+			//textList[i].setBoundsType(TextBoundsType.VISUAL);
 			textList[i].relocate(50+50*i, 50);
 			textList[i].translateXProperty().set(20);
 			textList[i].translateYProperty().set(25);
@@ -101,7 +101,7 @@ public class FXvisualiser extends BorderPane {
 	public void animationBotRight(Rectangle rect, Text text,int n){
 		Path path = new Path();
 		path.getElements().add(new MoveTo(20+(n-1)*50,20));
-		System.out.println("bot rigt: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
+		//System.out.println("bot rigt: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		path.getElements().add(new LineTo(20, 70));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 + 50*n, 70, false, false));
 		path.getElements().add(new LineTo(20 + 50*n, 20));
@@ -109,9 +109,9 @@ public class FXvisualiser extends BorderPane {
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(2000+250*n));
+		pathTransition.setDuration(Duration.millis(500*n));
 		PathTransition pathTransition2 =new PathTransition();
-		pathTransition2.setDuration(Duration.millis(2000+250*n));
+		pathTransition2.setDuration(Duration.millis(500*n));
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path);
 		pathTransition.setNode(rect);
@@ -130,7 +130,7 @@ public class FXvisualiser extends BorderPane {
 	}
 	public void animationTopLeft(Rectangle rect, Text text,int n){
 		Path path = new Path();
-		System.out.println("top Left: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
+		//System.out.println("top Left: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		path.getElements().add(new MoveTo(20+(n-1)*50,20));
 		path.getElements().add(new LineTo(20, -30));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 - 50*n, -30, false, false));
@@ -139,9 +139,9 @@ public class FXvisualiser extends BorderPane {
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(2000+250*n));
+		pathTransition.setDuration(Duration.millis(500*n));
 		PathTransition pathTransition2 =new PathTransition();
-		pathTransition2.setDuration(Duration.millis(2000+250*n));
+		pathTransition2.setDuration(Duration.millis(500*n));
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path);
 		pathTransition.setNode(rect);

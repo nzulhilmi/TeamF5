@@ -38,7 +38,8 @@ public class algModel extends Observable{
 		this.type = type;
 		this.current = 0;
 		this.steps = alg.getSortedList();
-		System.out.println(steps.get(0)[0] +" "+ steps.get(0)[1]+" "+ steps.get(0)[2]);
+
+		System.out.println( +steps.get(0)[0] +" "+ steps.get(0)[1]+" "+ steps.get(0)[2]);
 		//this.visualiser = vis;
 		this.loop = false;
 		this.n = 20;
@@ -98,33 +99,35 @@ public class algModel extends Observable{
 			current++;
 			visualiser.resetRectColor();
 			if (steps.get(current).length!=2){
-
+				//getting the left and right indexess
 				int left = steps.get(current-1)[0];
 				int right = steps.get(current-1)[1];
-				/*
-				Text text1 = ((Text)((Pane) 				visualiser.getChildren().get(1)).getChildren().get(10+left));
-				Rectangle rect1 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
-				Text text2 = ((Text)((Pane) 			visualiser.getChildren().get(1)).getChildren().get(10+right));
-				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
-				*/
+				System.out.println("Current left: "+left +"right: "+right);
+				//getting the text and rectangles at the specified indexed
+
 				Text text1 = this.texts[left];
 				Text text2 = this.texts[right];
-				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
-				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
-				System.out.println("XY:   X= "+ texts[left].getX()+   " Y= "+ texts[left].getY());
-				fixTranslate(rects[left]);
-				fixTranslateText(texts[left]);
-				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
-				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
-				System.out.println("XY:   X= "+ texts[left].getX()+   " Y= "+ texts[left].getY());
 				Rectangle rect1 = this.rects[left];
 				Rectangle rect2 = this.rects[right];
-				System.out.println("Left: "+left+" Right: " + right);
+				//checking the translate layout and X Y properties
+				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
+				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
+				System.out.println("XY:   X= "+ texts[left].getX()+   " Y= "+ texts[left].getY());
+				//trying to fix them
+//				fixTranslate(rects[left]);
+//				fixTranslateText(texts[left]);
+				//checking if the fix worked
+//				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
+//				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
+//				System.out.println("XY:   X= "+ texts[left].getX()+   " Y= "+ texts[left].getY());
+
 				//System.out.println("Before: "+ rects[left].getTranslateX()+" Y= "+ rects[left].getTranslateY());
 				//System.out.println("Before: X= "+ rects[left].getLayoutX()+" Y= "+ rects[left].getLayoutY());
 				//System.out.println("Before: X= "+ rects[right].getLayoutX()+" Y= "+ rects[right].getLayoutY());
 				visualiser.animationBotRight(rect1, text1,right - left);
 				visualiser.animationTopLeft(rect2, text2,right- left);
+				//fixTranslate(rects[left]);
+				//fixTranslateText(texts[left]);
 				changeIndex(left, right);
 //				ObservableList<Node> workingCollection = ((Pane) (visualiser.getChildren().get(1))).getChildren();
 //				((Pane) (visualiser.getChildren().get(1))).getChildren().removeAll(workingCollection);
@@ -154,18 +157,20 @@ public class algModel extends Observable{
 	private void fixTranslate(Rectangle rectangle) {
 		double x = rectangle.getTranslateX() + rectangle.getLayoutX();
 		double y = rectangle.getTranslateY() + rectangle.getLayoutY();
-		System.out.println(x +"  y="+y);
+		System.out.println("Fix translate: "+ x +"  y="+y);
 		rectangle.setTranslateX(0);
-		rectangle.setTranslateY(0);
-		rectangle.relocate(x, y);
+		//rectangle.setTranslateY(0);
+		rectangle.setLayoutX(x);
+		//rectangle.relocate(x, y);
 	}
 	private void fixTranslateText(Text Text) {
 
-		double x = Text.getTranslateX() + Text.getLayoutX()- 12.5;
-		double y = Text.getLayoutY() + Text.getTranslateY() -25;
-		//Text.setTranslateX(20);
-		//Text.setTranslateY(25);
-		Text.relocate(x, y);
+		double x = Text.getTranslateX() + Text.getLayoutX()-13.28515625;
+		//double y = Text.getLayoutY() + Text.getTranslateY() -25;
+		Text.setTranslateX(20);
+		Text.setTranslateY(25);
+		Text.setLayoutX(x);
+		//Text.relocate(x, y);
 	}
 
 	/*
@@ -207,17 +212,17 @@ public class algModel extends Observable{
 		}
 	}
 	public void changeIndex(int n1, int n2) {
-//		System.out.println("swapping "+n1+" to "+n2+".");
+		//System.out.println("swapping "+n1+" to "+n2+".");
 		Rectangle swapR1 = this.rects[n1];
 		Rectangle swapR2 = this.rects[n2];
-//		System.out.println("Before: X= "+ rects[n1].getLayoutX()+" Y= "+ rects[n1].getLayoutY());
-//		System.out.println("Before: X= "+ rects[n2].getLayoutX()+" Y= "+ rects[n2].getLayoutY());
-//		System.out.println("RECTs: X= "+ swapR1.getLayoutX()+" Y= "+ swapR1.getLayoutY());
-//		System.out.println("RECTs: X= "+ swapR2.getLayoutX()+" Y= "+ swapR2.getLayoutY());
+		//System.out.println("Before:1 X= "+ rects[n1].getLayoutX()+" Y= "+ rects[n1].getLayoutY());
+		//System.out.println("Before:2 X= "+ rects[n2].getLayoutX()+" Y= "+ rects[n2].getLayoutY());
+		//System.out.println("RECTs:1 X= "+ swapR1.getLayoutX()+" Y= "+ swapR1.getLayoutY());
+		//System.out.println("RECTs:2 X= "+ swapR2.getLayoutX()+" Y= "+ swapR2.getLayoutY());
 		this.rects[n1] = swapR2;
 		this.rects[n2] = swapR1;
-//		System.out.println("after: X= "+ rects[n1].getLayoutX()+" Y= "+ rects[n1].getLayoutY());
-//		System.out.println("after: X= "+ rects[n2].getLayoutX()+" Y= "+ rects[n2].getLayoutY());
+		//System.out.println("after:1 X= "+ rects[n1].getLayoutX()+" Y= "+ rects[n1].getLayoutY());
+		//System.out.println("after:2 X= "+ rects[n2].getLayoutX()+" Y= "+ rects[n2].getLayoutY());
 		Text swapT1 = this.texts[n1];
 		Text swapT2 = this.texts[n2];
 		this.texts[n1] = swapT2;

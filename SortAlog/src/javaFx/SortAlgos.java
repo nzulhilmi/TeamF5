@@ -37,8 +37,8 @@ public class SortAlgos {
 		case "Insertion":
 			this.sorted = SortAlgos.insertionSort(toBesorted);
 			break;
-		case "Merge":
-			this.sorted = SortAlgos.selectionSort(steps, input)Sort(toBesorted);
+		case "Selection":
+			this.sorted = SortAlgos.selectionSort(toBesorted);
 			break;
 		default:
 			break;
@@ -237,7 +237,8 @@ public class SortAlgos {
 	 * @return An arraylist of comparisons and the order of the list at each
 	 *         step.
 	 */
-	public static ArrayList<int[]> selectionSort(ArrayList<int[]> steps, int[] input) {
+	public static ArrayList<int[]> selectionSort(int[] input) {
+		ArrayList<int[]> steps = new ArrayList<int[]>();
 		// add the input as the first step
 		steps.add(input.clone());
 		/*

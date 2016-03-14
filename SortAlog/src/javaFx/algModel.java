@@ -25,7 +25,8 @@ public class algModel extends Observable{
 	public String type;
 	private int intID;
 	private Text[] texts;
-	private Rectangle[] rects ;
+	private Rectangle[] rects;
+	//private Boolean btnState =false;
 	/**
 	 * Instantiates a new algorithm model.
 	 *
@@ -95,6 +96,7 @@ public class algModel extends Observable{
 	}
 
 	public void goForward(){
+		//btnState = true;
 		if(current < steps.size()-1){
 			current++;
 			visualiser.resetRectColor();
@@ -151,6 +153,7 @@ public class algModel extends Observable{
 			//visualiser.forceRepaint();
 			}
 		//System.out.println("Current step: "+ (current+1));
+		//btnState = false;
 	}
 	private void fixTranslate(Rectangle rectangle) {
 		double newLayoutX = rectangle.getTranslateX() + rectangle.getLayoutX();
@@ -249,4 +252,8 @@ public class algModel extends Observable{
 	public int getID() {
 		return this.intID;
 	}
+	public boolean getBtnState(){
+		return visualiser.visActive();
+	}
+	
 }

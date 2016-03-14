@@ -1,7 +1,5 @@
 package javaFx;
 
-import java.awt.BorderLayout;
-
 import javafx.animation.PathTransition;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -9,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -17,7 +14,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
 import javafx.util.Duration;
 
 
@@ -36,6 +32,7 @@ public class FXvisualiser extends BorderPane {
 	private int numBoxes;
 	private Pane pane;
 	private TextArea logText=  new TextArea();
+	private Boolean btnState = false;
 
 
 	public FXvisualiser(algModel model, int n) {//pass the model
@@ -92,7 +89,7 @@ public class FXvisualiser extends BorderPane {
 			this.setRight(logText);
 		});
 
-		//set out the pain++
+		//set out the pain
 		bottomLayout.setLeft(controls);
 		bottomLayout.setRight(log);
 		this.setTop(panetitle);
@@ -100,12 +97,9 @@ public class FXvisualiser extends BorderPane {
 		this.setBottom(bottomLayout);
 
 	}
-	public void setStage() {
-
-
-	}
 
 	public void animationBotRight(Rectangle rect, Text text,int n){
+		btnState = true;
 		Path path = new Path();
 		path.getElements().add(new MoveTo(20,20));
 		//System.out.println("bot rigt: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
@@ -116,9 +110,9 @@ public class FXvisualiser extends BorderPane {
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(500));
+		pathTransition.setDuration(Duration.millis(1000));
 		PathTransition pathTransition2 =new PathTransition();
-		pathTransition2.setDuration(Duration.millis(500));
+		pathTransition2.setDuration(Duration.millis(1000));
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path);
 		pathTransition.setNode(rect);
@@ -134,8 +128,10 @@ public class FXvisualiser extends BorderPane {
 		pathTransition2.play();
 		//setStage();
 		//resetR(rect, text);
+		btnState = false;
 	}
 	public void animationTopLeft(Rectangle rect, Text text,int n){
+		btnState = true;
 		Path path = new Path();
 		System.out.println("top Left:left: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		System.out.println("top Left:right: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
@@ -147,9 +143,9 @@ public class FXvisualiser extends BorderPane {
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(500));
+		pathTransition.setDuration(Duration.millis(1000));
 		PathTransition pathTransition2 =new PathTransition();
-		pathTransition2.setDuration(Duration.millis(500));
+		pathTransition2.setDuration(Duration.millis(1000));
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path);
 		pathTransition.setNode(rect);
@@ -165,12 +161,14 @@ public class FXvisualiser extends BorderPane {
 		pathTransition2.play();
 		//setStage();
 		//resetR(rect, text);
+		btnState = false;
 	}
 	//public void setCurrentIndex(int current) {}
 	public void animationComparison(Rectangle rect, Rectangle rect2) {
+		btnState = true;
 		rect.setFill(Color.YELLOW);
 		rect2.setFill(Color.YELLOW);
-
+		btnState = false;
 	}
 //	public void resetRectangles(){
 //		Rectangle rectangleMove;
@@ -188,6 +186,8 @@ public class FXvisualiser extends BorderPane {
 			colorR = (Rectangle)(pane.getChildren().get(i));
 			colorR.setFill(Color.ORANGE);
 		}
-
+	}
+	public boolean visActive(){
+		return btnState;
 	}
 }

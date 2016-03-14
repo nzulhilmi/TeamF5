@@ -1,5 +1,7 @@
 package javaFx;
 
+import java.awt.Dialog.ModalExclusionType;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
@@ -18,9 +20,7 @@ import javafx.scene.text.Text;
 public class FXcontrolPane extends GridPane {
 	algModel model;
 	private int period;
-	public Boolean btnDisabled;
-	public Button forward;
-	public Button back;
+	public Boolean btnDisabled = false;
 
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
@@ -36,7 +36,7 @@ public class FXcontrolPane extends GridPane {
 		slider.setMajorTickUnit(.5);
 
 		//buttons creation
-		back = new Button("|<<");
+		Button back = new Button("|<<");
 		back.setOnAction(e -> {
 			System.out.println("back");
 			logText.appendText("\n back");
@@ -57,11 +57,20 @@ public class FXcontrolPane extends GridPane {
 			//timer.stop();});
 		});
 
-		forward = new Button(">>|");
+		Button forward = new Button(">>|");
 		forward.setOnAction(e ->{
-			System.out.println("forward");
-			logText.appendText("\n forward");
-			model.goForward();
+			if(btnDisabled){
+				logText.appendText("\n Please wait for the action to complete before starting another");
+				System.out.println("Please wait for the action to complete before starting another");
+			}else {
+				btnDisabled = true;
+				forward.setDisable(model.getBtnState());
+				System.out.println("forward");
+				logText.appendText("\n forward");
+				model.goForward();
+			}
+			btnDisabled = false;
+			forward.setDisable(btnDisabled);
 		});
 
 		//isn't working would be nice to get this working
@@ -88,23 +97,5 @@ public class FXcontrolPane extends GridPane {
 		this.add(pause, 3, 2);
 		this.add(forward, 4, 2);
 		this.add(close, 6, 2);
-	}
-
-	/**
-	 * enables/disables the forward button
-	 * 
-	 * @param state Boolean: true = disabled, false = enabled.
-	 */
-	public void setBtnStateFwd(Boolean state){
-		forward.setDisable(state);
-	}
-	
-	/**
-	 * enables/disables the back button
-	 * 
-	 * @param state Boolean: true = disabled, false = enabled.
-	 */
-	public void setBtnStateBK(Boolean state){
-		back.setDisable(state);
 	}
 }

@@ -1,6 +1,5 @@
 package javaFx;
 
-import java.util.Arrays;
 import java.util.Random;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -11,17 +10,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -49,10 +42,8 @@ public class FXmainMenuGUI extends Application {
 	// Secondary title for when a sort is opened
 	static Label scenetitle = new Label("SortAlgo Main Menu");
 
-	int intID = 0; // to set the id of each visualisation pane (to be converted
-	// to string)
-	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be
-	// added dynamically
+	int intID = 0; // to set the id of each visualisation pane (to be converted to string)
+	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
 
 	private BorderPane border = new BorderPane(); // sets the top level to a border layout
 	private ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
@@ -70,7 +61,7 @@ public class FXmainMenuGUI extends Application {
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
 		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
-		 
+
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
@@ -185,10 +176,10 @@ public class FXmainMenuGUI extends Application {
 	public void onClickVisulisation(String sort){
 		numOfSortsOnScreen++;
 		if(advancedBoolean) {
-		    testInput = AdvancedMenu.getInput();
+			testInput = AdvancedMenu.getInput();
 		}
 		else {
-		    shuffleArray(testInput);
+			shuffleArray(testInput);
 		}
 		// will need to pass the model as it contains all the variables
 		algModel algModel = new algModel(testInput.clone(), sort, intID);
@@ -212,18 +203,18 @@ public class FXmainMenuGUI extends Application {
 		Random random = new Random();
 		for (int i = array.length - 1; i > 0; i--)
 		{
-		    index = random.nextInt(i + 1);
-		    if (index != i)
-		    {
-			array[index] ^= array[i];
-			array[i] ^= array[index];
-			array[index] ^= array[i];
-		    }
+			index = random.nextInt(i + 1);
+			if (index != i)
+			{
+				array[index] ^= array[i];
+				array[i] ^= array[index];
+				array[index] ^= array[i];
+			}
 		}
 	}
 
 	public static void setBoolean(Boolean b1) {
-	    advancedBoolean = b1;
+		advancedBoolean = b1;
 	}
 
 }

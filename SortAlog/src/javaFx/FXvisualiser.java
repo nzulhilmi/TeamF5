@@ -1,5 +1,7 @@
 package javaFx;
 
+import java.awt.BorderLayout;
+
 import javafx.animation.PathTransition;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -7,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcTo;
+import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -14,6 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 import javafx.util.Duration;
 
 
@@ -65,13 +69,13 @@ public class FXvisualiser extends BorderPane {
 			textList[i] = new Text(model.getCurrentBoxContent(i));
 			//textList[i].setBoundsType(TextBoundsType.VISUAL);
 			textList[i].relocate(65+(50*i), 65);
-			System.out.println("textN: "+i+ " TA: "+textList[i].getY() +
-											" Y: "+textList[i].getX() +
-											" TX: "+textList[i].getTranslateX() +
-											" TY: "+textList[i].getTranslateY() +
-											" LX: "+textList[i].getLayoutX() +
-											" LY: "+textList[i].getLayoutY()
-											);
+//			System.out.println("textN: "+i+ " TA: "+textList[i].getY() +
+//											" Y: "+textList[i].getX() +
+//											" TX: "+textList[i].getTranslateX() +
+//											" TY: "+textList[i].getTranslateY() +
+//											" LX: "+textList[i].getLayoutX() +
+//											" LY: "+textList[i].getLayoutY()
+//											);
 			//textList[i].translateXProperty().set(20);
 			//textList[i].translateYProperty().set(25);
 		}
@@ -103,7 +107,7 @@ public class FXvisualiser extends BorderPane {
 
 	public void animationBotRight(Rectangle rect, Text text,int n){
 		Path path = new Path();
-		path.getElements().add(new MoveTo(20+(n-1)*50,20));
+		path.getElements().add(new MoveTo(20,20));
 		//System.out.println("bot rigt: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		path.getElements().add(new LineTo(20, 70));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 + 50*n, 70, false, false));
@@ -135,7 +139,7 @@ public class FXvisualiser extends BorderPane {
 		Path path = new Path();
 		System.out.println("top Left:left: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		System.out.println("top Left:right: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
-		path.getElements().add(new MoveTo(20+(n-1)*50,20));
+		path.getElements().add(new MoveTo(20,20));
 		path.getElements().add(new LineTo(20, -30));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 - 50*n, -30, false, false));
 		path.getElements().add(new LineTo(20 - 50*n, 20));

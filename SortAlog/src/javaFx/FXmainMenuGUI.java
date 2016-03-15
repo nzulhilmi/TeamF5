@@ -164,9 +164,7 @@ public class FXmainMenuGUI extends Application {
 	public static void removeVis(String s) {
 		flowPane.getChildren().remove(flowPane.lookup(s));
 		numOfSortsOnScreen--;
-
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
-
 		if(numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
 			resizeStage();

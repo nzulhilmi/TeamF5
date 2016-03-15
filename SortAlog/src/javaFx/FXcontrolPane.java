@@ -43,16 +43,9 @@ public class FXcontrolPane extends GridPane {
 			}else {
 				disableBtn();
 				back.setDisable(btnDisabled);
-				System.out.println("forward");
-				logText.appendText("\n forward");
 				model.goBack();
 			}
 			back.setDisable(btnDisabled);
-			System.err.println(btnDisabled);
-
-			System.out.println("back");
-			logText.appendText("\n back");
-			
 		});
 
 		Button play = new Button("play");
@@ -77,13 +70,9 @@ public class FXcontrolPane extends GridPane {
 			}else {
 				disableBtn();
 				forward.setDisable(btnDisabled);
-				System.out.println("forward");
-				logText.appendText("\n forward");
 				model.goForward();
 			}
 			forward.setDisable(btnDisabled);
-			System.err.println(btnDisabled);
-
 		});
 
 		//isn't working would be nice to get this working
@@ -92,9 +81,8 @@ public class FXcontrolPane extends GridPane {
 			int intID = this.model.getID();
 			String stringID = Integer.toString(intID);
 			String ID = "#" + stringID;
-
-			System.out.println("close");
-			logText.appendText("\n close");
+			//System.out.println("close");
+			logText.appendText("\n Close");
 			FXmainMenuGUI.removeVis(ID);
 		}); 
 

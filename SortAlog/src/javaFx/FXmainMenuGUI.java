@@ -157,6 +157,7 @@ public class FXmainMenuGUI extends Application {
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
 				resizeStage();
 				scrollPane.setMinWidth(780);
+				flowPane.setMinWidth(780);
 			}
 		});
 	}

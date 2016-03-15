@@ -74,6 +74,7 @@ public class FXvisualiser extends BorderPane {
 		pane.getChildren().setAll();
 		pane.getChildren().addAll(rectList); //add the sqares
 		pane.getChildren().addAll(textList); //add the text
+		pane.setMinWidth(500);
 
 		controls = new FXcontrolPane(model,logText);//add the controls to the pane
 
@@ -85,7 +86,7 @@ public class FXvisualiser extends BorderPane {
 			logText.setWrapText(true);
 			this.setRight(logText);
 		});
-BorderPane logBtnPos = new BorderPane();
+		BorderPane logBtnPos = new BorderPane();
 		//set out the pain
 		bottomLayout.setLeft(controls);
 		bottomLayout.setRight(logBtnPos);

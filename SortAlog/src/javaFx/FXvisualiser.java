@@ -1,10 +1,7 @@
 package javaFx;
 
-import javax.swing.GroupLayout.Alignment;
-
 import javafx.animation.PathTransition;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
@@ -88,11 +85,12 @@ public class FXvisualiser extends BorderPane {
 			logText.setWrapText(true);
 			this.setRight(logText);
 		});
-
+BorderPane logBtnPos = new BorderPane();
 		//set out the pain
 		bottomLayout.setLeft(controls);
-		bottomLayout.setRight(log);
-		bottomLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY, Insets.EMPTY)));
+		bottomLayout.setRight(logBtnPos);
+		logBtnPos.setCenter(log);
+		bottomLayout.setBackground(new Background(new BackgroundFill(Color.RED,CornerRadii.EMPTY, Insets.EMPTY)));
 		this.setTop(panetitle);
 		this.setCenter(pane);
 		this.setBottom(bottomLayout);

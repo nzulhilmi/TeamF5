@@ -90,7 +90,7 @@ BorderPane logBtnPos = new BorderPane();
 		bottomLayout.setLeft(controls);
 		bottomLayout.setRight(logBtnPos);
 		logBtnPos.setCenter(log);
-		bottomLayout.setBackground(new Background(new BackgroundFill(Color.RED,CornerRadii.EMPTY, Insets.EMPTY)));
+		//bottomLayout.setBackground(new Background(new BackgroundFill(Color.RED,CornerRadii.EMPTY, Insets.EMPTY)));
 		this.setTop(panetitle);
 		this.setCenter(pane);
 		this.setBottom(bottomLayout);

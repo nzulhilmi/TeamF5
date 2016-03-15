@@ -29,7 +29,7 @@ public class FXcontrolPane extends GridPane {
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
 		this.period = 1000;
-		this.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE,CornerRadii.EMPTY, Insets.EMPTY)));
+		//this.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE,CornerRadii.EMPTY, Insets.EMPTY)));
 		//make the slider, needs an action listener
 		Slider slider = new Slider();
 		slider.setSnapToTicks(true);

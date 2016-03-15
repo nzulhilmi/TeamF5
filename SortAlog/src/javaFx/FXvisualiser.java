@@ -38,6 +38,7 @@ public class FXvisualiser extends BorderPane {
 	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
 		this.numBoxes = model.getSize();
+		this.setMinSize(615, 200);
 
 		BorderPane bottomLayout = new BorderPane();
 		//System.out.println("model size = "+ model.getSize());
@@ -147,7 +148,7 @@ public class FXvisualiser extends BorderPane {
 		path.getElements().add(new LineTo(20 - 50*n, 20));
 		Path path2 = new Path();
 		path2.getElements().add(new MoveTo(0,0));
-		path2.getElements().add(new LineTo(0, -30));
+		path2.getElements().add(new LineTo(0, -50));
 		path2.getElements().add(new ArcTo(300, 50, 0, -50*n, -50, false, false));
 		path2.getElements().add(new LineTo(-50*n, 0));
 		//path.getElements().add(new CubicCurveTo(20, 100, 20, 200, 20, 200));

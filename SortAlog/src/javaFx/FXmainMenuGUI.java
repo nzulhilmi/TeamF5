@@ -125,6 +125,7 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(selection, 5, 13);
 		gridMenu.add(advanced, 5, 14);
 		
+		/* Logo added and the menu buttons have been shifted a bit */
 		Image img = new Image("softwarelogoFinal2darkerCropped300x100.png");
 		ImageView imgView = new ImageView(img);
 		imgView.getStyleClass().add("logo");

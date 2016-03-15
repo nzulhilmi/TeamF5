@@ -107,6 +107,7 @@ public class FXmainMenuGUI extends Application {
 		playAll.setOnAction(e-> {
 		    if(flowPane.getChildren().size() > 0) {
 		    	for(int i = 0; i < flowPane.getChildren().size(); i++) {
+		    	    //get all the children (all the algorithms)
 		    	    ((FXvisualiser) flowPane.getChildren().get(i)).clickPlay();
 		    	}
 		    }

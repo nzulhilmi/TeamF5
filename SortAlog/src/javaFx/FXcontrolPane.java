@@ -1,7 +1,5 @@
 package javaFx;
 
-import javax.tools.ForwardingFileObject;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;

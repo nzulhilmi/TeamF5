@@ -1,16 +1,11 @@
 package working;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Observable;
-import javafx.scene.shape.Rectangle;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
+
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import swing.sortingAlgs;
-import swing.visualiser;
 /**
  * The .....
  * @author Kiril N. Elliott Upton

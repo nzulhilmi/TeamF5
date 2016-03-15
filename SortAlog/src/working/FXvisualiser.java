@@ -1,7 +1,5 @@
 package working;
 
-import java.awt.BorderLayout;
-
 import javafx.animation.PathTransition;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -9,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;

@@ -1,16 +1,9 @@
 package working;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
-
-import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;

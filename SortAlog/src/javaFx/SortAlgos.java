@@ -1,7 +1,6 @@
 package javaFx;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Sorting algorithms to be used for visualisation

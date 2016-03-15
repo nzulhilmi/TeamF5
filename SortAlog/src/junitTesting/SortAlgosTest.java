@@ -126,7 +126,7 @@ public class SortAlgosTest {
 		result = array.get(j);
 		Assert.assertTrue(Arrays.equals(expected6, result));
 	}
-	
+
 	/**
 	 * Testing bubble sort with three elements where the last two are swapped
 	 */
@@ -242,7 +242,7 @@ public class SortAlgosTest {
 	}
 
 	/**
-	 * Testing quick sort with two equal elements 
+	 * Testing quick sort with two equal elements
 	 */
 	@Test
 	public void quickSortTwoEqualElements_ShouldReturnElementsInOrder() {
@@ -364,7 +364,7 @@ public class SortAlgosTest {
 	public void InsertionSortTwoElementsInOrder_ShouldReturnSameList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual3);
-		result = array.get(array.size() - 1);
+		result = array.get(array.size() - 2);
 		Assert.assertTrue(Arrays.equals(expected3, result));
 	}
 
@@ -386,7 +386,7 @@ public class SortAlgosTest {
 	public void InsertionSortTwoEqualElements_ShouldReturnElementsInOrder() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual5);
-		result = array.get(array.size() - 1);
+		result = array.get(array.size() - 2);
 		Assert.assertTrue(Arrays.equals(expected5, result));
 	}
 
@@ -425,7 +425,8 @@ public class SortAlgosTest {
 	}
 
 	/**
-	 * Testing insertion sort with three elements where the first two are swapped
+	 * Testing insertion sort with three elements where the first two are
+	 * swapped
 	 */
 	@Test
 	public void InsertionSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {
@@ -519,7 +520,7 @@ public class SortAlgosTest {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.selectionSort(actual3);
-		result = array.get(array.size() - 1);
+		result = array.get(array.size() - 2);
 		Assert.assertTrue(Arrays.equals(expected3, result));
 	}
 
@@ -543,12 +544,12 @@ public class SortAlgosTest {
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.selectionSort(actual5);
-		result = array.get(array.size() - 1);
+		result = array.get(array.size() - 2);
 		Assert.assertTrue(Arrays.equals(expected5, result));
 	}
 
 	/**
-	 * Testing selection sort with three elements in order 
+	 * Testing selection sort with three elements in order
 	 */
 	@Test
 	public void selectionSortThreeElementsInOrder_ShouldReturnSortedList() {
@@ -584,7 +585,8 @@ public class SortAlgosTest {
 	}
 
 	/**
-	 * Testing selection sort with three elements where the first two are swapped
+	 * Testing selection sort with three elements where the first two are
+	 * swapped
 	 */
 	@Test
 	public void selectionSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {

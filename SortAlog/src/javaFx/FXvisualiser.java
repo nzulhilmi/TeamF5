@@ -32,7 +32,7 @@ public class FXvisualiser extends BorderPane {
 	private int numBoxes;
 	private Pane pane;
 	private TextArea logText=  new TextArea();
-	private Boolean btnState = false;
+	private FXcontrolPane controls;
 
 
 	public FXvisualiser(algModel model, int n) {//pass the model
@@ -80,7 +80,7 @@ public class FXvisualiser extends BorderPane {
 		pane.getChildren().addAll(rectList); //add the sqares
 		pane.getChildren().addAll(textList); //add the text
 
-		FXcontrolPane controls = new FXcontrolPane(model,logText);//add the controls to the pane
+		controls = new FXcontrolPane(model,logText);//add the controls to the pane
 
 		Button log = new Button("Show log");
 		log.setOnAction(e -> {
@@ -131,8 +131,8 @@ public class FXvisualiser extends BorderPane {
 		pathTransition.play();
 		pathTransition2.play();
 
-		pathTransition.setOnFinished(e->{FXcontrolPane.enableBtn();});
-		pathTransition2.setOnFinished(e->{FXcontrolPane.enableBtn();});
+		pathTransition.setOnFinished(e->{controls.enableBtn();});
+		pathTransition2.setOnFinished(e->{controls.enableBtn();});
 		
 		//setStage();
 		//resetR(rect, text);
@@ -171,17 +171,17 @@ public class FXvisualiser extends BorderPane {
 		pathTransition.play();
 		pathTransition2.play();
 		
-		pathTransition.setOnFinished(e->{FXcontrolPane.enableBtn();});
-		pathTransition2.setOnFinished(e->{FXcontrolPane.enableBtn();});
+		pathTransition.setOnFinished(e->{controls.enableBtn();});
+		pathTransition2.setOnFinished(e->{controls.enableBtn();});
 		//setStage();
 		//resetR(rect, text);
 	}
 	//public void setCurrentIndex(int current) {}
 	public void animationComparison(Rectangle rect, Rectangle rect2) {
-		FXcontrolPane.disableBtn();
+		controls.disableBtn();
 		rect.setFill(Color.YELLOW);
 		rect2.setFill(Color.YELLOW);
-		FXcontrolPane.enableBtn();
+		controls.enableBtn();
 	}
 	//	public void resetRectangles(){
 	//		Rectangle rectangleMove;

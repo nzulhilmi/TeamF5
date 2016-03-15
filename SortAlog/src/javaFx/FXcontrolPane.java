@@ -20,8 +20,8 @@ import javafx.scene.text.Text;
 public class FXcontrolPane extends GridPane {
 	algModel model;
 	private int period;
-	public static Boolean btnDisabled = false;
-	public static Button forward = new Button();
+	public Boolean btnDisabled = false;
+	public Button forward = new Button();
 
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
@@ -100,11 +100,11 @@ public class FXcontrolPane extends GridPane {
 		this.add(forward, 4, 2);
 		this.add(close, 6, 2);
 	}
-	public static void enableBtn(){
+	public void enableBtn(){
 		btnDisabled = false;
 		forward.setDisable(false);
 	}
-	public static void disableBtn(){
+	public void disableBtn(){
 		btnDisabled = true;
 		forward.setDisable(false);
 	}

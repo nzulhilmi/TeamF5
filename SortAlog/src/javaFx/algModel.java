@@ -2,6 +2,8 @@ package javaFx;
 
 import java.util.ArrayList;
 import java.util.Observable;
+
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -43,11 +45,14 @@ public class algModel extends Observable{
 	}
 
 	public void goBack(){
+		visualiser.logAddMsg("--------------------------");
+		visualiser.logAddMsg("Step backwards");
 		if(current > 0){
 			//current--;
 			visualiser.resetRectColor();
 			if (steps.get(current).length!=2){
 				current--;
+				visualiser.logAddMsg("Current step: "+ (current+1));
 				//getting the left and right indexes
 				int left = steps.get(current)[0];
 				int right = steps.get(current)[1];
@@ -61,6 +66,7 @@ public class algModel extends Observable{
 				visualiser.animationTopLeft(rects[right], texts[right],right- left);
 				//change the index
 				changeIndex(left, right);
+				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
 			}else{
 				int left = steps.get(current)[0];
 				int right = steps.get(current)[1];
@@ -68,10 +74,13 @@ public class algModel extends Observable{
 				Rectangle rect2 = getRect(right);
 				visualiser.animationComparison(rect, rect2);
 				current--;
+				visualiser.logAddMsg("Current step: "+ (current+1));
+				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " with " + texts[right].getText());
 			}
 
 		}
-		System.out.println("Current step: "+ (current+1));
+		
+//		System.out.println("Current step: "+ (current+1));
 	}
 
 	public int getCurrent(){
@@ -88,6 +97,9 @@ public class algModel extends Observable{
 	}
 
 	public void goForward(){
+		visualiser.logAddMsg("--------------------------");
+		visualiser.logAddMsg("Step Forward");
+		visualiser.logAddMsg("Current step: "+ (current+1));
 		if(current < steps.size()-1){
 			current++;
 			visualiser.resetRectColor();
@@ -101,10 +113,11 @@ public class algModel extends Observable{
 				fixTranslateText(texts[left]);
 				fixTranslateText(texts[right]);
 				//animation
-				visualiser.animationBotRight(rects[left], texts[left],right - left);
-				visualiser.animationTopLeft(rects[right], texts[right],right- left);
+				visualiser.animationBotRight(rects[left], texts[left], right - left);
+				visualiser.animationTopLeft(rects[right], texts[right], right - left);
 				//change the index
 				changeIndex(left, right);
+				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
 
 			}else{
 				int left = steps.get(current)[0];
@@ -112,9 +125,10 @@ public class algModel extends Observable{
 				Rectangle rect = getRect(left);
 				Rectangle rect2 = getRect(right);
 				visualiser.animationComparison(rect, rect2);
+				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " with " + texts[right].getText());
 			}
 		}
-		System.out.println("Current step: "+ (current+1));
+		
 	}
 	private void fixTranslate(Rectangle rectangle) {
 		double newLayoutX = rectangle.getTranslateX() + rectangle.getLayoutX();

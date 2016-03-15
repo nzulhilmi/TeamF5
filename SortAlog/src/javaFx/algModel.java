@@ -107,15 +107,19 @@ public class algModel extends Observable{
 				System.out.println("Current left: "+left +"  right: "+right);
 
 				//checking the translate layout and X Y properties
-				System.out.println("Tanslate: X= " 	+ texts[left].getTranslateX()	+ " Y= " 	+ texts[left].getTranslateY());
-				System.out.println("Layout:   X= " 	+ texts[left].getLayoutX()		+ " Y= " 	+ texts[left].getLayoutY());
+				System.out.println("Text Tanslate: X= " 	+ texts[left].getTranslateX()	+ " Y= " 	+ texts[left].getTranslateY());
+				System.out.println("Text Layout:   X= " 	+ texts[left].getLayoutX()		+ " Y= " 	+ texts[left].getLayoutY());
+				System.out.println("Text right Tanslate: X= " 	+ texts[right].getTranslateX()	+ " Y= " 	+ texts[right].getTranslateY());
+				System.out.println("Text right Layout:   X= " 	+ texts[right].getLayoutX()		+ " Y= " 	+ texts[right].getLayoutY());
 				//trying to fix them
 				fixTranslate(rects[left]);
 				fixTranslate(rects[right]);
 				fixTranslateText(texts[left]);
 				fixTranslateText(texts[right]);
-				System.out.println("Tanslate: X= " 	+ texts[left].getTranslateX()	+ " Y= " 	+ texts[left].getTranslateY());
-				System.out.println("Layout:   X= " 	+ texts[left].getLayoutX()		+ " Y= " 	+ texts[left].getLayoutY());
+				System.out.println("Text Tanslate: X= " 	+ texts[left].getTranslateX()	+ " Y= " 	+ texts[left].getTranslateY());
+				System.out.println("Text Layout:   X= " 	+ texts[left].getLayoutX()		+ " Y= " 	+ texts[left].getLayoutY());
+				System.out.println("Text right Tanslate: X= " 	+ texts[right].getTranslateX()	+ " Y= " 	+ texts[right].getTranslateY());
+				System.out.println("Text right Layout:   X= " 	+ texts[right].getLayoutX()		+ " Y= " 	+ texts[right].getLayoutY());
 				//checking if the fix worked
 //				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
 //				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
@@ -158,22 +162,27 @@ public class algModel extends Observable{
 	private void fixTranslate(Rectangle rectangle) {
 		double newLayoutX = rectangle.getTranslateX() + rectangle.getLayoutX();
 		//double newLayoutY = rectangle.getTranslateY() + rectangle.getLayoutY();
-		System.out.println("old translate x: "+rectangle.getLayoutX() );
+		//System.out.println("old translate x: "+rectangle.getLayoutX() );
 		rectangle.setTranslateX(0);
 		//rectangle.setTranslateY(0);
 		rectangle.setLayoutX(newLayoutX);
 		//rectangle.setLayoutY(newLayoutY);
 		//rectangle.relocate(x, y);
-		System.out.println("new translate x: "+rectangle.getLayoutX() );
+		//System.out.println("new translate x: "+rectangle.getLayoutX() );
 	}
 	private void fixTranslateText(Text Text) {
-
-		double x = Text.getTranslateX() + Text.getLayoutX();
-		double y = Text.getTranslateY() + Text.getLayoutY();
+		System.out.println("Text xT: "+Text.getTranslateX() +"yT:"+Text.getTranslateY());
+		System.out.println("Text xL: "+Text.getLayoutX() +"yL:"+Text.getLayoutY());
+		double x = Text.getTranslateX() + Text.getLayoutX();// -13.53125;
+		//double y = Text.getTranslateY() + Text.getLayoutY();
 		Text.setTranslateX(0);
 		Text.setTranslateY(0);
+		//Text.setTranslateY(0);
 		Text.setLayoutX(x);
-		Text.setLayoutX(y);
+		//Text.setLayoutY(77.949221875);
+		System.out.println("Text xL: "+Text.getLayoutX() +"yL:"+Text.getLayoutY());
+
+		//Text.setLayoutY(y);
 		//Text.relocate(x, y);
 	}
 
@@ -252,4 +261,5 @@ public class algModel extends Observable{
 	public int getID() {
 		return this.intID;
 	}
+
 }

@@ -99,12 +99,17 @@ public class FXvisualiser extends BorderPane {
 	}
 
 	public void animationBotRight(Rectangle rect, Text text,int n){
+		//System.out.println("bot rigt: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		Path path = new Path();
 		path.getElements().add(new MoveTo(20,20));
-		//System.out.println("bot rigt: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		path.getElements().add(new LineTo(20, 70));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 + 50*n, 70, false, false));
 		path.getElements().add(new LineTo(20 + 50*n, 20));
+		Path path2 = new Path();
+		path2.getElements().add(new MoveTo(0,0));
+		path2.getElements().add(new LineTo(0, 50));
+		path2.getElements().add(new ArcTo(300, 50, 0, 50*n, 50, false, false));
+		path2.getElements().add(new LineTo(50*n, 0));
 		//path.getElements().add(new CubicCurveTo(20, 100, 20, 200, 20, 200));
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
@@ -113,7 +118,7 @@ public class FXvisualiser extends BorderPane {
 		PathTransition pathTransition2 =new PathTransition();
 		pathTransition2.setDuration(Duration.millis(1000));
 		pathTransition.setPath(path);
-		pathTransition2.setPath(path);
+		pathTransition2.setPath(path2);
 		pathTransition.setNode(rect);
 		pathTransition2.setNode(text);
 		//pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
@@ -140,6 +145,11 @@ public class FXvisualiser extends BorderPane {
 		path.getElements().add(new LineTo(20, -30));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 - 50*n, -30, false, false));
 		path.getElements().add(new LineTo(20 - 50*n, 20));
+		Path path2 = new Path();
+		path2.getElements().add(new MoveTo(0,0));
+		path2.getElements().add(new LineTo(0, -30));
+		path2.getElements().add(new ArcTo(300, 50, 0, -50*n, -50, false, false));
+		path2.getElements().add(new LineTo(-50*n, 0));
 		//path.getElements().add(new CubicCurveTo(20, 100, 20, 200, 20, 200));
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
@@ -148,7 +158,7 @@ public class FXvisualiser extends BorderPane {
 		PathTransition pathTransition2 =new PathTransition();
 		pathTransition2.setDuration(Duration.millis(1000));
 		pathTransition.setPath(path);
-		pathTransition2.setPath(path);
+		pathTransition2.setPath(path2);
 		pathTransition.setNode(rect);
 		pathTransition2.setNode(text);
 		//pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);

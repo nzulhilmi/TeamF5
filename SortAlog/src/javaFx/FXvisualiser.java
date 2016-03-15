@@ -1,9 +1,16 @@
 package javaFx;
 
+import javax.swing.GroupLayout.Alignment;
+
 import javafx.animation.PathTransition;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcTo;
@@ -85,6 +92,7 @@ public class FXvisualiser extends BorderPane {
 		//set out the pain
 		bottomLayout.setLeft(controls);
 		bottomLayout.setRight(log);
+		bottomLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY, Insets.EMPTY)));
 		this.setTop(panetitle);
 		this.setCenter(pane);
 		this.setBottom(bottomLayout);

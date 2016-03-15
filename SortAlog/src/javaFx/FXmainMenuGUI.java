@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -44,7 +46,6 @@ public class FXmainMenuGUI extends Application {
 
 	int intID = 0; // to set the id of each visualisation pane (to be converted to string)
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
-
 	private BorderPane border = new BorderPane(); // sets the top level to a border layout
 	private ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
 
@@ -67,7 +68,7 @@ public class FXmainMenuGUI extends Application {
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
 		
 		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border
-
+		
 		// button creation
 		Button bubble = new Button();
 		bubble.setText("Bubble"); // set test
@@ -98,6 +99,7 @@ public class FXmainMenuGUI extends Application {
 		// BorderPane borderTop = new BorderPane();
 
 		AdvancedMenu advancedMenu = new AdvancedMenu(stage, border);
+		
 
 		Button advanced = new Button("Advanced Menu");
 		advanced.setMaxWidth(Double.MAX_VALUE);
@@ -117,12 +119,20 @@ public class FXmainMenuGUI extends Application {
 
 		// add objects to the grid pane
 		gridMenu.add(scenetitle, 0, 0, 2, 1);
-		gridMenu.add(bubble, 1, 1);
-		gridMenu.add(quick, 1, 2);
-		gridMenu.add(insertion, 1, 3);
-		gridMenu.add(selection, 1, 4);
-		gridMenu.add(advanced, 1, 5);
-
+		gridMenu.add(bubble, 5, 10);
+		gridMenu.add(quick, 5, 11);
+		gridMenu.add(insertion, 5, 12);
+		gridMenu.add(selection, 5, 13);
+		gridMenu.add(advanced, 5, 14);
+		
+		Image img = new Image("softwarelogoFinal2darkerCropped300x100.png");
+		ImageView imgView = new ImageView(img);
+		imgView.getStyleClass().add("logo");
+		imgView.setFitWidth(240);
+		imgView.setX(30);
+		imgView.setY(25);
+		border.getChildren().add(imgView);
+	    
 		BorderPane borderLeft = new BorderPane();//layout for the left
 		ExplanationPane explanationPane = new ExplanationPane();
 		borderLeft.setTop(gridMenu);

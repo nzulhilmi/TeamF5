@@ -49,36 +49,33 @@ public class algModel extends Observable{
 
 	public void goBack(){
 		if(current > 0){
-			current--;
-			visualiser.resetRectColor();/*
+			//current--;
+			visualiser.resetRectColor();
 			if (steps.get(current).length!=2){
-				int right = steps.get(current+1)[0];
-				int left = steps.get(current+1)[1];
-				Text text = ((Text)((Pane) 				visualiser.getChildren().get(1)).getChildren().get(10+left));
-				Rectangle rect = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
-				Text text2 = ((Text)((Pane) 			visualiser.getChildren().get(1)).getChildren().get(10+right));
-				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
-				visualiser.animationBotRight(rect, text,right - left);
-				visualiser.animationTopLeft(rect2, text2,right- left);
+				current--;
+				//getting the left and right indexes
+				int left = steps.get(current)[0];
+				int right = steps.get(current)[1];
+				//fix properties
+				fixTranslate(rects[left]);
+				fixTranslate(rects[right]);
+				fixTranslateText(texts[left]);
+				fixTranslateText(texts[right]);
+				//animation
+				visualiser.animationBotRight(rects[left], texts[left],right - left);
+				visualiser.animationTopLeft(rects[right], texts[right],right- left);
+				//change the index
+				changeIndex(left, right);
 			}else{
-				int right = steps.get(current)[0];
-				int left = steps.get(current)[1];
-				Rectangle rect = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+left));
-				Rectangle rect2 = ((Rectangle) ((Pane) 	visualiser.getChildren().get(1)).getChildren().get(0+right));
+				int left = steps.get(current)[0];
+				int right = steps.get(current)[1];
+				Rectangle rect = getRect(left);
+				Rectangle rect2 = getRect(right);
 				visualiser.animationComparison(rect, rect2);
-			}*/
+				current--;
+			}
 
 		}
-			//System.out.println(visualiser.getChildren().get(1).toString());
-			//((Rectangle) ((Pane) visualiser.getChildren().get(1)).getChildren().get(1)).setFill(Color.BLUE);
-			//((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(10)).setText("0");
-			//visualiser.setCurrentIndex(current);
-			//visualiser.forceRepaint();
-			/*
-			for(int i=10;i<20;i++){
-			int a = steps.get(current)[i-10];
-			((Text)((Pane) visualiser.getChildren().get(1)).getChildren().get(i)).setText(Integer.toString(a));
-			*/
 		System.out.println("Current step: "+ (current+1));
 	}
 
@@ -96,49 +93,24 @@ public class algModel extends Observable{
 	}
 
 	public void goForward(){
-		//btnState = true;
 		if(current < steps.size()-1){
 			current++;
 			visualiser.resetRectColor();
 			if (steps.get(current).length!=2){
-				//getting the left and right indexess
+				//getting the left and right indexes
 				int left = steps.get(current-1)[0];
 				int right = steps.get(current-1)[1];
-				System.out.println("Current left: "+left +"  right: "+right);
-
-				//checking the translate layout and X Y properties
-				System.out.println("Text Tanslate: X= " 	+ texts[left].getTranslateX()	+ " Y= " 	+ texts[left].getTranslateY());
-				System.out.println("Text Layout:   X= " 	+ texts[left].getLayoutX()		+ " Y= " 	+ texts[left].getLayoutY());
-				System.out.println("Text right Tanslate: X= " 	+ texts[right].getTranslateX()	+ " Y= " 	+ texts[right].getTranslateY());
-				System.out.println("Text right Layout:   X= " 	+ texts[right].getLayoutX()		+ " Y= " 	+ texts[right].getLayoutY());
-				//trying to fix them
+				//fix properties
 				fixTranslate(rects[left]);
 				fixTranslate(rects[right]);
 				fixTranslateText(texts[left]);
 				fixTranslateText(texts[right]);
-				System.out.println("Text Tanslate: X= " 	+ texts[left].getTranslateX()	+ " Y= " 	+ texts[left].getTranslateY());
-				System.out.println("Text Layout:   X= " 	+ texts[left].getLayoutX()		+ " Y= " 	+ texts[left].getLayoutY());
-				System.out.println("Text right Tanslate: X= " 	+ texts[right].getTranslateX()	+ " Y= " 	+ texts[right].getTranslateY());
-				System.out.println("Text right Layout:   X= " 	+ texts[right].getLayoutX()		+ " Y= " 	+ texts[right].getLayoutY());
-				//checking if the fix worked
-//				System.out.println("Tanslate: X= "+ texts[left].getTranslateX()+" Y= "+ texts[left].getTranslateY());
-//				System.out.println("Layout:   X= "+ texts[left].getLayoutX()+   " Y= "+ texts[left].getLayoutY());
-//				System.out.println("XY:   X= "+ texts[left].getX()+   " Y= "+ texts[left].getY());
-
-				//System.out.println("Before: "+ rects[left].getTranslateX()+" Y= "+ rects[left].getTranslateY());
-				//System.out.println("Before: X= "+ rects[left].getLayoutX()+" Y= "+ rects[left].getLayoutY());
-				//System.out.println("Before: X= "+ rects[right].getLayoutX()+" Y= "+ rects[right].getLayoutY());
+				//animation
 				visualiser.animationBotRight(rects[left], texts[left],right - left);
 				visualiser.animationTopLeft(rects[right], texts[right],right- left);
-				//fixTranslate(rects[left]);
-				//fixTranslateText(texts[left]);
+				//change the index
 				changeIndex(left, right);
-//				ObservableList<Node> workingCollection = ((Pane) (visualiser.getChildren().get(1))).getChildren();
-//				((Pane) (visualiser.getChildren().get(1))).getChildren().removeAll(workingCollection);
-//				Collections.swap(workingCollection, 0, 1);
-//				((Pane) (visualiser.getChildren().get(1))).getChildren().setAll(workingCollection);
-				//Collections.swap(((Pane) (visualiser.getChildren().get(1))).getChildren(), left, right);
-				//Collections.swap(((Pane) (visualiser.getChildren().get(1))).getChildren(), left+10, right+10);
+
 			}else{
 				int left = steps.get(current)[0];
 				int right = steps.get(current)[1];
@@ -146,38 +118,18 @@ public class algModel extends Observable{
 				Rectangle rect2 = getRect(right);
 				visualiser.animationComparison(rect, rect2);
 			}
-
-			/*
-			for(int i=10;i<20;i++){
-				int a = steps.get(current)[i-10];
-				((Text) ((Pane) visualiser.getChildren().get(1)).getChildren().get(i)).setText(Integer.toString(a));
-			}*/
-
-			//visualiser.setCurrentIndex(current);
-			//visualiser.forceRepaint();
-			}
-		//System.out.println("Current step: "+ (current+1));
-		//btnState = false;
+		}
+		System.out.println("Current step: "+ (current+1));
 	}
 	private void fixTranslate(Rectangle rectangle) {
 		double newLayoutX = rectangle.getTranslateX() + rectangle.getLayoutX();
-		//double newLayoutY = rectangle.getTranslateY() + rectangle.getLayoutY();
-		//System.out.println("old translate x: "+rectangle.getLayoutX() );
 		rectangle.setTranslateX(0);
-		//rectangle.setTranslateY(0);
 		rectangle.setLayoutX(newLayoutX);
-		//rectangle.setLayoutY(newLayoutY);
-		//rectangle.relocate(x, y);
-		//System.out.println("new translate x: "+rectangle.getLayoutX() );
 	}
 	private void fixTranslateText(Text Text) {
-		System.out.println("Text xT: "+Text.getTranslateX() +"yT:"+Text.getTranslateY());
-		System.out.println("Text xL: "+Text.getLayoutX() +"yL:"+Text.getLayoutY());
 		double x = Text.getTranslateX() + Text.getLayoutX();// -13.53125;
-		//double y = Text.getTranslateY() + Text.getLayoutY();
 		Text.setTranslateX(0);
 		Text.setTranslateY(0);
-		//Text.setTranslateY(0);
 		if(Text.getText().compareTo("10")==0){
 			Text.setLayoutX(x+6);
 		}else{
@@ -185,11 +137,8 @@ public class algModel extends Observable{
 		}
 
 		Text.setLayoutY(77.94921875-4.96875);
-		//Text.setLayoutY(77.949221875);
 		System.out.println("Text xL: "+Text.getLayoutX() +"yL:"+Text.getLayoutY());
 
-		//Text.setLayoutY(y);
-		//Text.relocate(x, y);
 	}
 
 	/*

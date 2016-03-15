@@ -178,7 +178,13 @@ public class algModel extends Observable{
 		Text.setTranslateX(0);
 		Text.setTranslateY(0);
 		//Text.setTranslateY(0);
-		Text.setLayoutX(x);
+		if(Text.getText().compareTo("10")==0){
+			Text.setLayoutX(x+6);
+		}else{
+			Text.setLayoutX(x +3.5);
+		}
+
+		Text.setLayoutY(77.94921875-4.96875);
 		//Text.setLayoutY(77.949221875);
 		System.out.println("Text xL: "+Text.getLayoutX() +"yL:"+Text.getLayoutY());
 

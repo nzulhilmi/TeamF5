@@ -110,7 +110,9 @@ public class FXvisualiser extends BorderPane {
 		path2.getElements().add(new MoveTo(0,0));
 		path2.getElements().add(new LineTo(0, 50));
 		path2.getElements().add(new ArcTo(300, 50, 0, 50*n, 50, false, false));
-		path2.getElements().add(new LineTo(50*n, 0));
+		LineTo testing = new LineTo(50*n, 0);
+		//System.out.println("THIS IS THE THING WE WANT: "+testing);
+		path2.getElements().add(/*new LineTo(50*n, 0)*/testing);
 		//path.getElements().add(new CubicCurveTo(20, 100, 20, 200, 20, 200));
 		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
@@ -134,7 +136,7 @@ public class FXvisualiser extends BorderPane {
 
 		pathTransition.setOnFinished(e->{controls.enableBtn();});
 		pathTransition2.setOnFinished(e->{controls.enableBtn();});
-		
+
 		//setStage();
 		//resetR(rect, text);
 	}
@@ -171,7 +173,7 @@ public class FXvisualiser extends BorderPane {
 
 		pathTransition.play();
 		pathTransition2.play();
-		
+
 		pathTransition.setOnFinished(e->{controls.enableBtn();});
 		pathTransition2.setOnFinished(e->{controls.enableBtn();});
 		//setStage();

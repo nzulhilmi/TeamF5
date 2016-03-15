@@ -252,8 +252,4 @@ public class algModel extends Observable{
 	public int getID() {
 		return this.intID;
 	}
-	public boolean getBtnState(){
-		return visualiser.visActive();
-	}
-	
 }

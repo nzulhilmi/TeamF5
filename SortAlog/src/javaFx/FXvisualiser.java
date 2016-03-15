@@ -66,13 +66,13 @@ public class FXvisualiser extends BorderPane {
 			textList[i] = new Text(model.getCurrentBoxContent(i));
 			//textList[i].setBoundsType(TextBoundsType.VISUAL);
 			textList[i].relocate(65+(50*i), 65);
-//			System.out.println("textN: "+i+ " TA: "+textList[i].getY() +
-//											" Y: "+textList[i].getX() +
-//											" TX: "+textList[i].getTranslateX() +
-//											" TY: "+textList[i].getTranslateY() +
-//											" LX: "+textList[i].getLayoutX() +
-//											" LY: "+textList[i].getLayoutY()
-//											);
+			//			System.out.println("textN: "+i+ " TA: "+textList[i].getY() +
+			//											" Y: "+textList[i].getX() +
+			//											" TX: "+textList[i].getTranslateX() +
+			//											" TY: "+textList[i].getTranslateY() +
+			//											" LX: "+textList[i].getLayoutX() +
+			//											" LY: "+textList[i].getLayoutY()
+			//											);
 			//textList[i].translateXProperty().set(20);
 			//textList[i].translateYProperty().set(25);
 		}
@@ -99,7 +99,6 @@ public class FXvisualiser extends BorderPane {
 	}
 
 	public void animationBotRight(Rectangle rect, Text text,int n){
-		btnState = true;
 		Path path = new Path();
 		path.getElements().add(new MoveTo(20,20));
 		//System.out.println("bot rigt: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
@@ -126,12 +125,14 @@ public class FXvisualiser extends BorderPane {
 
 		pathTransition.play();
 		pathTransition2.play();
+
+		pathTransition.setOnFinished(e->{FXcontrolPane.enableBtn();});
+		pathTransition2.setOnFinished(e->{FXcontrolPane.enableBtn();});
+		
 		//setStage();
 		//resetR(rect, text);
-		btnState = false;
 	}
 	public void animationTopLeft(Rectangle rect, Text text,int n){
-		btnState = true;
 		Path path = new Path();
 		System.out.println("top Left:left: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
 		System.out.println("top Left:right: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
@@ -159,35 +160,34 @@ public class FXvisualiser extends BorderPane {
 
 		pathTransition.play();
 		pathTransition2.play();
+		
+		pathTransition.setOnFinished(e->{FXcontrolPane.enableBtn();});
+		pathTransition2.setOnFinished(e->{FXcontrolPane.enableBtn();});
 		//setStage();
 		//resetR(rect, text);
-		btnState = false;
 	}
 	//public void setCurrentIndex(int current) {}
 	public void animationComparison(Rectangle rect, Rectangle rect2) {
-		btnState = true;
+		FXcontrolPane.disableBtn();
 		rect.setFill(Color.YELLOW);
 		rect2.setFill(Color.YELLOW);
-		btnState = false;
+		FXcontrolPane.enableBtn();
 	}
-//	public void resetRectangles(){
-//		Rectangle rectangleMove;
-//		for(int i=0;i<numBoxes;i++){
-//			rectangleMove = (Rectangle) pane.getChildren().get(i);
-//			//System.out.println(rectangleMove.getX() + "   "+i);
-//			int n =i*50;
-//			rectangleMove.relocate(50+n, 50);
-//			//System.out.println(rectangleMove.getX() + "   "+i);
-//		}
-//	}
+	//	public void resetRectangles(){
+	//		Rectangle rectangleMove;
+	//		for(int i=0;i<numBoxes;i++){
+	//			rectangleMove = (Rectangle) pane.getChildren().get(i);
+	//			//System.out.println(rectangleMove.getX() + "   "+i);
+	//			int n =i*50;
+	//			rectangleMove.relocate(50+n, 50);
+	//			//System.out.println(rectangleMove.getX() + "   "+i);
+	//		}
+	//	}
 	public void resetRectColor() {
 		Rectangle colorR;
 		for(int i=0;i<numBoxes;i++){
 			colorR = (Rectangle)(pane.getChildren().get(i));
 			colorR.setFill(Color.ORANGE);
 		}
-	}
-	public boolean visActive(){
-		return btnState;
 	}
 }

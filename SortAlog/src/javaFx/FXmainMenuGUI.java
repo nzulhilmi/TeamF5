@@ -146,7 +146,7 @@ public class FXmainMenuGUI extends Application {
 
 		Scene menuScene = new Scene(border); // create the scene
 		// add the scene to the pane
-		menuScene.getStylesheets().add("menuDesign.css");
+		//menuScene.getStylesheets().add("menuDesign.css");
 		stage.setScene(menuScene);
 		stage.setTitle("SortAlgo");
 		stage.show(); // show the stage

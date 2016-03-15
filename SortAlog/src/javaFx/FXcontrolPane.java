@@ -1,6 +1,6 @@
 package javaFx;
 
-import java.awt.Dialog.ModalExclusionType;
+import javax.tools.ForwardingFileObject;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -20,7 +20,8 @@ import javafx.scene.text.Text;
 public class FXcontrolPane extends GridPane {
 	algModel model;
 	private int period;
-	public Boolean btnDisabled = false;
+	public static Boolean btnDisabled = false;
+	public static Button forward = new Button();
 
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
@@ -57,20 +58,21 @@ public class FXcontrolPane extends GridPane {
 			//timer.stop();});
 		});
 
-		Button forward = new Button(">>|");
-		forward.setOnAction(e ->{
+		forward = new Button(">>|");
+		forward.setOnAction( e ->{
 			if(btnDisabled){
 				logText.appendText("\n Please wait for the action to complete before starting another");
 				System.out.println("Please wait for the action to complete before starting another");
 			}else {
-				btnDisabled = true;
-				forward.setDisable(model.getBtnState());
+				disableBtn();
+				forward.setDisable(btnDisabled);
 				System.out.println("forward");
 				logText.appendText("\n forward");
 				model.goForward();
 			}
-			btnDisabled = false;
 			forward.setDisable(btnDisabled);
+			System.err.println(btnDisabled);
+
 		});
 
 		//isn't working would be nice to get this working
@@ -97,5 +99,13 @@ public class FXcontrolPane extends GridPane {
 		this.add(pause, 3, 2);
 		this.add(forward, 4, 2);
 		this.add(close, 6, 2);
+	}
+	public static void enableBtn(){
+		btnDisabled = false;
+		forward.setDisable(false);
+	}
+	public static void disableBtn(){
+		btnDisabled = true;
+		forward.setDisable(false);
 	}
 }

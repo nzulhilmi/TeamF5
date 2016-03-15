@@ -64,19 +64,9 @@ public class FXvisualiser extends BorderPane {
 			rectList[i].setArcHeight(15);
 			rectList[i].setArcWidth(15);
 			rectList[i].relocate(50+(50*i), 50);
-			//rectList[i].
 			textList[i] = new Text(model.getCurrentBoxContent(i));
-			//textList[i].setBoundsType(TextBoundsType.VISUAL);
 			textList[i].relocate(65+(50*i), 65);
-			//			System.out.println("textN: "+i+ " TA: "+textList[i].getY() +
-			//											" Y: "+textList[i].getX() +
-			//											" TX: "+textList[i].getTranslateX() +
-			//											" TY: "+textList[i].getTranslateY() +
-			//											" LX: "+textList[i].getLayoutX() +
-			//											" LY: "+textList[i].getLayoutY()
-			//											);
-			//textList[i].translateXProperty().set(20);
-			//textList[i].translateYProperty().set(25);
+
 		}
 		pane.getChildren().setAll();
 		pane.getChildren().addAll(rectList); //add the sqares
@@ -103,103 +93,83 @@ public class FXvisualiser extends BorderPane {
 	}
 
 	public void animationBotRight(Rectangle rect, Text text,int n){
-		//System.out.println("bot rigt: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
+		//make a new path
 		Path path = new Path();
+		//put elements of the path in it
 		path.getElements().add(new MoveTo(20,20));
 		path.getElements().add(new LineTo(20, 70));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 + 50*n, 70, false, false));
 		path.getElements().add(new LineTo(20 + 50*n, 20));
+		//make a new path
 		Path path2 = new Path();
+		//put elements of the path in it
 		path2.getElements().add(new MoveTo(0,0));
 		path2.getElements().add(new LineTo(0, 50));
 		path2.getElements().add(new ArcTo(300, 50, 0, 50*n, 50, false, false));
 		LineTo testing = new LineTo(50*n, 0);
-		//System.out.println("THIS IS THE THING WE WANT: "+testing);
-		path2.getElements().add(/*new LineTo(50*n, 0)*/testing);
-		//path.getElements().add(new CubicCurveTo(20, 100, 20, 200, 20, 200));
-		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
-		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
+		path2.getElements().add(testing);
+		//new transitions and duration
 		PathTransition pathTransition = new PathTransition();
 		pathTransition.setDuration(Duration.millis(1000));
 		PathTransition pathTransition2 =new PathTransition();
 		pathTransition2.setDuration(Duration.millis(1000));
+		//set the paths and the elements
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path2);
 		pathTransition.setNode(rect);
 		pathTransition2.setNode(text);
-		//pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-		//pathTransition.setCycleCount(Timeline.INDEFINITE);
-		//pathTransition.setAutoReverse(true);
-		//pathTransition2.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-		//pathTransition2.setCycleCount(Timeline.INDEFINITE);
-		//pathTransition2.setAutoReverse(true);
-
+		//play the animation
 		pathTransition.play();
 		pathTransition2.play();
-
+		//on finish do this:
 		pathTransition.setOnFinished(e->{controls.enableBtn();});
 		pathTransition2.setOnFinished(e->{controls.enableBtn();});
 
-		//setStage();
-		//resetR(rect, text);
 	}
 	public void animationTopLeft(Rectangle rect, Text text,int n){
+		//make a new path
 		Path path = new Path();
-		System.out.println("top Left:left: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
-		System.out.println("top Left:right: "+rect.getLayoutX()+"  "+rect.getLayoutY()+" Text: "+ text.getText());
+		//put elements of the path in it
 		path.getElements().add(new MoveTo(20,20));
 		path.getElements().add(new LineTo(20, -30));
 		path.getElements().add(new ArcTo(300, 50, 0, 20 - 50*n, -30, false, false));
 		path.getElements().add(new LineTo(20 - 50*n, 20));
+		//make a new path
 		Path path2 = new Path();
+		//put elements of the path in it
 		path2.getElements().add(new MoveTo(0,0));
 		path2.getElements().add(new LineTo(0, -50));
 		path2.getElements().add(new ArcTo(300, 50, 0, -50*n, -50, false, false));
 		path2.getElements().add(new LineTo(-50*n, 0));
-		//path.getElements().add(new CubicCurveTo(20, 100, 20, 200, 20, 200));
-		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
-		//path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
+		//new transitions and duration
 		PathTransition pathTransition = new PathTransition();
 		pathTransition.setDuration(Duration.millis(1000));
 		PathTransition pathTransition2 =new PathTransition();
 		pathTransition2.setDuration(Duration.millis(1000));
+		//set the paths and the elements
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path2);
 		pathTransition.setNode(rect);
 		pathTransition2.setNode(text);
-		//pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-		//pathTransition.setCycleCount(Timeline.INDEFINITE);
-		//pathTransition.setAutoReverse(true);
-		//pathTransition2.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-		//pathTransition2.setCycleCount(Timeline.INDEFINITE);
-		//pathTransition2.setAutoReverse(true);
-
+		//play the animation
 		pathTransition.play();
 		pathTransition2.play();
-
+		//on finish do this:
 		pathTransition.setOnFinished(e->{controls.enableBtn();});
 		pathTransition2.setOnFinished(e->{controls.enableBtn();});
-		//setStage();
-		//resetR(rect, text);
+
 	}
 	//public void setCurrentIndex(int current) {}
 	public void animationComparison(Rectangle rect, Rectangle rect2) {
+		//make the rectangles YELLOW
 		controls.disableBtn();
 		rect.setFill(Color.YELLOW);
 		rect2.setFill(Color.YELLOW);
 		controls.enableBtn();
 	}
-	//	public void resetRectangles(){
-	//		Rectangle rectangleMove;
-	//		for(int i=0;i<numBoxes;i++){
-	//			rectangleMove = (Rectangle) pane.getChildren().get(i);
-	//			//System.out.println(rectangleMove.getX() + "   "+i);
-	//			int n =i*50;
-	//			rectangleMove.relocate(50+n, 50);
-	//			//System.out.println(rectangleMove.getX() + "   "+i);
-	//		}
-	//	}
+
 	public void resetRectColor() {
+		//resets the colour to ORANGE
 		Rectangle colorR;
 		for(int i=0;i<numBoxes;i++){
 			colorR = (Rectangle)(pane.getChildren().get(i));

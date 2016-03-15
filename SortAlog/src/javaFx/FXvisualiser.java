@@ -185,4 +185,8 @@ public class FXvisualiser extends BorderPane {
 	public void logAddMsg(String msg){
 		logText.appendText("\n"+ msg);
 	}
+
+	public void clickPlay() {
+	    controls.clickPlay();
+	}
 }

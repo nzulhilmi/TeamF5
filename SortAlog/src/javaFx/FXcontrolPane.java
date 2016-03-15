@@ -26,6 +26,7 @@ public class FXcontrolPane extends GridPane {
 	public Boolean btnDisabled = false;
 	private Button forward = new Button();
 	private Button back = new Button();
+	private Button play = new Button();
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
 		this.period = 1000;
@@ -53,8 +54,7 @@ public class FXcontrolPane extends GridPane {
 			}
 			back.setDisable(btnDisabled);
 		});
-
-		Button play = new Button("play");
+		play = new Button("play");
 		play.setOnAction(e ->{
 			System.out.println("play");
 			logText.appendText("\n play");
@@ -90,7 +90,7 @@ public class FXcontrolPane extends GridPane {
 			//System.out.println("close");
 			logText.appendText("\n Close");
 			FXmainMenuGUI.removeVis(ID);
-		}); 
+		});
 
 		//speed label
 		Text speed = new Text("Speed");
@@ -114,5 +114,10 @@ public class FXcontrolPane extends GridPane {
 		btnDisabled = true;
 		forward.setDisable(true);
 		back.setDisable(true);
+	}
+
+	public void clickPlay() {
+	    //forward.fire() //just to test if it works
+	    play.fire();
 	}
 }

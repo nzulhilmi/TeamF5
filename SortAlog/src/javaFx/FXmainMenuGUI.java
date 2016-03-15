@@ -1,13 +1,16 @@
 package javaFx;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -67,9 +70,9 @@ public class FXmainMenuGUI extends Application {
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
-		
+
 		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border
-		
+
 		// button creation
 		Button bubble = new Button();
 		bubble.setText("Bubble"); // set test
@@ -99,8 +102,21 @@ public class FXmainMenuGUI extends Application {
 		// new border pane so that the title is in the center
 		// BorderPane borderTop = new BorderPane();
 
+		Button playAll = new Button("Play All");
+		playAll.setMaxWidth(Double.MAX_VALUE);
+		playAll.setOnAction(e-> {
+		    if(flowPane.getChildren().size() > 0) {
+		    	for(int i = 0; i < flowPane.getChildren().size(); i++) {
+		    	    ((FXvisualiser) flowPane.getChildren().get(i)).clickPlay();
+		    	}
+		    }
+		    else {
+			System.out.println("Error: no algorithms running");
+		    }
+		});
+
 		AdvancedMenu advancedMenu = new AdvancedMenu(stage, border);
-		
+
 
 		Button advanced = new Button("Advanced Menu");
 		advanced.setMaxWidth(Double.MAX_VALUE);
@@ -124,8 +140,9 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(quick, 5, 11);
 		gridMenu.add(insertion, 5, 12);
 		gridMenu.add(selection, 5, 13);
-		gridMenu.add(advanced, 5, 14);
-		
+		gridMenu.add(playAll, 5, 14);
+		gridMenu.add(advanced, 5, 15);
+
 		/* Logo added and the menu buttons have been shifted a bit */
 		Image img = new Image("softwarelogoFinal2darkerCropped300x100.png");
 		ImageView imgView = new ImageView(img);
@@ -134,7 +151,7 @@ public class FXmainMenuGUI extends Application {
 		imgView.setX(30);
 		imgView.setY(25);
 		border.getChildren().add(imgView);
-	    
+
 		BorderPane borderLeft = new BorderPane();//layout for the left
 		ExplanationPane explanationPane = new ExplanationPane();
 		borderLeft.setTop(gridMenu);

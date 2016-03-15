@@ -21,8 +21,8 @@ public class FXcontrolPane extends GridPane {
 	algModel model;
 	private int period;
 	public Boolean btnDisabled = false;
-	public Button forward = new Button();
-
+	private Button forward = new Button();
+	private Button back = new Button();
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
 		this.period = 1000;
@@ -37,11 +37,24 @@ public class FXcontrolPane extends GridPane {
 		slider.setMajorTickUnit(.5);
 
 		//buttons creation
-		Button back = new Button("|<<");
+		back = new Button("|<<");
 		back.setOnAction(e -> {
+			if(btnDisabled){
+				logText.appendText("\n Please wait for the action to complete before starting another");
+				System.out.println("Please wait for the action to complete before starting another");
+			}else {
+				disableBtn();
+				back.setDisable(btnDisabled);
+				System.out.println("forward");
+				logText.appendText("\n forward");
+				model.goBack();
+			}
+			back.setDisable(btnDisabled);
+			System.err.println(btnDisabled);
+
 			System.out.println("back");
 			logText.appendText("\n back");
-			model.goBack();
+			
 		});
 
 		Button play = new Button("play");
@@ -103,9 +116,11 @@ public class FXcontrolPane extends GridPane {
 	public void enableBtn(){
 		btnDisabled = false;
 		forward.setDisable(false);
+		back.setDisable(false);
 	}
 	public void disableBtn(){
 		btnDisabled = true;
-		forward.setDisable(false);
+		forward.setDisable(true);
+		back.setDisable(true);
 	}
 }

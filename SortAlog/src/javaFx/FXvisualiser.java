@@ -1,6 +1,7 @@
 package javaFx;
 
 import javafx.animation.PathTransition;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
@@ -31,7 +32,7 @@ public class FXvisualiser extends BorderPane {
 	private Text[] textList;
 	private int numBoxes;
 	private Pane pane;
-	private TextArea logText=  new TextArea();
+	private TextArea logText =  new TextArea();
 	private FXcontrolPane controls;
 
 
@@ -87,6 +88,8 @@ public class FXvisualiser extends BorderPane {
 		log.setOnAction(e -> {
 			logText.setText("This is our log panel which the stage should auto resize to accomodate");
 			logText.setPrefSize(200, 100);
+//			logText.
+			logText.setWrapText(true);
 			this.setRight(logText);
 		});
 

@@ -47,7 +47,7 @@ public class FXvisualiser extends BorderPane {
 	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
 		this.numBoxes = model.getSize();
-		this.setMinSize(580, 200);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED
+		this.setMinSize(780, 200);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED
 
 		BorderPane bottomLayout = new BorderPane();
 		//System.out.println("model size = "+ model.getSize());
@@ -90,7 +90,7 @@ public class FXvisualiser extends BorderPane {
 			logText.setPrefSize(200, 100);
 			logText.setWrapText(true);
 			logText.setStyle("-fx-background-color: transparent");
-			this.setMinWidth(780);
+			//this.setMinWidth(780);
 			this.setRight(logText);
 		});
 		BorderPane logBtnPos = new BorderPane();

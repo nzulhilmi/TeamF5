@@ -182,8 +182,9 @@ public class FXmainMenuGUI extends Application {
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
 				resizeStage();
 				//CALL CODE HERE TO UPDATE THE SCROLLPANE 
-				//scrollPane.setMinWidth(820);
-				scrollPane.fitToWidthProperty();
+				//scrollPane.USE_COMPUTED_SIZE;
+				System.out.println(scrollPane.getWidth());
+				resizeStage();
 			}
 		});
 }

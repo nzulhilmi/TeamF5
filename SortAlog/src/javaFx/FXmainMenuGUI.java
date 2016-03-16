@@ -66,7 +66,7 @@ public class FXmainMenuGUI extends Application {
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
 		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
-		flowPane.setMinWidth(650);
+		//flowPane.setMinWidth(660);
 
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
@@ -174,15 +174,8 @@ public class FXmainMenuGUI extends Application {
 		flowPane.widthProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
-				//if(newSceneWidth.intValue()==740){
-					//System.err.println("----------FUCK IT");
-					//newSceneWidth = 780;
-					
-				//}else{
 				resizeStage();
-				scrollPane.setMinWidth(820);
-				//flowPane.setMinWidth(780);
-				//}
+				scrollPane.setMinWidth(800);
 			}
 		});
 	}

@@ -51,7 +51,7 @@ public class FXmainMenuGUI extends Application {
 	int intID = 0; // to set the id of each visualisation pane (to be converted to string)
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
 	private BorderPane border = new BorderPane(); // sets the top level to a border layout
-	private ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
+	private static ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
 
 	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 
@@ -66,6 +66,7 @@ public class FXmainMenuGUI extends Application {
 		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
 		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
+		flowPane.setMinWidth(650);
 
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
@@ -173,9 +174,15 @@ public class FXmainMenuGUI extends Application {
 		flowPane.widthProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+				//if(newSceneWidth.intValue()==740){
+					//System.err.println("----------FUCK IT");
+					//newSceneWidth = 780;
+					
+				//}else{
 				resizeStage();
-				scrollPane.setMinWidth(780);
-				flowPane.setMinWidth(780);
+				scrollPane.setMinWidth(820);
+				//flowPane.setMinWidth(780);
+				//}
 			}
 		});
 	}
@@ -186,6 +193,8 @@ public class FXmainMenuGUI extends Application {
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 		if(numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
+			scrollPane.setMinWidth(0);
+			flowPane.setMinWidth(0);
 			resizeStage();
 		} else if (numOfSortsOnScreen <=3) {
 			resizeStage();

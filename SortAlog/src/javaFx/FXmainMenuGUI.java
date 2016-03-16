@@ -1,7 +1,11 @@
 package javaFx;
 
+import java.awt.Frame;
+import java.awt.Panel;
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.sun.glass.ui.Size;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -51,7 +55,7 @@ public class FXmainMenuGUI extends Application {
 	int intID = 0; // to set the id of each visualisation pane (to be converted to string)
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
 	private BorderPane border = new BorderPane(); // sets the top level to a border layout
-	private static ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
+	private ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
 
 	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 
@@ -71,6 +75,8 @@ public class FXmainMenuGUI extends Application {
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
+		scrollPane.fitToWidthProperty();
+		
 
 		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border
 
@@ -175,10 +181,12 @@ public class FXmainMenuGUI extends Application {
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
 				resizeStage();
-				scrollPane.setMinWidth(800);
+				//CALL CODE HERE TO UPDATE THE SCROLLPANE 
+				//scrollPane.setMinWidth(820);
+				scrollPane.fitToWidthProperty();
 			}
 		});
-	}
+}
 
 	public static void removeVis(String s) {
 		flowPane.getChildren().remove(flowPane.lookup(s));
@@ -186,8 +194,8 @@ public class FXmainMenuGUI extends Application {
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 		if(numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
-			scrollPane.setMinWidth(0);
-			flowPane.setMinWidth(0);
+			//scrollPane.setMinWidth(0);
+			//flowPane.setMinWidth(0);
 			resizeStage();
 		} else if (numOfSortsOnScreen <=3) {
 			resizeStage();

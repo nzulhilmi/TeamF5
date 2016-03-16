@@ -63,11 +63,11 @@ public class algModel extends Observable{
 				//fix properties
 				fixTranslate(rects[left]);
 				fixTranslate(rects[right]);
-				fixTranslateText(texts[left]);
-				fixTranslateText(texts[right]);
+				fixTranslateTextBack(texts[left]);
+				fixTranslateTextBack(texts[right]);
 				//animation
-				visualiser.animationBotRight(rects[left], texts[left],right - left);
-				visualiser.animationTopLeft(rects[right], texts[right],right- left);
+				visualiser.animationBotRight(rects[left], texts[left],right - left,200);
+				visualiser.animationTopLeft(rects[right], texts[right],right- left,200);
 				//change the index
 				changeIndex(left, right);
 				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
@@ -117,8 +117,8 @@ public class algModel extends Observable{
 				fixTranslateText(texts[left]);
 				fixTranslateText(texts[right]);
 				//animation
-				visualiser.animationBotRight(rects[left], texts[left], right - left);
-				visualiser.animationTopLeft(rects[right], texts[right], right - left);
+				visualiser.animationBotRight(rects[left], texts[left], right - left,200);
+				visualiser.animationTopLeft(rects[right], texts[right], right - left,200);
 				//change the index
 				changeIndex(left, right);
 				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
@@ -144,13 +144,25 @@ public class algModel extends Observable{
 		Text.setTranslateX(0);
 		Text.setTranslateY(0);
 		if(Text.getText().compareTo("10")==0){
-			Text.setLayoutX(x+6);
+			Text.setLayoutX(x+6.1);
 		}else{
 			Text.setLayoutX(x +3.5);
 		}
 
 		Text.setLayoutY(77.94921875-4.96875);
-		System.out.println("Text xL: "+Text.getLayoutX() +"yL:"+Text.getLayoutY());
+
+	}
+	private void fixTranslateTextBack(Text Text) {
+		double x = Text.getTranslateX() + Text.getLayoutX();// -13.53125;
+		Text.setTranslateX(0);
+		Text.setTranslateY(0);
+		if(Text.getText().compareTo("10")==0){
+			Text.setLayoutX(x+6.7);
+		}else{
+			Text.setLayoutX(x +3.6);
+		}
+
+		Text.setLayoutY(77.94921875-4.96875);
 
 	}
 

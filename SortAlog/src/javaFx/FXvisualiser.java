@@ -103,7 +103,7 @@ public class FXvisualiser extends BorderPane {
 
 	}
 
-	public void animationBotRight(Rectangle rect, Text text,int n){
+	public void animationBotRight(Rectangle rect, Text text,int n,int speed){
 		//make a new path
 		Path path = new Path();
 		//put elements of the path in it
@@ -121,9 +121,9 @@ public class FXvisualiser extends BorderPane {
 		path2.getElements().add(testing);
 		//new transitions and duration
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(1000));
+		pathTransition.setDuration(Duration.millis(speed));
 		PathTransition pathTransition2 =new PathTransition();
-		pathTransition2.setDuration(Duration.millis(1000));
+		pathTransition2.setDuration(Duration.millis(speed));
 		//set the paths and the elements
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path2);
@@ -137,7 +137,7 @@ public class FXvisualiser extends BorderPane {
 		pathTransition2.setOnFinished(e->{controls.enableBtn();});
 
 	}
-	public void animationTopLeft(Rectangle rect, Text text,int n){
+	public void animationTopLeft(Rectangle rect, Text text,int n,int speed){
 		//make a new path
 		Path path = new Path();
 		//put elements of the path in it
@@ -154,9 +154,9 @@ public class FXvisualiser extends BorderPane {
 		path2.getElements().add(new LineTo(-50*n, 0));
 		//new transitions and duration
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(1000));
+		pathTransition.setDuration(Duration.millis(speed));
 		PathTransition pathTransition2 =new PathTransition();
-		pathTransition2.setDuration(Duration.millis(1000));
+		pathTransition2.setDuration(Duration.millis(speed));
 		//set the paths and the elements
 		pathTransition.setPath(path);
 		pathTransition2.setPath(path2);

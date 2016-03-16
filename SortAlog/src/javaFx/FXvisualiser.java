@@ -1,5 +1,8 @@
 package javaFx;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javafx.animation.PathTransition;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -21,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 
+
 /**
  * this class is where the visualisation panels will be made Each sort is made
  * in a new panel
@@ -37,6 +41,7 @@ public class FXvisualiser extends BorderPane {
 	private Pane pane;
 	private TextArea logText =  new TextArea();
 	private FXcontrolPane controls;
+	private Timer time;
 
 
 	public FXvisualiser(algModel model, int n) {//pass the model
@@ -187,6 +192,13 @@ public class FXvisualiser extends BorderPane {
 	}
 
 	public void clickPlay() {
-	    controls.clickPlay();
+//		System.out.println("Timer start");
+//		time = new Timer();
+//		time.schedule(new TimerTask(){
+//			public void run(){
+//				System.out.println("Timer exec");
+//				goForward();
+//			}
+//		}, 0, 1000);
 	}
 }

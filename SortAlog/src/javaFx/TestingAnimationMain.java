@@ -4,7 +4,7 @@ public class TestingAnimationMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] array = {3,1,2,4,8,7,9,0};
+		int[] array = {3,1,2,4,8,7,9,0,1,0};
 		SortAlgos a = new SortAlgos("Bubble", array);
 
 		System.out.println("Start: ");

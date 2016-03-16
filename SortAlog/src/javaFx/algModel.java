@@ -2,14 +2,17 @@ package javaFx;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
- * This class is used as a central base for each unique visualisation to be built from. 
+ * This class is used as a central base for each unique visualisation to be built from.
  * @author Kiril N. Elliott Upton
  *
  */
@@ -23,6 +26,7 @@ public class algModel extends Observable{
 	private int intID;
 	private Text[] texts;
 	private Rectangle[] rects;
+	private Timer time;
 	//private Boolean btnState =false;
 	/**
 	 * Instantiates a new algorithm model.
@@ -79,7 +83,7 @@ public class algModel extends Observable{
 			}
 
 		}
-		
+
 //		System.out.println("Current step: "+ (current+1));
 	}
 
@@ -128,7 +132,7 @@ public class algModel extends Observable{
 				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " with " + texts[right].getText());
 			}
 		}
-		
+
 	}
 	private void fixTranslate(Rectangle rectangle) {
 		double newLayoutX = rectangle.getTranslateX() + rectangle.getLayoutX();
@@ -150,30 +154,58 @@ public class algModel extends Observable{
 
 	}
 
-	/*
-	public void pause(){
-		this.loop = false;
+
+	public void stop(){
+		try{
+			time.cancel();
+			System.out.println("stop");
+		}catch (NullPointerException e){
+			System.out.println("Nothing to stop");
+		}
+		//this.loop = false;
 		//System.err.println("pause the annimation");
 	}
 
 	public void play(){
-		this.loop = true;
-		Timer time = new Timer(current, null);
-			while(this.loop==true){
-
-				if(current < steps.size()-1){
-					current++;
-					vis.setCurrentIndex(current);
-					vis.forceRepaint();
-				}else{
-					this.loop = false;
-				}
-				System.out.println("working");
+		//
+		System.out.println("Timer start");
+		time = new Timer();
+		time.scheduleAtFixedRate((new TimerTask(){
+			@Override
+			public void run(){
+				System.out.println("Timer exec");
+				  Platform.runLater(() -> {
+					  goForward();
+				  });
 			}
-
-		System.out.println("end");
+		}), 500, 2000);
+//			while(this.loop==true){
+//
+//				if(current < steps.size()-1){
+//					current++;
+//					vis.setCurrentIndex(current);
+//					vis.forceRepaint();
+//				}else{
+//					this.loop = false;
+//				}
+//				System.out.println("working");
+//			}
+//
+//		System.out.println("end");
+//		public void moveCircle(Circle circle, Scene scene) {
+//		    Timer timer = new Timer();
+//		    timer.scheduleAtFixedRate(new TimerTask() {
+//		        @Override
+//		        public void run() {
+//		            Platform.runLater(() -> {
+//		                circle.setCenterX(random((int) scene.getX()));
+//		                circle.setCenterY(random((int) scene.getY()));
+//		            });
+//		        }
+//		    }, 1000, 1000);
+//		}
 	}
-	*/
+
 	public void setSpeed(int value) {
 		System.err.println("set the speed");
 
@@ -225,5 +257,4 @@ public class algModel extends Observable{
 	public int getID() {
 		return this.intID;
 	}
-
 }

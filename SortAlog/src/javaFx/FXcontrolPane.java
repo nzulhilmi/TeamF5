@@ -58,14 +58,14 @@ public class FXcontrolPane extends GridPane {
 		play.setOnAction(e ->{
 			System.out.println("play");
 			logText.appendText("\n play");
-			//timer.start();
+			model.play();
 		});
 
-		Button pause = new Button("pause");
+		Button pause = new Button("stop");
 		pause.setOnAction(e ->{
-			System.out.println("pause");
-			logText.appendText("\n pause");
-			//timer.stop();});
+			//System.out.println("pause");
+			logText.appendText("\n stop");
+			model.stop();
 		});
 
 		forward = new Button(">>|");
@@ -89,6 +89,7 @@ public class FXcontrolPane extends GridPane {
 			String ID = "#" + stringID;
 			//System.out.println("close");
 			logText.appendText("\n Close");
+			model.stop();
 			FXmainMenuGUI.removeVis(ID);
 		});
 

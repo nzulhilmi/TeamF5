@@ -1,6 +1,7 @@
 package javaFx;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -119,6 +120,14 @@ public class algModel extends Observable{
 				fixTranslateText(texts[right]);
 				//animation
 				visualiser.animationBotRight(rects[left], texts[left], right - left,200);
+//				Rectangle[] rectlist = new Rectangle[right-left];
+//				Text[] textlist = new Text[right-left];
+//				for (int i = 0; i < right-left; i++) {
+//					rectlist[i] = rects[left+i];
+//					textlist[i] = texts[left+i];
+//				}
+
+				//visualiser.animationTopInsertion(rects[right], rectlist, texts[right], textlist, right-left, 2000);
 				visualiser.animationTopLeft(rects[right], texts[right], right - left,200);
 				//change the index
 				changeIndex(left, right);

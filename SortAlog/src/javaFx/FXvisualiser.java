@@ -172,6 +172,61 @@ public class FXvisualiser extends BorderPane {
 		pathTransition2.setOnFinished(e->{controls.enableBtn();});
 
 	}
+
+	public void animationTopInsertion(Rectangle rect,Rectangle[] rects, Text text,Text[] texts,int n,int speed){
+		//make a new path
+		Path pathFirst = new Path();
+		//put elements of the path in it
+		pathFirst.getElements().add(new MoveTo(20,20));
+		pathFirst.getElements().add(new LineTo(20, -30));
+		pathFirst.getElements().add(new ArcTo(300, 50, 0, 20 - 50*n, -30, false, false));
+		pathFirst.getElements().add(new LineTo(20 - 50*n, 20));
+		//make a new path
+		Path pathFirstText = new Path();
+		//put elements of the path in it
+		pathFirstText.getElements().add(new MoveTo(0,0));
+		pathFirstText.getElements().add(new LineTo(0, -50));
+		pathFirstText.getElements().add(new ArcTo(300, 50, 0, -50*n, -50, false, false));
+		pathFirstText.getElements().add(new LineTo(-50*n, 0));
+		//new transitions and duration
+		PathTransition pathTransitionFirst = new PathTransition();
+		PathTransition pathTransitionFirstText = new PathTransition();
+		pathTransitionFirst.setDuration(Duration.millis(speed));
+		pathTransitionFirstText.setDuration(Duration.millis(speed));
+		//set the paths and the elements
+		pathTransitionFirst.setPath(pathFirst);
+		pathTransitionFirstText.setPath(pathFirstText);
+		pathTransitionFirst.setNode(rect);
+		pathTransitionFirstText.setNode(text);
+		//play the animation
+		pathTransitionFirst.play();
+		pathTransitionFirstText.play();
+		for (int i = 0; i < texts.length; i++) {
+			Path pathN = new Path();
+			pathN.getElements().add(new MoveTo(20,20));
+			pathN.getElements().add(new LineTo(20 - 50*n, 20));
+			Path pathNText = new Path();
+			pathNText.getElements().add(new MoveTo(0,0));
+			pathNText.getElements().add(new LineTo(-50*n, 0));
+			//new transitions and duration
+			PathTransition pathTransitionN = new PathTransition();
+			PathTransition pathTransitionNText = new PathTransition();
+			pathTransitionFirst.setDuration(Duration.millis(speed));
+			pathTransitionFirstText.setDuration(Duration.millis(speed));
+			//set the paths and the elements
+			pathTransitionN.setPath(pathN);
+			pathTransitionNText.setPath(pathNText);
+			pathTransitionN.setNode(rects[i]);
+			pathTransitionNText.setNode(texts[i]);
+			//play the animation
+			pathTransitionFirst.play();
+			pathTransitionFirstText.play();
+		}
+
+		pathTransitionFirst.setOnFinished(e->{controls.enableBtn();});
+		pathTransitionFirstText.setOnFinished(e->{controls.enableBtn();});
+
+	}
 	//public void setCurrentIndex(int current) {}
 	public void animationComparison(Rectangle rect, Rectangle rect2) {
 		//make the rectangles YELLOW

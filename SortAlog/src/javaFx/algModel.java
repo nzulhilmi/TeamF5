@@ -102,7 +102,6 @@ public class algModel extends Observable{
 	}
 
 	public void goForward(){
-		System.err.println("goforward104");
 		visualiser.logAddMsg("--------------------------");
 		visualiser.logAddMsg("Step Forward");
 		visualiser.logAddMsg("Current step: "+ (current+1));
@@ -133,12 +132,10 @@ public class algModel extends Observable{
 				changeIndex(left, right);
 				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
 			}else{
-				System.err.println("gofwd131");
 				int left = steps.get(current)[0];
 				int right = steps.get(current)[1];
 				Rectangle rect = getRect(left);
 				Rectangle rect2 = getRect(right);
-				System.err.println("gofwd136");
 				visualiser.animationComparison(rect, rect2);
 				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " with " + texts[right].getText());
 			}

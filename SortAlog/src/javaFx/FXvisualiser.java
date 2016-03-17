@@ -43,7 +43,7 @@ public class FXvisualiser extends BorderPane {
 	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
 		this.numBoxes = model.getSize();
-		this.setMinSize(780, 250);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED 780
+		this.setMinSize(580, 250);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED 780
 
 		BorderPane bottomLayout = new BorderPane();
 		//System.out.println("model size = "+ model.getSize());
@@ -175,58 +175,33 @@ public class FXvisualiser extends BorderPane {
 	}
 
 	public void animationTopInsertion(Rectangle rect,Rectangle[] rects, Text text,Text[] texts,int n,int speed){
-		//make a new path
-		Path pathFirst = new Path();
-		//put elements of the path in it
-		pathFirst.getElements().add(new MoveTo(20,20));
-		pathFirst.getElements().add(new LineTo(20, -30));
-		pathFirst.getElements().add(new ArcTo(300, 50, 0, 20 - 50*n, -30, false, false));
-		pathFirst.getElements().add(new LineTo(20 - 50*n, 20));
-		//make a new path
-		Path pathFirstText = new Path();
-		//put elements of the path in it
-		pathFirstText.getElements().add(new MoveTo(0,0));
-		pathFirstText.getElements().add(new LineTo(0, -50));
-		pathFirstText.getElements().add(new ArcTo(300, 50, 0, -50*n, -50, false, false));
-		pathFirstText.getElements().add(new LineTo(-50*n, 0));
-		//new transitions and duration
-		PathTransition pathTransitionFirst = new PathTransition();
-		PathTransition pathTransitionFirstText = new PathTransition();
-		pathTransitionFirst.setDuration(Duration.millis(speed));
-		pathTransitionFirstText.setDuration(Duration.millis(speed));
-		//set the paths and the elements
-		pathTransitionFirst.setPath(pathFirst);
-		pathTransitionFirstText.setPath(pathFirstText);
-		pathTransitionFirst.setNode(rect);
-		pathTransitionFirstText.setNode(text);
-		//play the animation
-		pathTransitionFirst.play();
-		pathTransitionFirstText.play();
+		animationTopLeft(rect, text, n, speed);
+
 		for (int i = 0; i < texts.length; i++) {
-			Path pathN = new Path();
-			pathN.getElements().add(new MoveTo(20,20));
-			pathN.getElements().add(new LineTo(20 - 50*n, 20));
-			Path pathNText = new Path();
-			pathNText.getElements().add(new MoveTo(0,0));
-			pathNText.getElements().add(new LineTo(-50*n, 0));
-			//new transitions and duration
-			PathTransition pathTransitionN = new PathTransition();
-			PathTransition pathTransitionNText = new PathTransition();
-			pathTransitionFirst.setDuration(Duration.millis(speed));
-			pathTransitionFirstText.setDuration(Duration.millis(speed));
-			//set the paths and the elements
-			pathTransitionN.setPath(pathN);
-			pathTransitionNText.setPath(pathNText);
-			pathTransitionN.setNode(rects[i]);
-			pathTransitionNText.setNode(texts[i]);
-			//play the animation
-			pathTransitionFirst.play();
-			pathTransitionFirstText.play();
+			animationRight(rects[i],texts[i],i,speed);
 		}
 
-		pathTransitionFirst.setOnFinished(e->{controls.enableBtn();});
-		pathTransitionFirstText.setOnFinished(e->{controls.enableBtn();});
-
+	}
+	public void animationRight(Rectangle rect,Text text,int n,int speed){
+		Path path = new Path();
+		path.getElements().add(new MoveTo(20,20));
+		path.getElements().add(new LineTo(20 - 50*n, 20));
+		Path pathText = new Path();
+		pathText.getElements().add(new MoveTo(0,0));
+		pathText.getElements().add(new LineTo(50*n, 0));
+		//new transitions and duration
+		PathTransition pathTransition = new PathTransition();
+		PathTransition pathTransitionText = new PathTransition();
+		pathTransition.setDuration(Duration.millis(speed));
+		pathTransitionText.setDuration(Duration.millis(speed));
+		//set the paths and the elements
+		pathTransition.setPath(path);
+		pathTransitionText.setPath(pathText);
+		pathTransition.setNode(rect);
+		pathTransitionText.setNode(text);
+		//play the animation
+		pathTransition.play();
+		pathTransitionText.play();
 	}
 	//public void setCurrentIndex(int current) {}
 	public void animationComparison(Rectangle rect, Rectangle rect2) {

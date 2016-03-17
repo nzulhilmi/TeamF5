@@ -1,6 +1,7 @@
 package javaFx;
 
 import java.util.Random;
+
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,9 +16,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -60,7 +65,7 @@ public class FXmainMenuGUI extends Application {
 												// added dynamically
 	private BorderPane border = new BorderPane(); // sets the top level to a
 													// border layout
-	private ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the
+	private static ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the
 														// flowpane so that it
 														// is scrollable
 
@@ -76,8 +81,7 @@ public class FXmainMenuGUI extends Application {
 		//stage.setMaxWidth(1200);
 		//stage.setMaxHeight(800);
 		// algModel algModel = new algModel(null, null, null); // model
-		flowPane.setPrefWrapLength(100); // This line stops the main menu being
-											// huge
+		flowPane.setPrefWrapLength(100); // This line stops the main menu beinghuge
 		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll
 												// bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
@@ -106,7 +110,7 @@ public class FXmainMenuGUI extends Application {
 		Button quick = new Button("Quick");
 		quick.getStyleClass().add("sortButtons");
 		quick.setMaxWidth(Double.MAX_VALUE);
-		quick.setOnAction(e -> System.out.println("Quick"));
+		quick.setOnAction(e -> onClickVisulisation("Quick"));
 
 		Button insertion = new Button("Insertion");
 		insertion.getStyleClass().add("sortButtons");
@@ -233,8 +237,12 @@ public class FXmainMenuGUI extends Application {
 				System.out.println(scrollPane.getWidth());
 				// resizeStage();
 				System.err.println(stage.getWidth());
+				updatescroll(newSceneWidth.intValue());
 			}
 		});
+	}
+	public void updatescroll(int size){
+		stage.setWidth(stage.getWidth()+1);
 	}
 
 	public static void removeVis(String s) {
@@ -243,8 +251,8 @@ public class FXmainMenuGUI extends Application {
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 		if (numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
-			// scrollPane.setMinWidth(0);
-			// flowPane.setMinWidth(0);
+			 //scrollPane.setMinWidth(0);
+			 //flowPane.setMinWidth(0);
 			resizeStage();
 		} else if (numOfSortsOnScreen <= 2) {
 			resizeStage();
@@ -307,5 +315,4 @@ public class FXmainMenuGUI extends Application {
 	public void stopAll() {
 	    stopAll.fire();
 	}
-
 }

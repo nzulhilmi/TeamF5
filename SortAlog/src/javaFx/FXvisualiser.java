@@ -1,7 +1,9 @@
 package javaFx;
 
 import java.util.Timer;
+
 import javafx.animation.PathTransition;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -38,6 +40,7 @@ public class FXvisualiser extends BorderPane {
 	private Label screenMsg = new Label("");
 	private FXcontrolPane controls;
 	private Timer time;
+	private BorderPane logBtnPos = new BorderPane();
 
 
 	public FXvisualiser(algModel model, int n) {//pass the model
@@ -79,27 +82,35 @@ public class FXvisualiser extends BorderPane {
 		pane.setMinWidth(500);
 
 		controls = new FXcontrolPane(model,logText);//add the controls to the pane
-
+		
+		Button closeLog = new Button("Hide log");
 		Button log = new Button("Show log");
 		log.setOnAction(e -> {
 			logAddMsg("--------------------------");
-			logAddMsg("The log will shows a written representation of the animation");
+			logAddMsg("The log will show a written representation of the animation");
 			logText.setMinSize(200, 100);
 			logText.setPrefSize(200, 100);
 			logText.setWrapText(true);
 			logText.setStyle("-fx-background-color: transparent");
 			this.setMinWidth(780);
 			this.setRight(logText);
+			bottomLayout.setRight(closeLog);
 		});
-		BorderPane logBtnPos = new BorderPane();
-		BorderPane screenMsgPos = new BorderPane();
+		closeLog.setOnAction(e -> {
+			this.setRight(null);
+			this.setMinWidth(580);
+			bottomLayout.setRight(log);
+		});
+		BorderPane.setAlignment(log,Pos.CENTER_RIGHT);
+		BorderPane.setAlignment(closeLog,Pos.CENTER_RIGHT);
+		BorderPane.setAlignment(screenMsg, Pos.TOP_CENTER);
 		//set out the pain
-		screenMsgPos.setCenter(screenMsg);
-		bottomLayout.setTop(screenMsgPos);
+		bottomLayout.setTop(screenMsg);
 		bottomLayout.setLeft(controls);
-		bottomLayout.setRight(logBtnPos);
-		logBtnPos.setCenter(log);
+		bottomLayout.setRight(log);
+		
 		//bottomLayout.setBackground(new Background(new BackgroundFill(Color.RED,CornerRadii.EMPTY, Insets.EMPTY)));
+		//this.setAlignment(panetitle, Pos.CENTER);
 		this.setTop(panetitle);
 		this.setCenter(pane);
 		this.setBottom(bottomLayout);

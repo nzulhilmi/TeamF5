@@ -1,17 +1,11 @@
 package javaFx;
 
 import java.util.Timer;
-import java.util.TimerTask;
-
 import javafx.animation.PathTransition;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcTo;
@@ -49,7 +43,7 @@ public class FXvisualiser extends BorderPane {
 	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
 		this.numBoxes = model.getSize();
-		this.setMinSize(580, 250);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED 780
+		this.setMinSize(780, 250);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED 780
 
 		BorderPane bottomLayout = new BorderPane();
 		//System.out.println("model size = "+ model.getSize());
@@ -94,7 +88,7 @@ public class FXvisualiser extends BorderPane {
 			logText.setPrefSize(200, 100);
 			logText.setWrapText(true);
 			logText.setStyle("-fx-background-color: transparent");
-			//this.setMinWidth(780);
+			this.setMinWidth(780);
 			this.setRight(logText);
 		});
 		BorderPane logBtnPos = new BorderPane();
@@ -259,18 +253,18 @@ public class FXvisualiser extends BorderPane {
 	}
 
 	public void clickPlay() {
-//		System.out.println("Timer start");
-//		time = new Timer();
-//		time.schedule(new TimerTask(){
-//			public void run(){
-//				System.out.println("Timer exec");
-//				goForward();
-//			}
-//		}, 0, 1000);
-	    controls.clickPlay();
+		//		System.out.println("Timer start");
+		//		time = new Timer();
+		//		time.schedule(new TimerTask(){
+		//			public void run(){
+		//				System.out.println("Timer exec");
+		//				goForward();
+		//			}
+		//		}, 0, 1000);
+		controls.clickPlay();
 	}
 
 	public void clickStop() {
-	    controls.clickStop();
+		controls.clickStop();
 	}
 }

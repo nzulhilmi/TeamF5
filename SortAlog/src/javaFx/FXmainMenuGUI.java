@@ -2,6 +2,7 @@ package javaFx;
 
 import java.awt.Frame;
 import java.awt.Panel;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,6 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import swing.controlsPanel;
 
 /***
  * Create the Main Menu of the Application.
@@ -47,15 +49,20 @@ public class FXmainMenuGUI extends Application {
 
 	public static int numOfSortsOnScreen = 0;
 	// new border pane so that the title is in the center
-	BorderPane borderTop = new BorderPane();
+	private BorderPane borderTop = new BorderPane();
 
 	// Secondary title for when a sort is opened
 	static Label scenetitle = new Label("SortAlgo Main Menu");
 
-	int intID = 0; // to set the id of each visualisation pane (to be converted to string)
-	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be added dynamically
-	private BorderPane border = new BorderPane(); // sets the top level to a border layout
-	private ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the flowpane so that it is scrollable
+	int intID = 0; // to set the id of each visualisation pane (to be converted
+					// to string)
+	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be
+												// added dynamically
+	private BorderPane border = new BorderPane(); // sets the top level to a
+													// border layout
+	private ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the
+														// flowpane so that it
+														// is scrollable
 
 	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 
@@ -66,26 +73,35 @@ public class FXmainMenuGUI extends Application {
 	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
+		//stage.setMaxWidth(1200);
+		//stage.setMaxHeight(800);
 		// algModel algModel = new algModel(null, null, null); // model
-		flowPane.setPrefWrapLength(100); // This line stops the main menu being huge
-		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll bars
+		flowPane.setPrefWrapLength(100); // This line stops the main menu being
+											// huge
+		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll
+												// bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
-		//flowPane.setMinWidth(660);
+		// flowPane.setMinWidth(660);
 
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
 		scrollPane.fitToWidthProperty();
+		scrollPane.setMaxHeight(750);
 
-
-		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border
+		border.setCenter(scrollPane); // set the position of the scrollPane to
+										// the centre of the border
 
 		// button creation
 		Button bubble = new Button();
 		bubble.setText("Bubble"); // set test
 		bubble.getStyleClass().add("sortButtons");
-		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the same size
-		bubble.setOnAction(e -> onClickVisulisation("Bubble")); //calls the code to create a new visualization
+		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the
+												// same size
+		bubble.setOnAction(e -> onClickVisulisation("Bubble")); // calls the
+																// code to
+																// create a new
+																// visualization
 
 		Button quick = new Button("Quick");
 		quick.getStyleClass().add("sortButtons");
@@ -111,39 +127,37 @@ public class FXmainMenuGUI extends Application {
 
 		Button playAll = new Button("Play All");
 		playAll.setMaxWidth(Double.MAX_VALUE);
-		playAll.setOnAction(e-> {
-		    if(flowPane.getChildren().size() > 0) {
-		    	for(int i = 0; i < flowPane.getChildren().size(); i++) {
-		    	    //get all the children (all the algorithms)
-		    	    ((FXvisualiser) flowPane.getChildren().get(i)).clickPlay();
-		    	}
-		    }
-		    else {
-			System.out.println("Error: no algorithms running");
-		    }
+		playAll.setOnAction(e -> {
+			if (flowPane.getChildren().size() > 0) {
+				for (int i = 0; i < flowPane.getChildren().size(); i++) {
+					// get all the children (all the algorithms)
+					((FXvisualiser) flowPane.getChildren().get(i)).clickPlay();
+				}
+			} else {
+				System.out.println("Error: no algorithms running");
+			}
 		});
 
 		Button stopAll = new Button("Stop All");
 		stopAll.setMaxWidth(Double.MAX_VALUE);
-		stopAll.setOnAction(e-> {
-		    if(flowPane.getChildren().size() > 0) {
-		    	for(int i = 0; i < flowPane.getChildren().size(); i++) {
-		    	    //get all the children (all the algorithms)
-		    	    ((FXvisualiser) flowPane.getChildren().get(i)).clickStop();
-		    	}
-		    }
-		    else {
-			System.out.println("Error: no algorithms running");
-		    }
+		stopAll.setOnAction(e -> {
+			if (flowPane.getChildren().size() > 0) {
+				for (int i = 0; i < flowPane.getChildren().size(); i++) {
+					// get all the children (all the algorithms)
+					((FXvisualiser) flowPane.getChildren().get(i)).clickStop();
+				}
+			} else {
+				System.out.println("Error: no algorithms running");
+			}
 		});
 
 		AdvancedMenu advancedMenu = new AdvancedMenu(stage, border);
 
-
 		Button advanced = new Button("Advanced Menu");
 		advanced.setMaxWidth(Double.MAX_VALUE);
 		advanced.setOnAction(e -> {
-			border.setBottom(advancedMenu); //add the border pane to the parent border pane
+			border.setBottom(advancedMenu); // add the border pane to the parent
+											// border pane
 			resizeStage();
 			advancedBoolean = true;
 		});
@@ -175,7 +189,7 @@ public class FXmainMenuGUI extends Application {
 		imgView.setY(25);
 		border.getChildren().add(imgView);
 
-		BorderPane borderLeft = new BorderPane();//layout for the left
+		BorderPane borderLeft = new BorderPane();// layout for the left
 		ExplanationPane explanationPane = new ExplanationPane();
 		borderLeft.setTop(gridMenu);
 		borderLeft.setCenter(explanationPane);
@@ -183,11 +197,11 @@ public class FXmainMenuGUI extends Application {
 		borderTop.setCenter(scenetitle); // add the title to the center
 		border.setTop(borderTop); // add the center to the top
 		border.setLeft(borderLeft); // add the main menu
-		//border.setStyle("-fx-background-color: #CD5C5C;");
+		// border.setStyle("-fx-background-color: #CD5C5C;");
 
 		Scene menuScene = new Scene(border); // create the scene
 		// add the scene to the pane
-		//menuScene.getStylesheets().add("menuDesign.css");
+		// menuScene.getStylesheets().add("menuDesign.css");
 		stage.setScene(menuScene);
 		stage.setTitle("SortAlgo");
 		stage.show(); // show the stage
@@ -196,24 +210,25 @@ public class FXmainMenuGUI extends Application {
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
 				resizeStage();
-				//CALL CODE HERE TO UPDATE THE SCROLLPANE
-				//scrollPane.USE_COMPUTED_SIZE;
+				// CALL CODE HERE TO UPDATE THE SCROLLPANE
+				// scrollPane.USE_COMPUTED_SIZE;
 				System.out.println(scrollPane.getWidth());
-				//resizeStage();
+				// resizeStage();
+				System.err.println(stage.getWidth());
 			}
 		});
-}
+	}
 
 	public static void removeVis(String s) {
 		flowPane.getChildren().remove(flowPane.lookup(s));
 		numOfSortsOnScreen--;
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
-		if(numOfSortsOnScreen == 0) {
+		if (numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
-			//scrollPane.setMinWidth(0);
-			//flowPane.setMinWidth(0);
+			// scrollPane.setMinWidth(0);
+			// flowPane.setMinWidth(0);
 			resizeStage();
-		} else if (numOfSortsOnScreen <=2) {
+		} else if (numOfSortsOnScreen <= 2) {
 			resizeStage();
 		}
 
@@ -222,19 +237,20 @@ public class FXmainMenuGUI extends Application {
 	public static void resizeStage() {
 		stage.sizeToScene();
 	}
+
 	/**
-	 * This method creates the visulisation based on the passed sortType paramater.
-	 * Configures the model and generates a flowpane
+	 * This method creates the visulisation based on the passed sortType
+	 * paramater. Configures the model and generates a flowpane
 	 *
-	 * @param sort The sort type
+	 * @param sort
+	 *            The sort type
 	 *
 	 */
-	public void onClickVisulisation(String sort){
+	public void onClickVisulisation(String sort) {
 		numOfSortsOnScreen++;
-		if(advancedBoolean) {
+		if (advancedBoolean) {
 			testInput = AdvancedMenu.getInput();
-		}
-		else {
+		} else {
 			shuffleArray(testInput);
 		}
 		// will need to pass the model as it contains all the variables
@@ -253,15 +269,12 @@ public class FXmainMenuGUI extends Application {
 		intID++;
 	}
 
-	public void shuffleArray(int[] array)
-	{
+	public void shuffleArray(int[] array) {
 		int index;
 		Random random = new Random();
-		for (int i = array.length - 1; i > 0; i--)
-		{
+		for (int i = array.length - 1; i > 0; i--) {
 			index = random.nextInt(i + 1);
-			if (index != i)
-			{
+			if (index != i) {
 				array[index] ^= array[i];
 				array[i] ^= array[index];
 				array[index] ^= array[i];

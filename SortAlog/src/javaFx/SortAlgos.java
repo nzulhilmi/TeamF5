@@ -107,15 +107,22 @@ public class SortAlgos {
 		int tmp;
 		int pivot = input[(left + right) / 2];
 		int[] indexComparison = new int[2];
-
 		while (i <= j) {
-			while (input[i] < pivot)
-				i++;
-			while (input[j] > pivot)
-				j--;
-			indexComparison[0] = i;
+		    	indexComparison[0] = i;
 			indexComparison[1] = j;
 			array.add(indexComparison.clone());
+			while (input[i] < pivot) {
+				i++;
+				indexComparison[0] = i;
+				indexComparison[1] = j;
+				array.add(indexComparison.clone());
+			}
+			while (input[j] > pivot) {
+				j--;
+				indexComparison[0] = i;
+				indexComparison[1] = j;
+				array.add(indexComparison.clone());
+			}
 			if (i <= j) {
 				tmp = input[i];
 				input[i] = input[j];

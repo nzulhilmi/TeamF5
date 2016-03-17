@@ -64,7 +64,7 @@ public class FXcontrolPane extends GridPane {
 			play.setDisable(btnDisabled);
 		});
 
-		Button pause = new Button("Stop");
+		pause = new Button("Stop");
 		pause = new Button("Stop");
 		pause.setOnAction(e ->{
 			//System.out.println("pause");

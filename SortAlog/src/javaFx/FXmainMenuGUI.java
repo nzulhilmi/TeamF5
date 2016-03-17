@@ -81,12 +81,11 @@ public class FXmainMenuGUI extends Application {
 		//stage.setMaxWidth(1200);
 		//stage.setMaxHeight(800);
 		// algModel algModel = new algModel(null, null, null); // model
-		flowPane.setPrefWrapLength(100); // This line stops the main menu beinghuge
-		flowPane.setPadding(new Insets(20)); // padding 20 because of scroll
+		//flowPane.setPadding(new Insets(0,20,0,0)); // padding 20 because of scroll
 												// bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
 		// flowPane.setMinWidth(660);
-
+		flowPane.setPrefWrapLength(10);
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
@@ -188,33 +187,33 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.setPadding(new Insets(10, 10, 10, 10)); // padding around the
 
 		// add objects to the grid pane
-		gridMenu.add(scenetitle, 0, 0, 2, 1);
-		gridMenu.add(bubble, 5, 10);
-		gridMenu.add(quick, 5, 11);
-		gridMenu.add(insertion, 5, 12);
-		gridMenu.add(selection, 5, 13);
-		gridMenu.add(playAll, 5, 14);
-		gridMenu.add(stopAll, 5, 15);
-		gridMenu.add(closeAll, 5, 16);
-		gridMenu.add(advanced, 5, 17);
-
+		gridMenu.add(bubble, 1, 1);
+		gridMenu.add(quick, 1, 2);
+		gridMenu.add(insertion, 1, 3);
+		gridMenu.add(selection, 1, 4);
+		gridMenu.add(playAll, 1, 5);
+		gridMenu.add(stopAll, 1, 6);
+		gridMenu.add(closeAll, 1, 7);
+		gridMenu.add(advanced, 1, 8);
+		
+		ImageView imgView = null;
 		try{
 		/* Logo added and the menu buttons have been shifted a bit */
 		Image img = new Image("softwarelogoFinal2darkerCropped300x100.png");
-		ImageView imgView = new ImageView(img);
+		imgView = new ImageView(img);
 		imgView.getStyleClass().add("logo");
 		imgView.setFitWidth(240);
-		imgView.setX(30);
-		imgView.setY(25);
-		border.getChildren().add(imgView);}
+		}
 		catch(IllegalArgumentException e){
 			System.err.println("logo failed to load");
 		}
 
 		BorderPane borderLeft = new BorderPane();// layout for the left
 		ExplanationPane explanationPane = new ExplanationPane();
-		borderLeft.setTop(gridMenu);
-		borderLeft.setCenter(explanationPane);
+		BorderPane.setAlignment(gridMenu, Pos.TOP_RIGHT);
+		borderLeft.setTop(imgView);
+		borderLeft.setCenter(gridMenu);
+		borderLeft.setBottom(explanationPane);
 
 		borderTop.setCenter(scenetitle); // add the title to the center
 		border.setTop(borderTop); // add the center to the top
@@ -269,6 +268,7 @@ public class FXmainMenuGUI extends Application {
 	 */
 	public void onClickVisulisation(String sort) {
 		numOfSortsOnScreen++;
+		flowPane.setPrefWrapLength(100);
 		if (advancedBoolean) {
 			testInput = AdvancedMenu.getInput();
 		} else {

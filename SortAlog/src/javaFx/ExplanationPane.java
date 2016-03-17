@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 
 public class ExplanationPane extends GridPane {
 	public TextArea explanation = new TextArea();
+	private Boolean visable = false;
 
 	public ExplanationPane() {
 		super();
@@ -27,11 +28,18 @@ public class ExplanationPane extends GridPane {
 
 		explanation.setWrapText(true);
 		explanation.setText("Select a sort from the drop down list to display a discrition of how it works");
-		comboBox.setOnAction(e -> explanation.setText(TextExplanation(comboBox.getValue())));
+		comboBox.setOnAction(e -> {
+			explanation.setText(TextExplanation(comboBox.getValue()));
+			if(!visable){
+			this.add(explanation, 1, 2);
+			FXmainMenuGUI.resizeStage();
+			visable = true;
+			}
+			});
 
 		this.add(ExplanationTitle, 0, 0, 2, 1);
 		this.add(comboBox, 1, 1);
-		this.add(explanation, 1, 2);
+		
 		// explanation.setVisible(false);
 		// this.add(insertion, 1, 3);
 		// this.add(advanced, 1, 4);

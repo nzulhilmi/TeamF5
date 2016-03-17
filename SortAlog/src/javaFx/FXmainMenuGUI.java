@@ -170,6 +170,7 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(stopAll, 5, 15);
 		gridMenu.add(advanced, 5, 16);
 
+		try{
 		/* Logo added and the menu buttons have been shifted a bit */
 		Image img = new Image("softwarelogoFinal2darkerCropped300x100.png");
 		ImageView imgView = new ImageView(img);
@@ -177,7 +178,10 @@ public class FXmainMenuGUI extends Application {
 		imgView.setFitWidth(240);
 		imgView.setX(30);
 		imgView.setY(25);
-		border.getChildren().add(imgView);
+		border.getChildren().add(imgView);}
+		catch(IllegalArgumentException e){
+			System.err.println("logo failed to load");
+		}
 
 		BorderPane borderLeft = new BorderPane();// layout for the left
 		ExplanationPane explanationPane = new ExplanationPane();

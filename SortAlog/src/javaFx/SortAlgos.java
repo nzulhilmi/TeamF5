@@ -251,23 +251,29 @@ public class SortAlgos {
 		 * An array of the index of the two elements that are being compared
 		 */
 		int[] indexComparison = new int[2];
-
+		int[] minArray = new int[3];
 		for (int i = 0; i < length - 1; i++) {
 			int min = input[i];
 			int compare = 0;
+			Boolean b1 = false;
 
 			for (int j = i + 1; j < length; j++) {
-
+			    if(!b1) {
 				indexComparison[0] = i;
 				indexComparison[1] = j;
-
 				steps.add(indexComparison.clone());
+			    }
+			    else {
+				minArray[0] = i;
+				minArray[1] = j;
+				minArray[2] = compare;
+				steps.add(minArray.clone());
+			    }
 				if (input[j] < min) {
 				    	min = input[j];
 				    	compare = j;
-					//steps.add(input.clone());
+				    	b1 = true;
 				}
-
 			}
 			if(input[i] != min) {
 			    input[compare] = input[i];

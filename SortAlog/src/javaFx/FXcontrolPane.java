@@ -50,24 +50,25 @@ public class FXcontrolPane extends GridPane {
 			}
 			back.setDisable(btnDisabled);
 		});
-		play = new Button("play");
+		play = new Button("Play");
 		play.setOnAction(e ->{
 			if(btnDisabled){
 				logText.appendText("\n Please wait for the action to complete before starting another");
 				System.out.println("Please wait for the action to complete before starting another");
 			}else {
 				disableBtn();
-				System.out.println("play");
-				logText.appendText("\n play");
+				System.out.println("Play");
+				logText.appendText("\n Play");
 				model.play();
 			}
 			play.setDisable(btnDisabled);
 		});
 
-		pause = new Button("stop");
+		Button pause = new Button("Stop");
+		pause = new Button("Stop");
 		pause.setOnAction(e ->{
 			//System.out.println("pause");
-			logText.appendText("\n stop");
+			logText.appendText("\n Stop");
 			model.stop();
 			play.setDisable(btnDisabled);
 		});

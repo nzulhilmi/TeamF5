@@ -131,13 +131,15 @@ public class algModel extends Observable{
 				//change the index
 				changeIndex(left, right);
 				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+				visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
 			}else{
 				int left = steps.get(current)[0];
 				int right = steps.get(current)[1];
 				Rectangle rect = getRect(left);
 				Rectangle rect2 = getRect(right);
 				visualiser.animationComparison(rect, rect2);
-				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " with " + texts[right].getText());
+				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+				visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 			}
 		}
 

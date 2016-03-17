@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import javafx.animation.PathTransition;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -40,6 +41,7 @@ public class FXvisualiser extends BorderPane {
 	private int numBoxes;
 	private Pane pane;
 	private TextArea logText =  new TextArea();
+	private Label screenMsg = new Label("");
 	private FXcontrolPane controls;
 	private Timer time;
 
@@ -47,7 +49,7 @@ public class FXvisualiser extends BorderPane {
 	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
 		this.numBoxes = model.getSize();
-		this.setMinSize(780, 200);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED
+		this.setMinSize(780, 250);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED
 
 		BorderPane bottomLayout = new BorderPane();
 		//System.out.println("model size = "+ model.getSize());
@@ -55,6 +57,7 @@ public class FXvisualiser extends BorderPane {
 		Text panetitle = new Text(model.getSortTypeString() + " Sort"); // dynamically set the title
 		System.err.println(model.getSortTypeString());
 		panetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		screenMsg.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
 		this.pane = new Pane(); //visualiser
 
@@ -85,6 +88,7 @@ public class FXvisualiser extends BorderPane {
 
 		Button log = new Button("Show log");
 		log.setOnAction(e -> {
+			logAddMsg("--------------------------");
 			logAddMsg("The log will shows a written representation of the animation");
 			logText.setMinSize(200, 100);
 			logText.setPrefSize(200, 100);
@@ -94,7 +98,10 @@ public class FXvisualiser extends BorderPane {
 			this.setRight(logText);
 		});
 		BorderPane logBtnPos = new BorderPane();
+		BorderPane screenMsgPos = new BorderPane();
 		//set out the pain
+		screenMsgPos.setCenter(screenMsg);
+		bottomLayout.setTop(screenMsgPos);
 		bottomLayout.setLeft(controls);
 		bottomLayout.setRight(logBtnPos);
 		logBtnPos.setCenter(log);
@@ -246,6 +253,9 @@ public class FXvisualiser extends BorderPane {
 	}
 	public void logAddMsg(String msg){
 		logText.appendText("\n"+ msg);
+	}
+	public void screenMsg(String msg){
+		screenMsg.setText(msg);
 	}
 
 	public void clickPlay() {

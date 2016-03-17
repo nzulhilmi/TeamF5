@@ -259,4 +259,8 @@ public class FXvisualiser extends BorderPane {
 //		}, 0, 1000);
 	    controls.clickPlay();
 	}
+
+	public void clickStop() {
+	    controls.clickStop();
+	}
 }

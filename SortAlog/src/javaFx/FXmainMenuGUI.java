@@ -76,7 +76,7 @@ public class FXmainMenuGUI extends Application {
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
 		scrollPane.fitToWidthProperty();
-		
+
 
 		border.setCenter(scrollPane); // set the position of the scrollPane to the centre of the border
 
@@ -123,6 +123,20 @@ public class FXmainMenuGUI extends Application {
 		    }
 		});
 
+		Button stopAll = new Button("Stop All");
+		stopAll.setMaxWidth(Double.MAX_VALUE);
+		stopAll.setOnAction(e-> {
+		    if(flowPane.getChildren().size() > 0) {
+		    	for(int i = 0; i < flowPane.getChildren().size(); i++) {
+		    	    //get all the children (all the algorithms)
+		    	    ((FXvisualiser) flowPane.getChildren().get(i)).clickStop();
+		    	}
+		    }
+		    else {
+			System.out.println("Error: no algorithms running");
+		    }
+		});
+
 		AdvancedMenu advancedMenu = new AdvancedMenu(stage, border);
 
 
@@ -149,7 +163,8 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(insertion, 5, 12);
 		gridMenu.add(selection, 5, 13);
 		gridMenu.add(playAll, 5, 14);
-		gridMenu.add(advanced, 5, 15);
+		gridMenu.add(stopAll, 5, 15);
+		gridMenu.add(advanced, 5, 16);
 
 		/* Logo added and the menu buttons have been shifted a bit */
 		Image img = new Image("softwarelogoFinal2darkerCropped300x100.png");
@@ -181,7 +196,7 @@ public class FXmainMenuGUI extends Application {
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
 				resizeStage();
-				//CALL CODE HERE TO UPDATE THE SCROLLPANE 
+				//CALL CODE HERE TO UPDATE THE SCROLLPANE
 				//scrollPane.USE_COMPUTED_SIZE;
 				System.out.println(scrollPane.getWidth());
 				resizeStage();

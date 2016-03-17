@@ -22,6 +22,7 @@ public class FXcontrolPane extends GridPane {
 	private Button forward = new Button();
 	private Button back = new Button();
 	private Button play = new Button();
+	private Button pause = new Button();
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
 		this.period = 1000;
@@ -63,7 +64,7 @@ public class FXcontrolPane extends GridPane {
 			play.setDisable(btnDisabled);
 		});
 
-		Button pause = new Button("stop");
+		pause = new Button("stop");
 		pause.setOnAction(e ->{
 			//System.out.println("pause");
 			logText.appendText("\n stop");
@@ -123,5 +124,8 @@ public class FXcontrolPane extends GridPane {
 	public void clickPlay() {
 		//forward.fire() //just to test if it works
 		play.fire();
+	}
+	public void clickStop() {
+	    	pause.fire();
 	}
 }

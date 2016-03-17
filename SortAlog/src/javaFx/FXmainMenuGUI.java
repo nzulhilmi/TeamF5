@@ -4,6 +4,7 @@ import java.util.Random;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,6 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /***
  * Create the Main Menu of the Application.
@@ -35,11 +37,19 @@ public class FXmainMenuGUI extends Application {
 	 */
 	public FXmainMenuGUI(Stage stage) {
 		start(stage);
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+		    public void handle(WindowEvent we) {
+			stopAll();
+			System.out.println("Stage is closing");
+		}
+		});
 	}
 
 	public static int numOfSortsOnScreen = 0;
 	// new border pane so that the title is in the center
 	private BorderPane borderTop = new BorderPane();
+
+	Button stopAll = new Button("Stop All");
 
 	// Secondary title for when a sort is opened
 	static Label scenetitle = new Label("SortAlgo Main Menu");
@@ -128,7 +138,7 @@ public class FXmainMenuGUI extends Application {
 			}
 		});
 
-		Button stopAll = new Button("Stop All");
+		stopAll = new Button("Stop All");
 		stopAll.setMaxWidth(Double.MAX_VALUE);
 		stopAll.setOnAction(e -> {
 			if (flowPane.getChildren().size() > 0) {
@@ -278,6 +288,10 @@ public class FXmainMenuGUI extends Application {
 
 	public static void setBoolean(Boolean b1) {
 		advancedBoolean = b1;
+	}
+
+	public void stopAll() {
+	    stopAll.fire();
 	}
 
 }

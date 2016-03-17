@@ -81,7 +81,7 @@ public class FXmainMenuGUI extends Application {
 		//stage.setMaxWidth(1200);
 		//stage.setMaxHeight(800);
 		// algModel algModel = new algModel(null, null, null); // model
-		//flowPane.setPadding(new Insets(0,20,0,0)); // padding 20 because of scroll
+		flowPane.setPadding(new Insets(0,20,0,0)); // padding 20 because of scroll
 												// bars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
 		// flowPane.setMinWidth(660);

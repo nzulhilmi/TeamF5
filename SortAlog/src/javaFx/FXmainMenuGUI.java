@@ -199,7 +199,7 @@ public class FXmainMenuGUI extends Application {
 				//CALL CODE HERE TO UPDATE THE SCROLLPANE
 				//scrollPane.USE_COMPUTED_SIZE;
 				System.out.println(scrollPane.getWidth());
-				resizeStage();
+				//resizeStage();
 			}
 		});
 }
@@ -213,7 +213,7 @@ public class FXmainMenuGUI extends Application {
 			//scrollPane.setMinWidth(0);
 			//flowPane.setMinWidth(0);
 			resizeStage();
-		} else if (numOfSortsOnScreen <=3) {
+		} else if (numOfSortsOnScreen <=2) {
 			resizeStage();
 		}
 
@@ -247,7 +247,7 @@ public class FXmainMenuGUI extends Application {
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 
 		// This stops the screen resizing past visible.
-		if (numOfSortsOnScreen <= 3)
+		if (numOfSortsOnScreen <= 2)
 			stage.sizeToScene();
 		// increment intID so each pane will have unique ID
 		intID++;

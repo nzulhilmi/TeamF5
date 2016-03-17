@@ -49,7 +49,7 @@ public class FXvisualiser extends BorderPane {
 	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
 		this.numBoxes = model.getSize();
-		this.setMinSize(780, 250);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED
+		this.setMinSize(580, 250);//DO NOT CHANGE THIS LINE OR BOXES GET REMOVED 780
 
 		BorderPane bottomLayout = new BorderPane();
 		//System.out.println("model size = "+ model.getSize());

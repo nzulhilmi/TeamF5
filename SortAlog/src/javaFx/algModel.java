@@ -1,13 +1,11 @@
 package javaFx;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.application.Platform;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;

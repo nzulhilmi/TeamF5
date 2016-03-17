@@ -1,21 +1,12 @@
 package javaFx;
 
-import java.awt.Frame;
-import java.awt.Panel;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Random;
-
-import com.sun.glass.ui.Size;
-
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,7 +20,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import swing.controlsPanel;
 
 /***
  * Create the Main Menu of the Application.

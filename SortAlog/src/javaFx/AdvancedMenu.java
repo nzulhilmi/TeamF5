@@ -142,6 +142,7 @@ public class AdvancedMenu extends BorderPane{
 
     public void removeAdvanced() {
 	border.getChildren().remove(border.lookup("#advanced"));
+	resizeStage();
     }
 
     public void shuffleArray(int[] array)

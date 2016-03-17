@@ -257,5 +257,6 @@ public class FXvisualiser extends BorderPane {
 //				goForward();
 //			}
 //		}, 0, 1000);
+	    controls.clickPlay();
 	}
 }

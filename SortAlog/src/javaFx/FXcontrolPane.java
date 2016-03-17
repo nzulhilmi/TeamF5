@@ -1,14 +1,9 @@
 package javaFx;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -56,9 +51,16 @@ public class FXcontrolPane extends GridPane {
 		});
 		play = new Button("play");
 		play.setOnAction(e ->{
-			System.out.println("play");
-			logText.appendText("\n play");
-			model.play();
+			if(btnDisabled){
+				logText.appendText("\n Please wait for the action to complete before starting another");
+				System.out.println("Please wait for the action to complete before starting another");
+			}else {
+				disableBtn();
+				System.out.println("play");
+				logText.appendText("\n play");
+				model.play();
+			}
+			play.setDisable(btnDisabled);
 		});
 
 		Button pause = new Button("stop");
@@ -66,6 +68,7 @@ public class FXcontrolPane extends GridPane {
 			//System.out.println("pause");
 			logText.appendText("\n stop");
 			model.stop();
+			play.setDisable(btnDisabled);
 		});
 
 		forward = new Button(">>|");
@@ -118,7 +121,7 @@ public class FXcontrolPane extends GridPane {
 	}
 
 	public void clickPlay() {
-	    //forward.fire() //just to test if it works
-	    play.fire();
+		//forward.fire() //just to test if it works
+		play.fire();
 	}
 }

@@ -119,7 +119,6 @@ public class AdvancedMenu extends BorderPane{
 	Button closeAdv = new Button("Close");
 	closeAdv.setOnAction(e -> {
 	    removeAdvanced();
-	    resizeStage();
 	    FXmainMenuGUI.setBoolean(false);
 	});
 

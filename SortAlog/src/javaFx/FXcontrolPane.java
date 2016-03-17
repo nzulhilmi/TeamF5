@@ -23,6 +23,7 @@ public class FXcontrolPane extends GridPane {
 	private Button back = new Button();
 	private Button play = new Button();
 	private Button pause = new Button();
+	Button close = new Button();
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
 		this.period = 1000;
@@ -86,8 +87,7 @@ public class FXcontrolPane extends GridPane {
 			forward.setDisable(btnDisabled);
 		});
 
-		//isn't working would be nice to get this working
-		Button close = new Button("Close");
+		close = new Button("Close");
 		close.setOnAction(e->{
 			int intID = this.model.getID();
 			String stringID = Integer.toString(intID);
@@ -128,5 +128,9 @@ public class FXcontrolPane extends GridPane {
 	}
 	public void clickStop() {
 	    	pause.fire();
+	}
+
+	public void clickClose() {
+	    	close.fire();
 	}
 }

@@ -228,18 +228,14 @@ public class FXvisualiser extends BorderPane {
 	}
 
 	public void clickPlay() {
-		//		System.out.println("Timer start");
-		//		time = new Timer();
-		//		time.schedule(new TimerTask(){
-		//			public void run(){
-		//				System.out.println("Timer exec");
-		//				goForward();
-		//			}
-		//		}, 0, 1000);
 		controls.clickPlay();
 	}
 
 	public void clickStop() {
 		controls.clickStop();
+	}
+
+	public void clickClose() {
+	    	controls.clickClose();
 	}
 }

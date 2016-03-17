@@ -151,6 +151,19 @@ public class FXmainMenuGUI extends Application {
 			}
 		});
 
+		Button closeAll = new Button("Close All");
+		closeAll.setMaxWidth(Double.MAX_VALUE);
+		closeAll.setOnAction(e -> {
+			if (flowPane.getChildren().size() > 0) {
+				for (int i = flowPane.getChildren().size()-1; i >= 0; i--) {
+					// get all the children (all the algorithms)
+					((FXvisualiser) flowPane.getChildren().get(i)).clickClose();
+				}
+			} else {
+				System.out.println("Error: no algorithms running");
+			}
+		});
+
 		AdvancedMenu advancedMenu = new AdvancedMenu(stage, border);
 
 		Button advanced = new Button("Advanced Menu");
@@ -178,7 +191,8 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(selection, 5, 13);
 		gridMenu.add(playAll, 5, 14);
 		gridMenu.add(stopAll, 5, 15);
-		gridMenu.add(advanced, 5, 16);
+		gridMenu.add(closeAll, 5, 16);
+		gridMenu.add(advanced, 5, 17);
 
 		try{
 		/* Logo added and the menu buttons have been shifted a bit */

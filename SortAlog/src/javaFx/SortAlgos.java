@@ -192,42 +192,41 @@ public class SortAlgos {
 	public static ArrayList<int[]> insertionSort(int[] input) {
 		int n = input.length;
 		ArrayList<int[]> steps = new ArrayList<int[]>();
-		/*
-		 * An array of the index of the two elements that are being compared
-		 */
+
+		//An array of the index of the two elements that are being compared
+
 		int[] indexComparison = new int[2];
 
 		steps.add(input.clone()); // add the input array to steps
 
 		// the algorithm for insertion sort
 		for (int i = 1; i < n; i++) {
-
 			int key = input[i]; // element to be compared
-
 			int j = i - 1;
 
 			indexComparison[0] = j;
 			indexComparison[1] = i;
 			steps.add(indexComparison.clone());
 			int count = 0;
-			int i2 = i;
 			while ((j > -1) && (input[j] > key)) {
 				indexComparison[0] = j;
 				indexComparison[1] = i;
 				if(count != 0) {
-				    i2--;
-				    indexComparison[1] = i2;
 				    steps.add(indexComparison.clone());
 				}
 				int temp = input[j+1]; //to swap elements
 				input[j + 1] = input[j];
 				input[j] = temp;
 				j--;
-				steps.add(input.clone());
 				count++;
+			}
+			indexComparison[0] = j;
+			if (count != 0) {
+			    steps.add(indexComparison.clone());
 			}
 			input[j + 1] = key;
 			count = 0;
+			steps.add(input.clone());
 		}
 		return steps;
 	}

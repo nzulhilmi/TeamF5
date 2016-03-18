@@ -100,47 +100,95 @@ public class algModel extends Observable{
 	}
 
 	public void goForward(){
-		visualiser.logAddMsg("--------------------------");
-		visualiser.logAddMsg("Step Forward");
-		visualiser.logAddMsg("Current step: "+ (current+1));
-		if(current < steps.size()-1){
-			current++;
-			visualiser.resetRectColor();
-			if (steps.get(current).length!=2){
-				//getting the left and right indexes
-				int left = steps.get(current-1)[0];
-				int right = steps.get(current-1)[1];
-				//fix properties
-				fixTranslate(rects[left]);
-				fixTranslate(rects[right]);
-				fixTranslateText(texts[left]);
-				fixTranslateText(texts[right]);
-				//animation
-				visualiser.animationBotRight(rects[left], texts[left], right - left,200);
-//				Rectangle[] rectlist = new Rectangle[right-left];
-//				Text[] textlist = new Text[right-left];
-//				for (int i = 0; i < right-left; i++) {
-//					rectlist[i] = rects[left+i];
-//					textlist[i] = texts[left+i];
-//				}
 
-				//visualiser.animationTopInsertion(rects[right], rectlist, texts[right], textlist, right-left, 2000);
-				visualiser.animationTopLeft(rects[right], texts[right], right - left,200);
-				//change the index
-				changeIndex(left, right);
-				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
-				visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
-			}else{
-				int left = steps.get(current)[0];
-				int right = steps.get(current)[1];
-				Rectangle rect = getRect(left);
-				Rectangle rect2 = getRect(right);
-				visualiser.animationComparison(rect, rect2);
-				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
-				visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+		if(type.compareTo("Insertion")==0){
+			if(current < steps.size()-1){
+				visualiser.logAddMsg("--------------------------");
+				visualiser.logAddMsg("Step Forward");
+				visualiser.logAddMsg("Current step: "+ (current+1));
+				current++;
+				visualiser.resetRectColor();
+				if (steps.get(current).length!=2){
+
+					//getting the left and right indexes
+					int left = steps.get(current-1)[0];
+					int right = steps.get(current-1)[1];
+					//fix properties
+					for (int i = 0; i <right-left+1; i++) {
+						fixTranslate(rects[left+i]);
+						fixTranslateText(texts[left+i]);
+					}
+//					fixTranslate(rects[left]);
+//					fixTranslate(rects[right]);
+//					fixTranslateText(texts[left]);
+//					fixTranslateText(texts[right]);
+					//animation
+					//group the boxes/texts
+					Rectangle[] rectlist = new Rectangle[right-left];
+					Text[] textlist = new Text[right-left];
+					for (int i = 0; i < right-left; i++) {
+						rectlist[i] = rects[left+i];
+						textlist[i] = texts[left+i];
+					}
+					visualiser.animationTopInsertion(rectlist, textlist, right - left,200);
+					visualiser.animationTopLeft(rects[right], texts[right], right - left,200);
+					//change the index
+					changeIndex(left, right);
+					visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+					visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+				}else{
+					int left = steps.get(current)[0];
+					int right = steps.get(current)[1];
+					Rectangle rect = getRect(left);
+					Rectangle rect2 = getRect(right);
+					visualiser.animationComparison(rect, rect2);
+					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+				}
+			}
+		}else{
+			if(current < steps.size()-1){
+				visualiser.logAddMsg("--------------------------");
+				visualiser.logAddMsg("Step Forward");
+				visualiser.logAddMsg("Current step: "+ (current+1));
+				current++;
+				visualiser.resetRectColor();
+				if (steps.get(current).length!=2){
+
+					//getting the left and right indexes
+					int left = steps.get(current-1)[0];
+					int right = steps.get(current-1)[1];
+					//fix properties
+					fixTranslate(rects[left]);
+					fixTranslate(rects[right]);
+					fixTranslateText(texts[left]);
+					fixTranslateText(texts[right]);
+					//animation
+					visualiser.animationBotRight(rects[left], texts[left], right - left,200);
+	//				Rectangle[] rectlist = new Rectangle[right-left];
+	//				Text[] textlist = new Text[right-left];
+	//				for (int i = 0; i < right-left; i++) {
+	//					rectlist[i] = rects[left+i];
+	//					textlist[i] = texts[left+i];
+	//				}
+
+					//visualiser.animationTopInsertion(rects[right], rectlist, texts[right], textlist, right-left, 2000);
+					visualiser.animationTopLeft(rects[right], texts[right], right - left,200);
+					//change the index
+					changeIndex(left, right);
+					visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+					visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+				}else{
+					int left = steps.get(current)[0];
+					int right = steps.get(current)[1];
+					Rectangle rect = getRect(left);
+					Rectangle rect2 = getRect(right);
+					visualiser.animationComparison(rect, rect2);
+					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+				}
 			}
 		}
-
 	}
 	private void fixTranslate(Rectangle rectangle) {
 		double newLayoutX = rectangle.getTranslateX() + rectangle.getLayoutX();
@@ -249,6 +297,19 @@ public class algModel extends Observable{
 		Text swapT2 = this.texts[n2];
 		this.texts[n1] = swapT2;
 		this.texts[n2] = swapT1;
+	}
+	public void changeIndexInsertion(int n1, int n2) {
+		int i ;
+		Rectangle swapRfinal = this.rects[n2];
+		Text swapTfinal = this.texts[n2];
+		for (i =n2; i > 1; i--) {
+			Rectangle swapR1 = this.rects[i-1];
+			Text swapT1 = this.texts[i-1];
+			this.rects[i] = swapR1;
+			this.texts[i] = swapT1;
+		}
+		this.rects[n1] = swapRfinal;
+		this.texts[n1] = swapTfinal;
 	}
 
 	public String getSortTypeString() {

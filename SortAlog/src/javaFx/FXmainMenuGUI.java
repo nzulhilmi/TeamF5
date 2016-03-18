@@ -198,9 +198,10 @@ public class FXmainMenuGUI extends Application {
 		ImageView imgView = null;
 		try{
 		/* Logo added and the menu buttons have been shifted a bit */
-		Image img = new Image("softwarelogoFinal2darkerCropped300x100.png");
+		Image img = new Image("softwarelogoFinal2darkerLeadingPadding.png");
 		imgView = new ImageView(img);
 		imgView.getStyleClass().add("logo");
+		imgView.setFitHeight(100);
 		imgView.setFitWidth(240);
 		}
 		catch(IllegalArgumentException e){

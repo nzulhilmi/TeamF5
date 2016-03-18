@@ -130,7 +130,7 @@ public class algModel extends Observable{
 						rectlist[i] = rects[left+i];
 						textlist[i] = texts[left+i];
 					}
-					visualiser.animationTopInsertion(rectlist, textlist, right - left,200);
+	//				visualiser.animationTopInsertion(rectlist, textlist, right - left,200);
 					visualiser.animationTopLeft(rects[right], texts[right], right - left,200);
 					//change the index
 					changeIndex(left, right);

@@ -88,7 +88,7 @@ public class FXmainMenuGUI extends Application {
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
 		scrollPane.fitToWidthProperty();
-		scrollPane.setMaxHeight(primaryScreenBounds.getHeight()-125);
+		scrollPane.setMaxHeight(750);
 
 		border.setCenter(scrollPane); // set the position of the scrollPane to
 										// the centre of the border
@@ -170,10 +170,10 @@ public class FXmainMenuGUI extends Application {
 		Button advanced = new Button("Advanced Menu");
 		advanced.setMaxWidth(Double.MAX_VALUE);
 		advanced.setOnAction(e -> {
-			border.setBottom(advancedMenu); // add the border pane to the parent
-											// border pane
+			border.setBottom(advancedMenu); // add the border pane to the parent border pane
 			resizeStage();
 			advancedBoolean = true;
+			scrollPane.setMaxHeight(primaryScreenBounds.getHeight()-150);
 		});
 
 		// Main Menu

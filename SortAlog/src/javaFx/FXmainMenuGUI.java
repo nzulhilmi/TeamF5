@@ -88,7 +88,7 @@ public class FXmainMenuGUI extends Application {
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
 		scrollPane.fitToWidthProperty();
-		scrollPane.setMaxHeight(690);
+		scrollPane.setMaxHeight(primaryScreenBounds.getHeight()-125);
 
 		border.setCenter(scrollPane); // set the position of the scrollPane to
 										// the centre of the border

@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,15 +17,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -78,9 +76,10 @@ public class FXmainMenuGUI extends Application {
 	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        //set Stage boundaries to visible bounds of the main screen
+        stage.setMaxHeight(primaryScreenBounds.getHeight());
 		stage.resizableProperty().set(false);;
-		//stage.setMaxWidth(1200);
-		//stage.setMaxHeight(800);
 		// algModel algModel = new algModel(null, null, null); // model
 		flowPane.setPadding(new Insets(0,20,0,0)); // padding 20 because of scrollbars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left

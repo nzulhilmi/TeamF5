@@ -141,7 +141,6 @@ public class SortAlgos {
 				}
 				i++;
 				j--;
-				System.out.println(pivot);
 				array.add(input.clone());
 			}
 		}

@@ -65,6 +65,15 @@ public class AdvancedMenu extends BorderPane{
 
 	RadioButton random = new RadioButton("Random");
 	random.setToggleGroup(group);
+	random.setOnMouseClicked(e -> {
+	    textArea = false;
+	    System.out.println("random input");
+	    shuffleArray(input); //shuffle the array
+	    String s = Arrays.toString(input); //convert array to string
+	    s = s.replaceAll("\\s+", ""); //remove all the white spaces
+	    s = s.substring(1, s.length()-1); //remove the '[' and ']'
+	    customInput.setText(s);
+	});
 	random.setOnAction(e -> {
 	    textArea = false;
 	    System.out.println("random input");

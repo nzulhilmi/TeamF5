@@ -78,19 +78,18 @@ public class FXmainMenuGUI extends Application {
 	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
+		stage.resizableProperty().set(false);;
 		//stage.setMaxWidth(1200);
 		//stage.setMaxHeight(800);
 		// algModel algModel = new algModel(null, null, null); // model
-		flowPane.setPadding(new Insets(0,20,0,0)); // padding 20 because of scroll
-												// bars
+		flowPane.setPadding(new Insets(0,20,0,0)); // padding 20 because of scrollbars
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
-		// flowPane.setMinWidth(660);
 		flowPane.setPrefWrapLength(10);
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
 		scrollPane.fitToWidthProperty();
-		scrollPane.setMaxHeight(750);
+		scrollPane.setMaxHeight(690);
 
 		border.setCenter(scrollPane); // set the position of the scrollPane to
 										// the centre of the border
@@ -247,8 +246,9 @@ public class FXmainMenuGUI extends Application {
 			scenetitle.setText("SortAlgo Main Menu");
 			 //scrollPane.setMinWidth(0);
 			 //flowPane.setMinWidth(0);
+			flowPane.setPrefWrapLength(10);
 			resizeStage();
-		} else if (numOfSortsOnScreen <= 2) {
+		} else if (numOfSortsOnScreen <= 3) {
 			resizeStage();
 		}
 
@@ -268,7 +268,6 @@ public class FXmainMenuGUI extends Application {
 	 */
 	public void onClickVisulisation(String sort) {
 		numOfSortsOnScreen++;
-		flowPane.setPrefWrapLength(100);
 		if (advancedBoolean) {
 			testInput = AdvancedMenu.getInput();
 		} else {
@@ -284,7 +283,7 @@ public class FXmainMenuGUI extends Application {
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 
 		// This stops the screen resizing past visible.
-		if (numOfSortsOnScreen <= 2)
+		if (numOfSortsOnScreen <= 3)
 			stage.sizeToScene();
 		// increment intID so each pane will have unique ID
 		intID++;

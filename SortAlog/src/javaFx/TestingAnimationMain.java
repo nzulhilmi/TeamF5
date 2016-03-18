@@ -4,8 +4,8 @@ public class TestingAnimationMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] array = {3,1,2,4,8,7,9,0};
-		SortAlgos a = new SortAlgos("Quick", array);
+		int[] array = {3,6,4,8,1,10,5,2,7,9};
+		SortAlgos a = new SortAlgos("Insertion", array);
 
 		System.out.println("Start: ");
 		for(int i = 0;i<a.sorted.size();i++){

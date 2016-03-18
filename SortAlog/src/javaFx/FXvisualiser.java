@@ -71,6 +71,7 @@ public class FXvisualiser extends BorderPane {
 			rectList[i] = new Rectangle (40, 40, Color.ORANGE);
 			rectList[i].setArcHeight(15);
 			rectList[i].setArcWidth(15);
+			rectList[i].setStroke(Color.BLACK);
 			rectList[i].relocate(50+(50*i), 50);
 			textList[i] = new Text(model.getCurrentBoxContent(i));
 			textList[i].relocate(65+(50*i), 65);
@@ -82,7 +83,7 @@ public class FXvisualiser extends BorderPane {
 		pane.setMinWidth(500);
 
 		controls = new FXcontrolPane(model,logText);//add the controls to the pane
-		
+
 		Button closeLog = new Button("Hide log");
 		Button log = new Button("Show log");
 		log.setOnAction(e -> {
@@ -108,7 +109,7 @@ public class FXvisualiser extends BorderPane {
 		bottomLayout.setTop(screenMsg);
 		bottomLayout.setLeft(controls);
 		bottomLayout.setRight(log);
-		
+
 		//bottomLayout.setBackground(new Background(new BackgroundFill(Color.RED,CornerRadii.EMPTY, Insets.EMPTY)));
 		//this.setAlignment(panetitle, Pos.CENTER);
 		this.setTop(panetitle);
@@ -185,19 +186,19 @@ public class FXvisualiser extends BorderPane {
 
 	}
 
-	public void animationTopInsertion(Rectangle[] rects,Text[] texts,int n,int speed){
+	public void animationRightInsertion(Rectangle[] rects,Text[] texts,int n,int speed){
 		for (int i = 0; i < texts.length; i++) {
-			animationRight(rects[i],texts[i],i,speed);
+			animationRight(rects[i],texts[i],speed);
 		}
 
 	}
-	public void animationRight(Rectangle rect,Text text,int n,int speed){
+	public void animationRight(Rectangle rect,Text text,int speed){
 		Path path = new Path();
 		path.getElements().add(new MoveTo(20,20));
-		path.getElements().add(new LineTo(20 - 50*n, 20));
+		path.getElements().add(new LineTo(20 + 50, 20));
 		Path pathText = new Path();
 		pathText.getElements().add(new MoveTo(0,0));
-		pathText.getElements().add(new LineTo(50*n, 0));
+		pathText.getElements().add(new LineTo(50, 0));
 		//new transitions and duration
 		PathTransition pathTransition = new PathTransition();
 		PathTransition pathTransitionText = new PathTransition();
@@ -228,6 +229,11 @@ public class FXvisualiser extends BorderPane {
 			colorR = (Rectangle)(pane.getChildren().get(i));
 			colorR.setFill(Color.ORANGE);
 		}
+	}
+	public void changeColor(Rectangle rect) {
+		controls.disableBtn();
+		rect.setFill(Color.CORNFLOWERBLUE);
+		controls.enableBtn();
 	}
 	public void logAddMsg(String msg){
 		logText.appendText("\n"+ msg);

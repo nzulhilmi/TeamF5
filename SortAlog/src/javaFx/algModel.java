@@ -123,9 +123,11 @@ public class algModel extends Observable{
 				}else if (steps.get(current).length==3){
 					int left = steps.get(current)[0];
 					int right = steps.get(current)[1];
+					int third = steps.get(current)[2];
 					Rectangle rect = getRect(left);
 					Rectangle rect2 = getRect(right);
 					visualiser.animationComparison(rect, rect2);
+					visualiser.changeColor(getRect(third));
 					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 				}else{
@@ -146,7 +148,7 @@ public class algModel extends Observable{
 							rectlist[i] = rects[left+i];
 							textlist[i] = texts[left+i];
 						}
-						visualiser.animationTopInsertion(rectlist, textlist, right - left,200);
+						visualiser.animationRightInsertion(rectlist, textlist, right - left,200);
 						visualiser.animationTopLeft(rects[right], texts[right], right - left,200);
 						//change the index
 						changeIndexInsertion(left, right);

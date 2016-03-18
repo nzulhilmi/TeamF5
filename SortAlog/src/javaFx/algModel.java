@@ -111,7 +111,7 @@ public class algModel extends Observable{
 				//reset the colours
 				visualiser.resetRectColor();
 				//check if the current is 2 or 3 elements
-				if (steps.get(current).length==3){
+				if (steps.get(current).length==2){
 
 					int left = steps.get(current)[0];
 					int right = steps.get(current)[1];
@@ -121,7 +121,13 @@ public class algModel extends Observable{
 					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 				}else if (steps.get(current).length==3){
-
+					int left = steps.get(current)[0];
+					int right = steps.get(current)[1];
+					Rectangle rect = getRect(left);
+					Rectangle rect2 = getRect(right);
+					visualiser.animationComparison(rect, rect2);
+					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 				}else{
 					//getting the left and right indexes
 					int left = steps.get(current-1)[0];

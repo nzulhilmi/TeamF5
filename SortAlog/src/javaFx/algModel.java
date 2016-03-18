@@ -136,7 +136,7 @@ public class algModel extends Observable{
 					int right = steps.get(current-1)[1];
 					if(type.compareTo("Insertion")==0){
 						//fix properties
-						for (int i = 0; i <right-left; i++) {
+						for (int i = 0; i <=right-left; i++) {
 							fixTranslate(rects[left+i]);
 							fixTranslateText(texts[left+i]);
 						}

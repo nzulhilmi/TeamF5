@@ -41,14 +41,15 @@ public class FXmainMenuGUI extends Application {
 	public FXmainMenuGUI(Stage stage) {
 		start(stage);
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-		    public void handle(WindowEvent we) {
-			stopAll();
-			System.out.println("Stage is closing");
-		}
+			public void handle(WindowEvent we) {
+				stopAll();
+				System.out.println("Stage is closing");
+			}
 		});
 	}
 
 	public static int numOfSortsOnScreen = 0;
+	public static int allowednumOfSortsOnScreen = 3;
 	// new border pane so that the title is in the center
 	private BorderPane borderTop = new BorderPane();
 
@@ -58,14 +59,14 @@ public class FXmainMenuGUI extends Application {
 	static Label scenetitle = new Label("SortAlgo Main Menu");
 
 	int intID = 0; // to set the id of each visualisation pane (to be converted
-					// to string)
+	// to string)
 	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be
-												// added dynamically
+	// added dynamically
 	private BorderPane border = new BorderPane(); // sets the top level to a
-													// border layout
+	// border layout
 	private static ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the
-														// flowpane so that it
-														// is scrollable
+	// flowpane so that it
+	// is scrollable
 
 	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 
@@ -76,9 +77,9 @@ public class FXmainMenuGUI extends Application {
 	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        //set Stage boundaries to visible bounds of the main screen
-        stage.setMaxHeight(primaryScreenBounds.getHeight());
+		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+		//set Stage boundaries to visible bounds of the main screen
+		stage.setMaxHeight(primaryScreenBounds.getHeight());
 		stage.resizableProperty().set(false);;
 		// algModel algModel = new algModel(null, null, null); // model
 		flowPane.setPadding(new Insets(0,20,0,0)); // padding 20 because of scrollbars
@@ -88,21 +89,26 @@ public class FXmainMenuGUI extends Application {
 		scrollPane.setContent(flowPane); // adds to the scroll panel
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
 		scrollPane.fitToWidthProperty();
-		scrollPane.setMaxHeight(750);
-
+		if(primaryScreenBounds.getHeight() >= 750){
+			allowednumOfSortsOnScreen = 3;
+			scrollPane.setMaxHeight(750);
+		}else {
+			allowednumOfSortsOnScreen = 2;
+			scrollPane.setMaxHeight(500);
+		}
 		border.setCenter(scrollPane); // set the position of the scrollPane to
-										// the centre of the border
+		// the centre of the border
 
 		// button creation
 		Button bubble = new Button();
 		bubble.setText("Bubble"); // set test
 		bubble.getStyleClass().add("sortButtons");
 		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the
-												// same size
+		// same size
 		bubble.setOnAction(e -> onClickVisulisation("Bubble")); // calls the
-																// code to
-																// create a new
-																// visualization
+		// code to
+		// create a new
+		// visualization
 
 		Button quick = new Button("Quick");
 		quick.getStyleClass().add("sortButtons");
@@ -173,7 +179,6 @@ public class FXmainMenuGUI extends Application {
 			border.setBottom(advancedMenu); // add the border pane to the parent border pane
 			resizeStage();
 			advancedBoolean = true;
-			scrollPane.setMaxHeight(primaryScreenBounds.getHeight()-150);
 		});
 
 		// Main Menu
@@ -193,15 +198,15 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(stopAll, 1, 6);
 		gridMenu.add(closeAll, 1, 7);
 		gridMenu.add(advanced, 1, 8);
-		
+
 		ImageView imgView = null;
 		try{
-		/* Logo added and the menu buttons have been shifted a bit */
-		Image img = new Image("softwarelogoFinal2darkerLeadingPadding.png");
-		imgView = new ImageView(img);
-		imgView.getStyleClass().add("logo");
-		imgView.setFitHeight(100);
-		imgView.setFitWidth(240);
+			/* Logo added and the menu buttons have been shifted a bit */
+			Image img = new Image("softwarelogoFinal2darkerLeadingPadding.png");
+			imgView = new ImageView(img);
+			imgView.getStyleClass().add("logo");
+			imgView.setFitHeight(100);
+			imgView.setFitWidth(240);
 		}
 		catch(IllegalArgumentException e){
 			System.err.println("logo failed to load");
@@ -244,11 +249,11 @@ public class FXmainMenuGUI extends Application {
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 		if (numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
-			 //scrollPane.setMinWidth(0);
-			 //flowPane.setMinWidth(0);
+			//scrollPane.setMinWidth(0);
+			//flowPane.setMinWidth(0);
 			flowPane.setPrefWrapLength(10);
 			resizeStage();
-		} else if (numOfSortsOnScreen <= 3) {
+		} else if (numOfSortsOnScreen <= allowednumOfSortsOnScreen) {
 			resizeStage();
 		}
 
@@ -283,7 +288,7 @@ public class FXmainMenuGUI extends Application {
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 
 		// This stops the screen resizing past visible.
-		if (numOfSortsOnScreen <= 3)
+		if (numOfSortsOnScreen <= allowednumOfSortsOnScreen)
 			stage.sizeToScene();
 		// increment intID so each pane will have unique ID
 		intID++;
@@ -307,6 +312,6 @@ public class FXmainMenuGUI extends Application {
 	}
 
 	public void stopAll() {
-	    stopAll.fire();
+		stopAll.fire();
 	}
 }

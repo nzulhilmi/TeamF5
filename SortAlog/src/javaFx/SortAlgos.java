@@ -105,33 +105,43 @@ public class SortAlgos {
 	 */
 	static int partition(int input[], ArrayList<int[]> array, int left, int right) {
 		int i = left, j = right;
+		int n = (left + right) / 2;
 		int tmp;
 		int pivot = input[(left + right) / 2];
 		int[] indexComparison = new int[2];
 		int[] indexComparison2 = new int[3];
 		while (i <= j) {
-		    	indexComparison[0] = i;
-			indexComparison[1] = j;
-			array.add(indexComparison.clone());
+		    	indexComparison2[2] = n;
+		    	indexComparison2[0] = i;
+			indexComparison2[1] = j;
+			array.add(indexComparison2.clone());
 			while (input[i] < pivot) {
 				i++;
-				indexComparison[0] = i;
-				indexComparison[1] = j;
-				array.add(indexComparison.clone());
+				indexComparison2[0] = i;
+				indexComparison2[1] = j;
+				array.add(indexComparison2.clone());
 			}
 			while (input[j] > pivot) {
 				j--;
-				indexComparison[0] = i;
-				indexComparison[1] = j;
-				array.add(indexComparison.clone());
-
+				indexComparison2[0] = i;
+				indexComparison2[1] = j;
+				array.add(indexComparison2.clone());
 			}
 			if (i <= j) {
 				tmp = input[i];
 				input[i] = input[j];
 				input[j] = tmp;
+				indexComparison[0] = i;
+				indexComparison[1] = j;
+				array.add(indexComparison.clone());
+				for(int m = 0; m < input.length-1; m++) {
+				    if(input[m] == pivot) {
+					n = m;
+				    }
+				}
 				i++;
 				j--;
+				System.out.println(pivot);
 				array.add(input.clone());
 			}
 		}

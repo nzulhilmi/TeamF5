@@ -1,6 +1,7 @@
 package javaFx;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Sorting algorithms to be used for visualisation
@@ -107,6 +108,7 @@ public class SortAlgos {
 		int tmp;
 		int pivot = input[(left + right) / 2];
 		int[] indexComparison = new int[2];
+		int[] indexComparison2 = new int[3];
 		while (i <= j) {
 		    	indexComparison[0] = i;
 			indexComparison[1] = j;
@@ -231,7 +233,13 @@ public class SortAlgos {
 
 			input[j + 1] = key;
 			count = 0;
-			steps.add(input.clone());
+			int length = steps.size()-1;
+			while(steps.get(length).length != 10) {
+			    length--;
+			}
+			if(!Arrays.equals(steps.get(length), input.clone())) {
+			    steps.add(input.clone());
+			}
 		}
 		return steps;
 	}

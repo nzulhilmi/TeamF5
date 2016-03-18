@@ -185,9 +185,7 @@ public class FXvisualiser extends BorderPane {
 
 	}
 
-	public void animationTopInsertion(Rectangle rect,Rectangle[] rects, Text text,Text[] texts,int n,int speed){
-		animationTopLeft(rect, text, n, speed);
-
+	public void animationTopInsertion(Rectangle[] rects,Text[] texts,int n,int speed){
 		for (int i = 0; i < texts.length; i++) {
 			animationRight(rects[i],texts[i],i,speed);
 		}

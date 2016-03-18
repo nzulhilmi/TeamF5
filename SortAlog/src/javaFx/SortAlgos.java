@@ -122,6 +122,7 @@ public class SortAlgos {
 				indexComparison[0] = i;
 				indexComparison[1] = j;
 				array.add(indexComparison.clone());
+
 			}
 			if (i <= j) {
 				tmp = input[i];
@@ -227,10 +228,7 @@ public class SortAlgos {
 				j--;
 				count++;
 			}
-			indexComparison[0] = j;
-			if (count != 0) {
-			    steps.add(indexComparison.clone());
-			}
+
 			input[j + 1] = key;
 			count = 0;
 			steps.add(input.clone());

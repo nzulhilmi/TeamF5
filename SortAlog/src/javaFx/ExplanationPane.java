@@ -39,7 +39,7 @@ public class ExplanationPane extends GridPane {
 
 		this.add(ExplanationTitle, 0, 0, 2, 1);
 		this.add(comboBox, 1, 1);
-		
+
 		// explanation.setVisible(false);
 		// this.add(insertion, 1, 3);
 		// this.add(advanced, 1, 4);
@@ -52,8 +52,14 @@ public class ExplanationPane extends GridPane {
 			return text = "Bubble Sort \n Bubble sort compares the two elements which are next to each other and swapping them to put them in accending order.";
 		case "Quick":
 			return text = "Quick Sort \n Quick sort firstly picks a pivot element. All other element are then compared to the pivot and placed to the left if they are smaller or to the right if they are larger, splitting the array. \n The pivot is then marked as sorted. \n The algorithm then runs simltaniously on both the left and right sides.";
-		case "PlaceHolder":
-			return text = "This is placeholder Sort";
+		case "Insertion":
+			return text = "Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list."
+				+ "Each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there."
+			 	+ "It repeats until no input elements remain."
+				+ "\n Sorting is typically done in-place, by iterating up the array, growing the sorted list behind it."
+			 	+ "At each array-position, it checks the value there against the largest value in the sorted list (which happens to be next to it, in the previous array-position checked)."
+				+ "If larger, it leaves the element in place and moves to the next."
+			 	+ "If smaller, it finds the correct position within the sorted list, shifts all the larger values up to make a space, and inserts into that correct position.";
 		case "Selection":
 		 return text = "Selection Sort \n "
 		 		+ "Selection sort starts with the element in the first position or the list assuming that this is the minimum value in the list. \n "

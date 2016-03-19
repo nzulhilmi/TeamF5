@@ -128,8 +128,13 @@ public class algModel extends Observable{
 					Rectangle rect2 = getRect(right);
 					visualiser.animationComparison(rect, rect2);
 					visualiser.changeColor(getRect(third));
-					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
-					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+					if(type.compareTo("Quick") == 0) {
+					    visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + "pivot");
+					    visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + "pivot");
+					} else {
+					    visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+					    visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+					}
 				}else{
 					//getting the left and right indexes
 					int left = steps.get(current-1)[0];

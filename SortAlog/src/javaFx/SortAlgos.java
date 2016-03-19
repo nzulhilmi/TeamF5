@@ -123,8 +123,8 @@ public class SortAlgos {
 			}
 			while (input[j] > pivot) {
 				j--;
-				indexComparison2[0] = i;
-				indexComparison2[1] = j;
+				indexComparison2[0] = j;
+				indexComparison2[1] = i;
 				array.add(indexComparison2.clone());
 			}
 			if (i <= j) {

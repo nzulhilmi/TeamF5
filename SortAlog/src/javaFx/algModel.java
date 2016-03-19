@@ -52,42 +52,127 @@ public class algModel extends Observable{
 	}
 
 	public void goBack(){
+//		updateSpeed();
+//		visualiser.logAddMsg("--------------------------");
+//		visualiser.logAddMsg("Step backwards");
+//		if(current > 0){
+//			//current--;
+//			visualiser.resetRectColor();
+//			if (steps.get(current).length==rects.length){
+//				current--;
+//				visualiser.logAddMsg("Current step: "+ (current+1));
+//				//getting the left and right indexes
+//				int left = steps.get(current)[0];
+//				int right = steps.get(current)[1];
+//				//fix properties
+//				fixTranslate(rects[left]);
+//				fixTranslate(rects[right]);
+//				fixTranslateTextBack(texts[left]);
+//				fixTranslateTextBack(texts[right]);
+//				//animation
+//				visualiser.animationBotRight(rects[left], texts[left],right - left,(int)speed);
+//				visualiser.animationTopLeft(rects[right], texts[right],right- left,(int)speed);
+//				//change the index
+//				changeIndex(left, right);
+//				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+//			}else{
+//				int left = steps.get(current)[0];
+//				int right = steps.get(current)[1];
+//				Rectangle rect = getRect(left);
+//				Rectangle rect2 = getRect(right);
+//				visualiser.animationComparison(rect, rect2,(int)speed);
+//				current--;
+//				visualiser.logAddMsg("Current step: "+ (current+1));
+//				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " with " + texts[right].getText());
+//			}
+//
+//		}
 		updateSpeed();
-		visualiser.logAddMsg("--------------------------");
-		visualiser.logAddMsg("Step backwards");
+		System.out.println(speed);
+		//if(type.compareTo("Insertion")==0){
 		if(current > 0){
-			//current--;
+			//log the step
+			visualiser.logAddMsg("--------------------------");
+			visualiser.logAddMsg("Step Back");
+			visualiser.logAddMsg("Current step: "+ (current+1));
+//			current--;
+			//reset the colours
 			visualiser.resetRectColor();
-			if (steps.get(current).length==rects.length){
-				current--;
-				visualiser.logAddMsg("Current step: "+ (current+1));
-				//getting the left and right indexes
-				int left = steps.get(current)[0];
-				int right = steps.get(current)[1];
-				//fix properties
-				fixTranslate(rects[left]);
-				fixTranslate(rects[right]);
-				fixTranslateTextBack(texts[left]);
-				fixTranslateTextBack(texts[right]);
-				//animation
-				visualiser.animationBotRight(rects[left], texts[left],right - left,(int)speed);
-				visualiser.animationTopLeft(rects[right], texts[right],right- left,(int)speed);
-				//change the index
-				changeIndex(left, right);
-				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
-			}else{
+			//check if the current is 2 or 3 elements
+			if (steps.get(current).length==2){
+
 				int left = steps.get(current)[0];
 				int right = steps.get(current)[1];
 				Rectangle rect = getRect(left);
 				Rectangle rect2 = getRect(right);
 				visualiser.animationComparison(rect, rect2,(int)speed);
+				fixTranslate(rect);
+				fixTranslate(rect2);
+				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+				visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 				current--;
-				visualiser.logAddMsg("Current step: "+ (current+1));
-				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " with " + texts[right].getText());
+			}else if (steps.get(current).length==3){
+
+				int left = steps.get(current)[0];
+				int right = steps.get(current)[1];
+				int third = steps.get(current)[2];
+				Rectangle rect = getRect(left);
+				Rectangle rect2 = getRect(right);
+				visualiser.animationComparison(rect, rect2,(int)speed);
+				fixTranslate(rect);
+				fixTranslate(rect2);
+				visualiser.changeColor(getRect(third));
+				if(type.compareTo("Quick") == 0) {
+					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + "pivot");
+					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + "pivot");
+				} else {
+					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+				}
+				current--;
+			}else{
+
+				//getting the left and right indexes
+				int left = steps.get(current-1)[0];
+				int right = steps.get(current-1)[1];
+				if(type.compareTo("Insertion")==0){
+					//fix properties
+					for (int i = 0; i <=right-left; i++) {
+						fixTranslate(rects[left+i]);
+						fixTranslateTextBack(texts[left+i]);
+					}
+					//animation
+					//group the boxes/texts
+					Rectangle[] rectlist = new Rectangle[right-left];
+					Text[] textlist = new Text[right-left];
+					for (int i = 0; i < right-left; i++) {
+						rectlist[i] = rects[left+1+i];
+						textlist[i] = texts[left+1+i];
+					}
+					visualiser.animationleftInsertion(rectlist, textlist, right - left,(int)speed);
+					visualiser.animationBotRight(rects[left], texts[left], right - left,(int)speed);
+					//change the index
+					changeIndexInsertionBack(left, right);
+					visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+					visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+				}else{
+
+					//fix properties
+					fixTranslate(rects[left]);
+					fixTranslate(rects[right]);
+					fixTranslateTextBack(texts[left]);
+					fixTranslateTextBack(texts[right]);
+					//animation
+					visualiser.animationBotRight(rects[left], texts[left], right - left,(int)speed);
+					visualiser.animationTopLeft(rects[right], texts[right], right - left,(int)speed);
+					//change the index
+					changeIndex(left, right);
+					visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+					visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+				}
+				current--;
 			}
-
 		}
-
 		//		System.out.println("Current step: "+ (current+1));
 	}
 
@@ -309,6 +394,11 @@ public class algModel extends Observable{
 	public void changeIndexInsertion(int left, int right) {
 		for (int i =right; i > left; i--) {
 			changeIndex(i-1, i);
+		}
+	}
+	public void changeIndexInsertionBack(int left, int right) {
+		for (int i =left; i < right; i++) {
+			changeIndex(i, i+1);
 		}
 	}
 

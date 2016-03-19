@@ -42,6 +42,7 @@ public class FXvisualiser extends BorderPane {
 	private Timer time;
 	private BorderPane logBtnPos = new BorderPane();
 	private double speed;
+	private boolean animating = false;
 
 	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
@@ -169,6 +170,7 @@ public class FXvisualiser extends BorderPane {
 		path2.getElements().add(new ArcTo(300, 50, 0, -50*n, -50, false, false));
 		path2.getElements().add(new LineTo(-50*n, 0));
 		//new transitions and duration
+		model.setAnimating(true);
 		PathTransition pathTransition = new PathTransition();
 		pathTransition.setDuration(Duration.millis(speed));
 		PathTransition pathTransition2 =new PathTransition();
@@ -182,8 +184,8 @@ public class FXvisualiser extends BorderPane {
 		pathTransition.play();
 		pathTransition2.play();
 		//on finish do this:
-		pathTransition.setOnFinished(e->{controls.enableBtn();});
-		pathTransition2.setOnFinished(e->{controls.enableBtn();});
+		pathTransition.setOnFinished(e->{controls.enableBtn(); model.setAnimating(false);});
+		pathTransition2.setOnFinished(e->{controls.enableBtn(); model.setAnimating(false);});
 
 	}
 
@@ -245,8 +247,13 @@ public class FXvisualiser extends BorderPane {
 	public void animationComparison(Rectangle rect, Rectangle rect2) {
 		//make the rectangles YELLOW
 		controls.disableBtn();
+		model.setAnimating(true);
 		rect.setFill(Color.YELLOW);
 		rect2.setFill(Color.YELLOW);
+		//animateNothing(rect);
+		//		pathTransition.setOnFinished(e->{controls.enableBtn(); model.setAnimating(false);});
+		//pathTransition2.setOnFinished(e->{controls.enableBtn(); model.setAnimating(false);});
+		model.setAnimating(false);
 		controls.enableBtn();
 	}
 

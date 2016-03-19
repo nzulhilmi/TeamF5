@@ -238,10 +238,14 @@ public class algModel extends Observable{
 				public void run(){
 					System.out.println("Timer exec");
 					Platform.runLater(() -> {
+						if(animating){
+							//do nothing
+						}else{
 						goForward();
+						}
 					});
 				}
-			}), 500, 2000);
+			}), 0, 100);
 			
 			}
 
@@ -329,5 +333,10 @@ public class algModel extends Observable{
 	}
 	public void updateSpeed(){
 		speed = visualiser.getspeed() * 1000+1;
+	}
+public boolean animating = false;
+	public void setAnimating(boolean b) {
+		// TODO Auto-generated method stub
+		animating = b;
 	}
 }

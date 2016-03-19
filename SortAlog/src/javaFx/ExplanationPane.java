@@ -19,7 +19,7 @@ public class ExplanationPane extends GridPane {
 		this.setVgap(10); // spacing
 		this.setPadding(new Insets(10, 10, 10, 10)); // padding around the
 		if(allowednumOfSortsOnScreen == 2){
-			this.setMaxSize(125, 300);
+			this.setMaxSize(250, 190);
 		} else {
 			this.setMaxSize(250, 300);
 		}

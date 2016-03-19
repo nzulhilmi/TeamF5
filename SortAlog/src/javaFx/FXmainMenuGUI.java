@@ -213,7 +213,7 @@ public class FXmainMenuGUI extends Application {
 		}
 
 		BorderPane borderLeft = new BorderPane();// layout for the left
-		ExplanationPane explanationPane = new ExplanationPane();
+		ExplanationPane explanationPane = new ExplanationPane(allowednumOfSortsOnScreen);
 		BorderPane.setAlignment(gridMenu, Pos.TOP_RIGHT);
 		borderLeft.setTop(imgView);
 		borderLeft.setCenter(gridMenu);

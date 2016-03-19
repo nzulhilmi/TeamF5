@@ -129,8 +129,8 @@ public class algModel extends Observable{
 					visualiser.animationComparison(rect, rect2);
 					visualiser.changeColor(getRect(third));
 					if(type.compareTo("Quick") == 0) {
-					    visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + "pivot");
-					    visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + "pivot");
+					    visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + "pivot" + "(" + texts[third].getText() +")");
+					    visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + "pivot" + "(" + texts[third].getText() +")");
 					} else {
 					    visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 					    visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());

@@ -26,7 +26,7 @@ public class algModel extends Observable{
 	private Text[] texts;
 	private Rectangle[] rects;
 	private Timer time;
-	private double speed = 1;
+	private double speed = 1000;
 	private boolean playing = false;
 	//private Boolean btnState =false;
 	/**
@@ -80,7 +80,7 @@ public class algModel extends Observable{
 				int right = steps.get(current)[1];
 				Rectangle rect = getRect(left);
 				Rectangle rect2 = getRect(right);
-				visualiser.animationComparison(rect, rect2);
+				visualiser.animationComparison(rect, rect2,(int)speed);
 				current--;
 				visualiser.logAddMsg("Current step: "+ (current+1));
 				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " with " + texts[right].getText());
@@ -104,6 +104,9 @@ public class algModel extends Observable{
 		current = 0;
 	}
 
+	/**
+	 * Go forward.
+	 */
 	public void goForward(){
 		updateSpeed();
 		System.out.println(speed);
@@ -123,7 +126,9 @@ public class algModel extends Observable{
 				int right = steps.get(current)[1];
 				Rectangle rect = getRect(left);
 				Rectangle rect2 = getRect(right);
-				visualiser.animationComparison(rect, rect2);
+				visualiser.animationComparison(rect, rect2,(int)speed);
+				fixTranslate(rect);
+				fixTranslate(rect2);
 				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 				visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 			}else if (steps.get(current).length==3){
@@ -132,7 +137,9 @@ public class algModel extends Observable{
 				int third = steps.get(current)[2];
 				Rectangle rect = getRect(left);
 				Rectangle rect2 = getRect(right);
-				visualiser.animationComparison(rect, rect2);
+				visualiser.animationComparison(rect, rect2,(int)speed);
+				fixTranslate(rect);
+				fixTranslate(rect2);
 				visualiser.changeColor(getRect(third));
 				if(type.compareTo("Quick") == 0) {
 					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + "pivot");
@@ -246,7 +253,7 @@ public class algModel extends Observable{
 					});
 				}
 			}), 0, 100);
-			
+
 			}
 
 		//			while(this.loop==true){

@@ -244,17 +244,35 @@ public class FXvisualiser extends BorderPane {
 		pathTransitionText.play();
 	}
 	//public void setCurrentIndex(int current) {}
-	public void animationComparison(Rectangle rect, Rectangle rect2) {
+	public void animationComparison(Rectangle rect, Rectangle rect2, int speed) {
 		//make the rectangles YELLOW
 		controls.disableBtn();
 		model.setAnimating(true);
 		rect.setFill(Color.YELLOW);
 		rect2.setFill(Color.YELLOW);
-		//animateNothing(rect);
-		//		pathTransition.setOnFinished(e->{controls.enableBtn(); model.setAnimating(false);});
+		animateNothing(rect,speed);
+		//
 		//pathTransition2.setOnFinished(e->{controls.enableBtn(); model.setAnimating(false);});
-		model.setAnimating(false);
+		//model.setAnimating(false);
 		controls.enableBtn();
+	}
+
+	private void animateNothing(Rectangle rect, int speed) {
+		//make a new path
+		model.setAnimating(true);
+		Path path = new Path();
+		path.getElements().add(new MoveTo(20,20));
+		path.getElements().add(new LineTo(20,20.0001));
+		path.getElements().add(new LineTo(20,20));
+		PathTransition pathTransition = new PathTransition();
+		pathTransition.setDuration(Duration.millis(speed));
+		//set the paths and the elements
+		pathTransition.setPath(path);
+		pathTransition.setNode(rect);
+		//play the animation
+		pathTransition.play();
+		pathTransition.setOnFinished(e->{model.setAnimating(false);});
+
 	}
 
 	public void resetRectColor() {

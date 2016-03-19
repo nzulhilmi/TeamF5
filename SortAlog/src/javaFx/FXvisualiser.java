@@ -192,6 +192,33 @@ public class FXvisualiser extends BorderPane {
 		}
 
 	}
+	public void animationleftInsertion(Rectangle[] rects,Text[] texts,int n,int speed){
+		for (int i = 0; i < texts.length; i++) {
+			animationLeft(rects[i],texts[i],speed);
+		}
+
+	}
+	public void animationLeft(Rectangle rect,Text text,int speed){
+		Path path = new Path();
+		path.getElements().add(new MoveTo(20,20));
+		path.getElements().add(new LineTo(20 - 50, 20));
+		Path pathText = new Path();
+		pathText.getElements().add(new MoveTo(0,0));
+		pathText.getElements().add(new LineTo(-50, 0));
+		//new transitions and duration
+		PathTransition pathTransition = new PathTransition();
+		PathTransition pathTransitionText = new PathTransition();
+		pathTransition.setDuration(Duration.millis(speed));
+		pathTransitionText.setDuration(Duration.millis(speed));
+		//set the paths and the elements
+		pathTransition.setPath(path);
+		pathTransitionText.setPath(pathText);
+		pathTransition.setNode(rect);
+		pathTransitionText.setNode(text);
+		//play the animation
+		pathTransition.play();
+		pathTransitionText.play();
+	}
 	public void animationRight(Rectangle rect,Text text,int speed){
 		Path path = new Path();
 		path.getElements().add(new MoveTo(20,20));

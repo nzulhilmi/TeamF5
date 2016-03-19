@@ -1,5 +1,7 @@
 package javaFx;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
@@ -24,6 +26,7 @@ public class FXcontrolPane extends GridPane {
 	private Button play = new Button();
 	private Button pause = new Button();
 	Button close = new Button();
+	public double speed = 1;
 	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
 		this.model = model;
 		this.period = 1000;
@@ -37,6 +40,11 @@ public class FXcontrolPane extends GridPane {
 		slider.setMax(2);
 		slider.setValue(1);
 		slider.setMajorTickUnit(.5);
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,Number old_val, Number new_val) {
+                speed = new_val.doubleValue();
+            }
+        });
 
 		//buttons creation
 		back = new Button("|<<");
@@ -132,5 +140,9 @@ public class FXcontrolPane extends GridPane {
 
 	public void clickClose() {
 	    	close.fire();
+	}
+	
+	public double getSpeed(){
+		return speed;
 	}
 }

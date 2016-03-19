@@ -41,7 +41,7 @@ public class FXvisualiser extends BorderPane {
 	private FXcontrolPane controls;
 	private Timer time;
 	private BorderPane logBtnPos = new BorderPane();
-
+	private double speed;
 
 	public FXvisualiser(algModel model, int n) {//pass the model
 		this.model = model;
@@ -83,6 +83,7 @@ public class FXvisualiser extends BorderPane {
 		pane.setMinWidth(500);
 
 		controls = new FXcontrolPane(model,logText);//add the controls to the pane
+		speed = controls.getSpeed();
 
 		Button closeLog = new Button("Hide log");
 		Button log = new Button("Show log");
@@ -278,6 +279,10 @@ public class FXvisualiser extends BorderPane {
 	}
 
 	public void clickClose() {
-	    	controls.clickClose();
+		controls.clickClose();
+	}
+	public double getspeed(){
+		speed = controls.getSpeed();
+		return controls.getSpeed();
 	}
 }

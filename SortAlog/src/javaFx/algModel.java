@@ -26,6 +26,8 @@ public class algModel extends Observable{
 	private Text[] texts;
 	private Rectangle[] rects;
 	private Timer time;
+	private double speed = 1;
+	private boolean playing = false;
 	//private Boolean btnState =false;
 	/**
 	 * Instantiates a new algorithm model.
@@ -45,9 +47,12 @@ public class algModel extends Observable{
 		this.loop = false;
 		this.n = 20;
 		this.intID = m;
+
+		//System.err.println(speed);
 	}
 
 	public void goBack(){
+		updateSpeed();
 		visualiser.logAddMsg("--------------------------");
 		visualiser.logAddMsg("Step backwards");
 		if(current > 0){
@@ -65,8 +70,8 @@ public class algModel extends Observable{
 				fixTranslateTextBack(texts[left]);
 				fixTranslateTextBack(texts[right]);
 				//animation
-				visualiser.animationBotRight(rects[left], texts[left],right - left,200);
-				visualiser.animationTopLeft(rects[right], texts[right],right- left,200);
+				visualiser.animationBotRight(rects[left], texts[left],right - left,(int)speed);
+				visualiser.animationTopLeft(rects[right], texts[right],right- left,(int)speed);
 				//change the index
 				changeIndex(left, right);
 				visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
@@ -83,7 +88,7 @@ public class algModel extends Observable{
 
 		}
 
-//		System.out.println("Current step: "+ (current+1));
+		//		System.out.println("Current step: "+ (current+1));
 	}
 
 	public int getCurrent(){
@@ -100,81 +105,82 @@ public class algModel extends Observable{
 	}
 
 	public void goForward(){
-
+		updateSpeed();
+		System.out.println(speed);
 		//if(type.compareTo("Insertion")==0){
-			if(current < steps.size()-1){
-				//log the step
-				visualiser.logAddMsg("--------------------------");
-				visualiser.logAddMsg("Step Forward");
-				visualiser.logAddMsg("Current step: "+ (current+1));
-				current++;
-				//reset the colours
-				visualiser.resetRectColor();
-				//check if the current is 2 or 3 elements
-				if (steps.get(current).length==2){
+		if(current < steps.size()-1){
+			//log the step
+			visualiser.logAddMsg("--------------------------");
+			visualiser.logAddMsg("Step Forward");
+			visualiser.logAddMsg("Current step: "+ (current+1));
+			current++;
+			//reset the colours
+			visualiser.resetRectColor();
+			//check if the current is 2 or 3 elements
+			if (steps.get(current).length==2){
 
-					int left = steps.get(current)[0];
-					int right = steps.get(current)[1];
-					Rectangle rect = getRect(left);
-					Rectangle rect2 = getRect(right);
-					visualiser.animationComparison(rect, rect2);
+				int left = steps.get(current)[0];
+				int right = steps.get(current)[1];
+				Rectangle rect = getRect(left);
+				Rectangle rect2 = getRect(right);
+				visualiser.animationComparison(rect, rect2);
+				visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+				visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+			}else if (steps.get(current).length==3){
+				int left = steps.get(current)[0];
+				int right = steps.get(current)[1];
+				int third = steps.get(current)[2];
+				Rectangle rect = getRect(left);
+				Rectangle rect2 = getRect(right);
+				visualiser.animationComparison(rect, rect2);
+				visualiser.changeColor(getRect(third));
+				if(type.compareTo("Quick") == 0) {
+					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + "pivot");
+					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + "pivot");
+				} else {
 					visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
 					visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
-				}else if (steps.get(current).length==3){
-					int left = steps.get(current)[0];
-					int right = steps.get(current)[1];
-					int third = steps.get(current)[2];
-					Rectangle rect = getRect(left);
-					Rectangle rect2 = getRect(right);
-					visualiser.animationComparison(rect, rect2);
-					visualiser.changeColor(getRect(third));
-					if(type.compareTo("Quick") == 0) {
-					    visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + "pivot" + "(" + texts[third].getText() +")");
-					    visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + "pivot" + "(" + texts[third].getText() +")");
-					} else {
-					    visualiser.logAddMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
-					    visualiser.screenMsg(" Comparing " + texts[left].getText() + " and " + texts[right].getText());
+				}
+			}else{
+				//getting the left and right indexes
+				int left = steps.get(current-1)[0];
+				int right = steps.get(current-1)[1];
+				if(type.compareTo("Insertion")==0){
+					//fix properties
+					for (int i = 0; i <=right-left; i++) {
+						fixTranslate(rects[left+i]);
+						fixTranslateText(texts[left+i]);
 					}
+					//animation
+					//group the boxes/texts
+					Rectangle[] rectlist = new Rectangle[right-left];
+					Text[] textlist = new Text[right-left];
+					for (int i = 0; i < right-left; i++) {
+						rectlist[i] = rects[left+i];
+						textlist[i] = texts[left+i];
+					}
+					visualiser.animationRightInsertion(rectlist, textlist, right - left,(int)speed);
+					visualiser.animationTopLeft(rects[right], texts[right], right - left,(int)speed);
+					//change the index
+					changeIndexInsertion(left, right);
+					visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+					visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
 				}else{
-					//getting the left and right indexes
-					int left = steps.get(current-1)[0];
-					int right = steps.get(current-1)[1];
-					if(type.compareTo("Insertion")==0){
-						//fix properties
-						for (int i = 0; i <=right-left; i++) {
-							fixTranslate(rects[left+i]);
-							fixTranslateText(texts[left+i]);
-						}
-						//animation
-						//group the boxes/texts
-						Rectangle[] rectlist = new Rectangle[right-left];
-						Text[] textlist = new Text[right-left];
-						for (int i = 0; i < right-left; i++) {
-							rectlist[i] = rects[left+i];
-							textlist[i] = texts[left+i];
-						}
-						visualiser.animationRightInsertion(rectlist, textlist, right - left,200);
-						visualiser.animationTopLeft(rects[right], texts[right], right - left,200);
-						//change the index
-						changeIndexInsertion(left, right);
-						visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
-						visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
-					}else{
-						//fix properties
-						fixTranslate(rects[left]);
-						fixTranslate(rects[right]);
-						fixTranslateText(texts[left]);
-						fixTranslateText(texts[right]);
-						//animation
-						visualiser.animationBotRight(rects[left], texts[left], right - left,200);
-						visualiser.animationTopLeft(rects[right], texts[right], right - left,200);
-						//change the index
-						changeIndex(left, right);
-						visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
-						visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
-					}
+					//fix properties
+					fixTranslate(rects[left]);
+					fixTranslate(rects[right]);
+					fixTranslateText(texts[left]);
+					fixTranslateText(texts[right]);
+					//animation
+					visualiser.animationBotRight(rects[left], texts[left], right - left,(int)speed);
+					visualiser.animationTopLeft(rects[right], texts[right], right - left,(int)speed);
+					//change the index
+					changeIndex(left, right);
+					visualiser.logAddMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
+					visualiser.screenMsg(" Swapping " + texts[right].getText() + " and " + texts[left].getText());
 				}
 			}
+		}
 	}
 
 	private void fixTranslate(Rectangle rectangle) {
@@ -222,44 +228,48 @@ public class algModel extends Observable{
 	}
 
 	public void play(){
-		//
 		System.out.println("Timer start");
-		time = new Timer();
-		time.scheduleAtFixedRate((new TimerTask(){
-			@Override
-			public void run(){
-				System.out.println("Timer exec");
-				  Platform.runLater(() -> {
-					  goForward();
-				  });
+		stop();
+		//if(!playing){
+			//updateSpeed();
+			time = new Timer();
+			time.scheduleAtFixedRate((new TimerTask(){
+				@Override
+				public void run(){
+					System.out.println("Timer exec");
+					Platform.runLater(() -> {
+						goForward();
+					});
+				}
+			}), 500, 2000);
+			
 			}
-		}), 500, 2000);
-//			while(this.loop==true){
-//
-//				if(current < steps.size()-1){
-//					current++;
-//					vis.setCurrentIndex(current);
-//					vis.forceRepaint();
-//				}else{
-//					this.loop = false;
-//				}
-//				System.out.println("working");
-//			}
-//
-//		System.out.println("end");
-//		public void moveCircle(Circle circle, Scene scene) {
-//		    Timer timer = new Timer();
-//		    timer.scheduleAtFixedRate(new TimerTask() {
-//		        @Override
-//		        public void run() {
-//		            Platform.runLater(() -> {
-//		                circle.setCenterX(random((int) scene.getX()));
-//		                circle.setCenterY(random((int) scene.getY()));
-//		            });
-//		        }
-//		    }, 1000, 1000);
-//		}
-	}
+
+		//			while(this.loop==true){
+		//
+		//				if(current < steps.size()-1){
+		//					current++;
+		//					vis.setCurrentIndex(current);
+		//					vis.forceRepaint();
+		//				}else{
+		//					this.loop = false;
+		//				}
+		//				System.out.println("working");
+		//			}
+		//
+		//		System.out.println("end");
+		//		public void moveCircle(Circle circle, Scene scene) {
+		//		    Timer timer = new Timer();
+		//		    timer.scheduleAtFixedRate(new TimerTask() {
+		//		        @Override
+		//		        public void run() {
+		//		            Platform.runLater(() -> {
+		//		                circle.setCenterX(random((int) scene.getX()));
+		//		                circle.setCenterY(random((int) scene.getY()));
+		//		            });
+		//		        }
+		//		    }, 1000, 1000);
+		//		}
 
 	public void setSpeed(int value) {
 		System.err.println("set the speed");
@@ -316,5 +326,8 @@ public class algModel extends Observable{
 	}
 	public int getID() {
 		return this.intID;
+	}
+	public void updateSpeed(){
+		speed = visualiser.getspeed() * 1000+1;
 	}
 }

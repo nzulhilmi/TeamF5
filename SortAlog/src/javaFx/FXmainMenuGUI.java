@@ -2,8 +2,6 @@ package javaFx;
 
 import java.util.Random;
 
-import org.junit.experimental.theories.Theories;
-
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

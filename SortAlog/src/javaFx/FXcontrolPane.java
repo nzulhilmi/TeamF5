@@ -19,19 +19,25 @@ import javafx.scene.text.Text;
 
 public class FXcontrolPane extends GridPane {
 	algModel model;
-	private int period;
-	public Boolean btnDisabled = false;
+	public Boolean btnDisabledPlay = false;
+	public Boolean btnDisabledStop = false;
+	public Boolean btnDisabledForw = false;
+	public Boolean btnDisabledBack = false;
 	private Button forward = new Button();
 	private Button back = new Button();
 	private Button play = new Button();
 	private Button pause = new Button();
 	Button close = new Button();
 	public double speed = 1;
-	public FXcontrolPane(algModel model, TextArea logText) { //pass the model so it acts on the same thing
+
+	public FXcontrolPane(algModel model, TextArea logText) { // pass the model
+																// so it acts on
+																// the same
+																// thing
 		this.model = model;
-		this.period = 1000;
-		//this.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE,CornerRadii.EMPTY, Insets.EMPTY)));
-		//make the slider, needs an action listener
+		// this.setBackground(new Background(new
+		// BackgroundFill(Color.ALICEBLUE,CornerRadii.EMPTY, Insets.EMPTY)));
+		// make the slider, needs an action listener
 		Slider slider = new Slider();
 		slider.setSnapToTicks(true);
 		slider.setShowTickMarks(true);
@@ -40,77 +46,77 @@ public class FXcontrolPane extends GridPane {
 		slider.setMax(2);
 		slider.setValue(1);
 		slider.setMajorTickUnit(.5);
-        slider.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov,Number old_val, Number new_val) {
-                speed = new_val.doubleValue();
-            }
-        });
+		slider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+				speed = new_val.doubleValue();
+			}
+		});
 
-		//buttons creation
+		// buttons creation
 		back = new Button("|<<");
 		back.setOnAction(e -> {
-			if(btnDisabled){
+			if (btnDisabledBack) {
 				logText.appendText("\n Please wait for the action to complete before starting another");
 				System.out.println("Please wait for the action to complete before starting another");
-			}else {
-				disableBtn();
-				back.setDisable(btnDisabled);
+			} else {
+				disableBack();
+				//back.setDisable(true);
 				model.goBack();
 			}
-			back.setDisable(btnDisabled);
+			//back.setDisable(btnDisabled);
 		});
 		play = new Button("Play");
-		play.setOnAction(e ->{
-			if(btnDisabled){
+		play.setOnAction(e -> {
+			if (btnDisabledPlay) {
 				logText.appendText("\n Please wait for the action to complete before starting another");
 				System.out.println("Please wait for the action to complete before starting another");
-			}else {
-				disableBtn();
+			} else {
+				disablePlay();
 				System.out.println("Play");
 				logText.appendText("\n Play");
 				model.play();
 			}
-			play.setDisable(btnDisabled);
+			//play.setDisable(btnDisabled);
 		});
 
 		pause = new Button("Stop");
 		pause = new Button("Stop");
-		pause.setOnAction(e ->{
-			//System.out.println("pause");
+		pause.setOnAction(e -> {
+			// System.out.println("pause");
 			logText.appendText("\n Stop");
 			model.stop();
-			play.setDisable(btnDisabled);
+			play.setDisable(btnDisabledPlay);
 		});
 
 		forward = new Button(">>|");
-		forward.setOnAction( e ->{
-			if(btnDisabled){
+		forward.setOnAction(e -> {
+			if (btnDisabledForw) {
 				logText.appendText("\n Please wait for the action to complete before starting another");
 				System.out.println("Please wait for the action to complete before starting another");
-			}else {
-				disableBtn();
-				forward.setDisable(btnDisabled);
+			} else {
+				disableForward();
+				// forward.setDisable(btnDisabled);
 				model.goForward();
 			}
-			forward.setDisable(btnDisabled);
+			//forward.setDisable(btnDisabled);
 		});
 
 		close = new Button("Close");
-		close.setOnAction(e->{
+		close.setOnAction(e -> {
 			int intID = this.model.getID();
 			String stringID = Integer.toString(intID);
 			String ID = "#" + stringID;
-			//System.out.println("close");
+			// System.out.println("close");
 			logText.appendText("\n Close");
 			model.stop();
 			FXmainMenuGUI.removeVis(ID);
 		});
 
-		//speed label
+		// speed label
 		Text speed = new Text("Speed");
 		speed.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
 
-		//add all the controls into the grid
+		// add all the controls into the grid
 		this.add(speed, 0, 1);
 		this.add(slider, 0, 2);
 		this.add(back, 1, 2);
@@ -118,31 +124,67 @@ public class FXcontrolPane extends GridPane {
 		this.add(pause, 3, 2);
 		this.add(forward, 4, 2);
 		this.add(close, 6, 2);
-	}
-	public void enableBtn(){
-		btnDisabled = false;
-		forward.setDisable(false);
-		back.setDisable(false);
-	}
-	public void disableBtn(){
-		btnDisabled = true;
-		forward.setDisable(true);
+	}/*
+		 * public void enableBtn(){ btnDisabled = false;
+		 * forward.setDisable(false); back.setDisable(false); } public void
+		 * disableBtn(){ btnDisabled = true; forward.setDisable(true);
+		 * back.setDisable(true); }
+		 */
+
+	public void disableBack() {
+		btnDisabledBack = true;
 		back.setDisable(true);
 	}
 
+	public void disableForward() {
+		btnDisabledForw = true;
+		forward.setDisable(true);
+	}
+
+	public void disablePlay() {
+		btnDisabledPlay = true;
+		play.setDisable(true);
+	}
+
+	public void disableStop() {
+		btnDisabledStop = true;
+		pause.setDisable(true);
+	}
+
+	public void enableForward() {
+		btnDisabledForw = false;
+		forward.setDisable(false);
+	}
+
+	public void enableBack() {
+		btnDisabledBack = false;
+		back.setDisable(false);
+	}
+
+	public void enablePlay() {
+		btnDisabledPlay = false;
+		play.setDisable(false);
+	}
+
+	public void enableStop() {
+		btnDisabledStop = false;
+		pause.setDisable(false);
+	}
+
 	public void clickPlay() {
-		//forward.fire() //just to test if it works
+		// forward.fire() //just to test if it works
 		play.fire();
 	}
+
 	public void clickStop() {
-	    	pause.fire();
+		pause.fire();
 	}
 
 	public void clickClose() {
-	    	close.fire();
+		close.fire();
 	}
-	
-	public double getSpeed(){
+
+	public double getSpeed() {
 		return speed;
 	}
 }

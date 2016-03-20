@@ -2,6 +2,8 @@ package javaFx;
 
 import java.util.Random;
 
+import org.junit.experimental.theories.Theories;
+
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -26,7 +28,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-/***
+/**
  * Create the Main Menu of the Application.
  *
  * @author ElliottUpton, Kiril N.
@@ -35,11 +37,12 @@ import javafx.stage.WindowEvent;
 public class FXmainMenuGUI extends Application {
 	/**
 	 * Create the Main Menu of the Application.
-	 *
-	 * @return
 	 */
 	public FXmainMenuGUI(Stage stage) {
 		start(stage);
+		/*
+		 * when the stage is closed all animations are stopped
+		 */
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent we) {
 				stopAll();
@@ -48,90 +51,131 @@ public class FXmainMenuGUI extends Application {
 		});
 	}
 
+	/*
+	 * numOfSortsOnScreen is the number of algorithms currently on the screen
+	 * 
+	 * allowednumOfSortsOnScreen is the max number allowed on screen. This
+	 * number changes depending on screen resolutions. max is 3
+	 */
 	public static int numOfSortsOnScreen = 0;
 	public static int allowednumOfSortsOnScreen = 3;
+
 	// new border pane so that the title is in the center
 	private BorderPane borderTop = new BorderPane();
 
-	Button stopAll = new Button("Stop All");
+	// creates stop all button
+	private Button stopAll = new Button("Stop All");
 
-	// Secondary title for when a sort is opened
-	static Label scenetitle = new Label("SortAlgo Main Menu");
+	// Title of the program. This changes based on the program state
+	private static Label scenetitle = new Label("SortAlgo Main Menu");
 
-	int intID = 0; // to set the id of each visualisation pane (to be converted
-	// to string)
-	static FlowPane flowPane = new FlowPane(); // FlowPane's for the sorts to be
-	// added dynamically
-	private BorderPane border = new BorderPane(); // sets the top level to a
-	// border layout
-	private static ScrollPane scrollPane = new ScrollPane(); // ScrollPane holds the
-	// flowpane so that it
-	// is scrollable
-
-	private int[] testInput = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-
+	// to set the id of each visualisation pane (to be converted to string)
+	private int intID = 0;
+	// FlowPane's for the sorts to be added dynamically
+	private static FlowPane flowPane = new FlowPane();
+	// sets the top level to a border layout
+	private BorderPane border = new BorderPane();
+	// ScrollPane holds the flowpane so that it is scrollable
+	private static ScrollPane scrollPane = new ScrollPane();
+	// the input to be sorted
+	private int[] input = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+	// The stage is the whole window
 	static Stage stage;
-
+	// true if the advanced menu is open else false
 	private static Boolean advancedBoolean = false;
 
+	/***
+	 * Starts running the Stage and program within it
+	 * 
+	 */
 	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
+		// Gets the size of the users screen
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-		//set Stage boundaries to visible bounds of the main screen
+		// set Stage max boundaries to visible bounds of the main screen
 		stage.setMaxHeight(primaryScreenBounds.getHeight());
-		stage.resizableProperty().set(false);;
-		// algModel algModel = new algModel(null, null, null); // model
-		flowPane.setPadding(new Insets(0,20,0,0)); // padding 20 because of scrollbars
+		// prevent resizing by the user
+		stage.resizableProperty().set(false);
+
+		// set the font of the title
+		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+
+		/*
+		 * Each visulisation is held in its own flow pane, flow panes are
+		 * dynamically added
+		 * 
+		 */
+		// padding 20 because of scrollbars
+		flowPane.setPadding(new Insets(0, 20, 0, 0));
 		flowPane.setColumnHalignment(HPos.LEFT); // align labels on left
+		// after width of 10 the next pane is added bellow it
 		flowPane.setPrefWrapLength(10);
+
 		scrollPane.setStyle("-fx-background-color:transparent;"); // no border
-		scrollPane.setContent(flowPane); // adds to the scroll panel
-		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED); // show the scroll bars as and when required
+		// adds the flow pane to the scroll panel
+		scrollPane.setContent(flowPane);
+		// show the scroll bars as and when required
+		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		// scroll pane should be the same size as its content
 		scrollPane.fitToWidthProperty();
-		if(primaryScreenBounds.getHeight() >= 750){
+
+		/*
+		 * if the users screen size greater than 750 then allow 3 algorithms on
+		 * screen else only permit 2
+		 * 
+		 */
+		if (primaryScreenBounds.getHeight() >= 750) {
 			allowednumOfSortsOnScreen = 3;
 			scrollPane.setMaxHeight(750);
-		}else {
+		} else {
 			allowednumOfSortsOnScreen = 2;
 			scrollPane.setMaxHeight(500);
 		}
-		border.setCenter(scrollPane); // set the position of the scrollPane to
-		// the centre of the border
+		/*
+		 * set the position of the scrollPane to the center of the main border
+		 * layout. Effectively the center of the entire window
+		 * 
+		 */
+		border.setCenter(scrollPane);
 
-		// button creation
+		/*
+		 * All sort buttons call the same method with a different param
+		 * 
+		 * Firstly create the button and set its text second set the width of
+		 * the buttons to be the max and therefore equal thirdly set the
+		 * listener to create a visualisation when clicked
+		 * 
+		 */
+
+		// Bubble button creation
 		Button bubble = new Button();
-		bubble.setText("Bubble"); // set test
-		bubble.getStyleClass().add("sortButtons");
-		bubble.setMaxWidth(Double.MAX_VALUE); // Makes the buttons all have the
-		// same size
-		bubble.setOnAction(e -> onClickVisulisation("Bubble")); // calls the
-		// code to
-		// create a new
-		// visualization
+		bubble.setText("Bubble"); // set text
+		// Makes the buttons all have the same size
+		bubble.setMaxWidth(Double.MAX_VALUE);
+		// on click call the method which creates a visualisation
+		bubble.setOnAction(e -> onClickVisulisation("Bubble"));
 
+		// creates quick sorts button
 		Button quick = new Button("Quick");
-		quick.getStyleClass().add("sortButtons");
 		quick.setMaxWidth(Double.MAX_VALUE);
 		quick.setOnAction(e -> onClickVisulisation("Quick"));
 
+		// creates quick sorts button
 		Button insertion = new Button("Insertion");
-		insertion.getStyleClass().add("sortButtons");
 		insertion.setMaxWidth(Double.MAX_VALUE);
 		insertion.setOnAction(e -> onClickVisulisation("Insertion"));
 
+		// creates quick sorts button
 		Button selection = new Button("Selection");
 		selection.getStyleClass().add("sortButtons");
 		selection.setMaxWidth(Double.MAX_VALUE);
 		selection.setOnAction(e -> onClickVisulisation("Selection"));
 
-		// Title Creation
-		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20)); // font
-		// selection
-
-		// new border pane so that the title is in the center
-		// BorderPane borderTop = new BorderPane();
-
+		/*
+		 * creates the play all button play all button has a loop which causes
+		 * all open algorithms to start playing
+		 */
 		Button playAll = new Button("Play All");
 		playAll.setMaxWidth(Double.MAX_VALUE);
 		playAll.setOnAction(e -> {
@@ -145,6 +189,11 @@ public class FXmainMenuGUI extends Application {
 			}
 		});
 
+		/*
+		 * creates the stop all button stop all button has a loop which causes
+		 * all open algorithms to stop playing
+		 * 
+		 */
 		stopAll = new Button("Stop All");
 		stopAll.setMaxWidth(Double.MAX_VALUE);
 		stopAll.setOnAction(e -> {
@@ -158,11 +207,15 @@ public class FXmainMenuGUI extends Application {
 			}
 		});
 
+		/*
+		 * creates the close all button close all button has a loop which causes
+		 * all open algorithms to close themselves and remove them for the pane
+		 */
 		Button closeAll = new Button("Close All");
 		closeAll.setMaxWidth(Double.MAX_VALUE);
 		closeAll.setOnAction(e -> {
 			if (flowPane.getChildren().size() > 0) {
-				for (int i = flowPane.getChildren().size()-1; i >= 0; i--) {
+				for (int i = flowPane.getChildren().size() - 1; i >= 0; i--) {
 					// get all the children (all the algorithms)
 					((FXvisualiser) flowPane.getChildren().get(i)).clickClose();
 				}
@@ -171,12 +224,15 @@ public class FXmainMenuGUI extends Application {
 			}
 		});
 
+		// creates the advanced menu
 		AdvancedMenu advancedMenu = new AdvancedMenu(stage, border);
 
+		// Creates a button which adds the advanced menu to the stages
 		Button advanced = new Button("Advanced Menu");
 		advanced.setMaxWidth(Double.MAX_VALUE);
 		advanced.setOnAction(e -> {
-			border.setBottom(advancedMenu); // add the border pane to the parent border pane
+			// add the border pane to the parent border pane
+			border.setBottom(advancedMenu);
 			resizeStage();
 			advancedBoolean = true;
 		});
@@ -199,58 +255,86 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(closeAll, 1, 7);
 		gridMenu.add(advanced, 1, 8);
 
+		/*
+		 * 
+		 * Creates an image viewer so the logo can be added to the GUI
+		 * surrounded by try catch incase the logo cannot be loaded
+		 * 
+		 */
 		ImageView imgView = null;
-		try{
-			/* Logo added and the menu buttons have been shifted a bit */
+		try {
 			Image img = new Image("softwarelogoFinal2darkerLeadingPadding.png");
 			imgView = new ImageView(img);
-			imgView.getStyleClass().add("logo");
 			imgView.setFitHeight(100);
 			imgView.setFitWidth(240);
-		}
-		catch(IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			System.err.println("logo failed to load");
 		}
-
-		BorderPane borderLeft = new BorderPane();// layout for the left
+		// layout for the left hand side
+		BorderPane borderLeft = new BorderPane();
+		/*
+		 * Creates the explanation pane which holds all of the written
+		 * explanations of the algorithms. Passes the number of sorts allowed on
+		 * screen as this allows the box size to be set so it doesn't go off
+		 * screen
+		 */
 		ExplanationPane explanationPane = new ExplanationPane(allowednumOfSortsOnScreen);
-		BorderPane.setAlignment(gridMenu, Pos.TOP_RIGHT);
+		// Adds to the left hand border pane layout
 		borderLeft.setTop(imgView);
 		borderLeft.setCenter(gridMenu);
 		borderLeft.setBottom(explanationPane);
+		// adds the left hand layout to the overall stage layout
+		border.setLeft(borderLeft);
 
-		borderTop.setCenter(scenetitle); // add the title to the center
-		border.setTop(borderTop); // add the center to the top
-		border.setLeft(borderLeft); // add the main menu
-		// border.setStyle("-fx-background-color: #CD5C5C;");
+		borderTop.setCenter(scenetitle); // add the title to the top center
+		// add the topLayout to the top position of the main layout
+		border.setTop(borderTop);
 
-		Scene menuScene = new Scene(border); // create the scene
+		// creates the scene from the main layout manager
+		Scene menuScene = new Scene(border);
 		// add the scene to the pane
-		// menuScene.getStylesheets().add("menuDesign.css");
 		stage.setScene(menuScene);
 		stage.setTitle("SortAlgo");
 		stage.show(); // show the stage
 
+		/*
+		 * when the flow pane (algorithms pane) resizes change the size of the
+		 * whole window and update the scroll bar size. Scroll bar needs
+		 * manually updating as it functions differently on different operating
+		 * systems.
+		 */
 		flowPane.widthProperty().addListener(new ChangeListener<Number>() {
 			@Override
-			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+			public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth,
+					Number newSceneWidth) {
 				resizeStage();
-				updatescroll(newSceneWidth.intValue());
+				updatescroll();
 			}
 		});
 	}
-	public void updatescroll(int size){
-		stage.setWidth(stage.getWidth()+1);
+
+	/**
+	 * This method forces the scrollPane to automatically resize. This is
+	 * required as the scrollPanes auto resize behviour varies depending on
+	 * operating system
+	 */
+	public void updatescroll() {
+		stage.setWidth(stage.getWidth() + 1);
 	}
 
+	/**
+	 * Removes a flow pane (visualisation) from the overall GUI. And updates the
+	 * title and stage accordingly.
+	 * 
+	 * @param s
+	 *            The name of the pane to be deleted
+	 */
 	public static void removeVis(String s) {
 		flowPane.getChildren().remove(flowPane.lookup(s));
 		numOfSortsOnScreen--;
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 		if (numOfSortsOnScreen == 0) {
 			scenetitle.setText("SortAlgo Main Menu");
-			//scrollPane.setMinWidth(0);
-			//flowPane.setMinWidth(0);
 			flowPane.setPrefWrapLength(10);
 			resizeStage();
 		} else if (numOfSortsOnScreen <= allowednumOfSortsOnScreen) {
@@ -259,6 +343,9 @@ public class FXmainMenuGUI extends Application {
 
 	}
 
+	/**
+	 * resizes the stage to the minimum size required for its content
+	 */
 	public static void resizeStage() {
 		stage.sizeToScene();
 	}
@@ -272,19 +359,27 @@ public class FXmainMenuGUI extends Application {
 	 *
 	 */
 	public void onClickVisulisation(String sort) {
-		numOfSortsOnScreen++;
+		numOfSortsOnScreen++; // increment the number of algorithms on screen
+		// if the advanced menu is open
 		if (advancedBoolean) {
-			testInput = AdvancedMenu.getInput();
+			// get the advanced menus input
+			input = AdvancedMenu.getInput();
 		} else {
-			shuffleArray(testInput);
+			// else use a random input
+			shuffleArray(input);
 		}
-		// will need to pass the model as it contains all the variables
-		algModel algModel = new algModel(testInput.clone(), sort, intID);
+		// create an instantiation of the model
+		algModel algModel = new algModel(input.clone(), sort, intID);
+		// creates the visualisation
 		FXvisualiser vis = new FXvisualiser(algModel, intID);
+		// joins the model and the visualisation
 		algModel.setVis(vis);
-		flowPane.getChildren().add(vis); // makes the flow pane
+		// adds the visualisation to the overall flow pane, like a list of panes
+		flowPane.getChildren().add(vis);
+		// allow the scroll pane to show scroll bars
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+		// update the title
 		scenetitle.setText("SortAlgo Visualising " + (numOfSortsOnScreen) + " Algorithms");
 
 		// This stops the screen resizing past visible.
@@ -294,6 +389,12 @@ public class FXmainMenuGUI extends Application {
 		intID++;
 	}
 
+	/**
+	 * generates a shuffled version of the input
+	 * 
+	 * @param array
+	 *            the array to be shuffled
+	 */
 	public void shuffleArray(int[] array) {
 		int index;
 		Random random = new Random();
@@ -307,10 +408,19 @@ public class FXmainMenuGUI extends Application {
 		}
 	}
 
+	/**
+	 * Sets the boolean flag for the advanced menu
+	 * 
+	 * @param b1
+	 *            the flag state
+	 */
 	public static void setBoolean(Boolean b1) {
 		advancedBoolean = b1;
 	}
 
+	/**
+	 * creates an event on the stop button
+	 */
 	public void stopAll() {
 		stopAll.fire();
 	}

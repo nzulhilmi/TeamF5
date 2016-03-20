@@ -10,7 +10,7 @@ import javaFx.SortAlgos;
 
 /**
  * A JUnit testing of the algorithms
- * 
+ *
  * @author Tanya D., Simmi P.
  *
  */
@@ -364,7 +364,7 @@ public class SortAlgosTest {
 	public void InsertionSortTwoElementsInOrder_ShouldReturnSameList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual3);
-		result = array.get(array.size() - 2);
+		result = array.get(array.size() - 1);
 		Assert.assertTrue(Arrays.equals(expected3, result));
 	}
 
@@ -386,7 +386,7 @@ public class SortAlgosTest {
 	public void InsertionSortTwoEqualElements_ShouldReturnElementsInOrder() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual5);
-		result = array.get(array.size() - 2);
+		result = array.get(array.size() - 1);
 		Assert.assertTrue(Arrays.equals(expected5, result));
 	}
 

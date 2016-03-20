@@ -243,7 +243,7 @@ public class SortAlgos {
 			input[j + 1] = key;
 			count = 0;
 			int length = steps.size()-1;
-			while(steps.get(length).length != 10) {
+			while(steps.get(length).length != input.length) {
 			    length--;
 			}
 			if(!Arrays.equals(steps.get(length), input.clone())) {

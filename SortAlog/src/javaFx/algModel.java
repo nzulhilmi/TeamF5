@@ -437,7 +437,7 @@ public class algModel extends Observable {
 	}
 
 	public void updateSpeed() {
-		speed = visualiser.getspeed() * 1000 + 1;
+		speed = 50 + visualiser.getspeed() * 1000 ;
 	}
 
 	public boolean animating = false;

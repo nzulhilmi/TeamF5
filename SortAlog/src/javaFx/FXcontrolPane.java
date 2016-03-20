@@ -185,6 +185,6 @@ public class FXcontrolPane extends GridPane {
 	}
 
 	public double getSpeed() {
-		return speed;
+		return (2.2-speed);
 	}
 }

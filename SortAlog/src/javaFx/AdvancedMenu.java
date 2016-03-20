@@ -2,7 +2,6 @@ package javaFx;
 
 import java.util.Arrays;
 import java.util.Random;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,6 +14,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
+/**
+ * Stores all the buttons and text area for advanced menu feature.
+ * @author Nik Zulhilmi
+ *
+ */
 public class AdvancedMenu extends BorderPane{
     private Stage stage;
     private BorderPane border;
@@ -144,15 +148,25 @@ public class AdvancedMenu extends BorderPane{
 	this.setCenter(advancedBottom);
     }
 
+    /**
+     * Resizes the window.
+     */
     public void resizeStage() {
 	stage.sizeToScene();
     }
 
+    /**
+     * Closes the advanced menu.
+     */
     public void removeAdvanced() {
 	border.getChildren().remove(border.lookup("#advanced"));
 	resizeStage();
     }
 
+    /**
+     * Shuffles the contents of the array for random input.
+     * @param array The array to be shuffled.
+     */
     public void shuffleArray(int[] array)
     {
 	int index;
@@ -169,6 +183,10 @@ public class AdvancedMenu extends BorderPane{
 	}
     }
 
+    /**
+     * Returns the input array.
+     * @return input The array passed to the algorithms
+     */
     public static int[] getInput() {
 	return input;
     }

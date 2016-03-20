@@ -161,6 +161,7 @@ public class FXvisualiser extends BorderPane {
 			} else {
 				controls.enableBack();
 				controls.enableForward();
+				controls.enablePlay();
 			}
 		});
 		pathTransition2.setOnFinished(e -> {
@@ -168,6 +169,7 @@ public class FXvisualiser extends BorderPane {
 			} else {
 				controls.enableBack();
 				controls.enableForward();
+				controls.enablePlay();
 			}
 		});
 
@@ -208,6 +210,7 @@ public class FXvisualiser extends BorderPane {
 			} else {
 				controls.enableBack();
 				controls.enableForward();
+				controls.enablePlay();
 			}
 			model.setAnimating(false);
 		});
@@ -216,6 +219,7 @@ public class FXvisualiser extends BorderPane {
 			} else {
 				controls.enableBack();
 				controls.enableForward();
+				controls.enablePlay();
 			}
 			model.setAnimating(false);
 		});
@@ -387,6 +391,9 @@ public class FXvisualiser extends BorderPane {
 	}
 	public void disablePlay() {
 		controls.disablePlay();
+	}
 
+	public void disableStop() {
+		controls.disableStop();
 	}
 }

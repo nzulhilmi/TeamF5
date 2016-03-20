@@ -60,6 +60,7 @@ public class algModel extends Observable {
 		updateSpeed();
 		// System.out.println(speed);
 		// if(type.compareTo("Insertion")==0){
+		visualiser.enablePlay();
 		if (current == 0) {
 			visualiser.resetRectColor();
 			//visualiser.enableForward();
@@ -319,6 +320,13 @@ public class algModel extends Observable {
 			public void run() {
 				// System.out.println("Timer exec");
 				Platform.runLater(() -> {
+					if(current==steps.size()-1){
+						this.cancel();
+						visualiser.timerSet(false);
+						visualiser.enableBack();
+						visualiser.disableStop();
+						//System.out.println("last");
+					}
 					if (animating) {
 						// do nothing
 					} else {

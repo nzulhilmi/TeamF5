@@ -7,7 +7,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
-
+/**
+ * This is a class creating the explanation section and 
+ * containing the explanations of the algorithms.
+ * @author ElliottUpton
+ *
+ */
 public class ExplanationPane extends GridPane {
 	public TextArea explanation = new TextArea();
 	private Boolean visable = false;
@@ -49,6 +54,11 @@ public class ExplanationPane extends GridPane {
 		// this.add(advanced, 1, 4);
 	}
 
+	/**
+	 * The textual explanation of the sorting algorithms
+	 * @param sort The sort that was selected to be shown
+	 * @return The textual explanation of the sorting algorithm
+	 */
 	private String TextExplanation(String sort) {
 		String text = "Nothing";
 		switch (sort) {

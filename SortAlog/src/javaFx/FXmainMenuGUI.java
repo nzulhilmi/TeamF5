@@ -313,7 +313,7 @@ public class FXmainMenuGUI extends Application {
 
 	/**
 	 * This method forces the scrollPane to automatically resize. This is
-	 * required as the scrollPanes auto resize behviour varies depending on
+	 * required as the scrollPanes auto resize behaviour varies depending on
 	 * operating system
 	 */
 	public void updatescroll() {
@@ -349,8 +349,8 @@ public class FXmainMenuGUI extends Application {
 	}
 
 	/**
-	 * This method creates the visulisation based on the passed sortType
-	 * paramater. Configures the model and generates a flowpane
+	 * This method creates the visualisation based on the passed sortType
+	 * parameter. Configures the model and generates a flowpane
 	 *
 	 * @param sort
 	 *            The sort type

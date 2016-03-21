@@ -55,7 +55,9 @@ public class algModel extends Observable {
 
 		// System.err.println(speed);
 	}
-
+	/**
+	 * This method implements the backwards animation when the backwards button is clicked.
+	 */
 	public void goBack() {
 		updateSpeed();
 		// System.out.println(speed);
@@ -150,22 +152,25 @@ public class algModel extends Observable {
 		}
 		// System.out.println("Current step: "+ (current+1));
 	}
-
+	
+	/**
+	 * This returns the number of the current step.
+	 * @return The number of the current step
+	 */
 	public int getCurrent() {
 		return current;
 	}
-
+	
+	/**
+	 * This returns the array of the current step.
+	 * @return The array of the current step
+	 */
 	public int[] getCurrentList() {
 		return steps.get(current);
 	}
 
-	public void setCurrentList(ArrayList<int[]> theNewArray) {
-		steps = theNewArray;
-		current = 0;
-	}
-
 	/**
-	 * Go forward.
+	 * This method implements the forwards animation when the forward button is clicked.
 	 */
 	public void goForward() {
 		updateSpeed();
@@ -258,12 +263,20 @@ public class algModel extends Observable {
 		}
 	}
 
+	/**
+	 * This fixes the translation of the rectangle
+	 * @param rectangle The rectangle
+	 */
 	private void fixTranslate(Rectangle rectangle) {
 		double newLayoutX = rectangle.getTranslateX() + rectangle.getLayoutX();
 		rectangle.setTranslateX(0);
 		rectangle.setLayoutX(newLayoutX);
 	}
 
+	/**
+	 * This fixes the text in the translated rectangle
+	 * @param Text The text in the translated rectangle
+	 */
 	private void fixTranslateText(Text Text) {
 		double x = Text.getTranslateX() + Text.getLayoutX();// -13.53125;
 		Text.setTranslateX(0);
@@ -278,6 +291,10 @@ public class algModel extends Observable {
 
 	}
 
+	/**
+	 * This fixes the text in the backwards translation of the rectangle
+	 * @param Text The text in the translated rectangle
+	 */
 	private void fixTranslateTextBack(Text Text) {
 		double x = Text.getTranslateX() + Text.getLayoutX();// -13.53125;
 		Text.setTranslateX(0);
@@ -292,6 +309,9 @@ public class algModel extends Observable {
 
 	}
 
+	/**
+	 * This method implements the stop functionality over the animation called by the Stop button.
+	 */
 	public void stop() {
 		try {
 			time.cancel();
@@ -307,6 +327,9 @@ public class algModel extends Observable {
 		// System.err.println("pause the annimation");
 	}
 
+	/**
+	 * This method implements the play functionality over the animation called by the Play button
+	 */
 	public void play() {
 		System.out.println("Timer start");
 		stop();
@@ -365,11 +388,10 @@ public class algModel extends Observable {
 	// }, 1000, 1000);
 	// }
 
-	public void setSpeed(int value) {
-		System.err.println("set the speed");
-
-	}
-
+	/**
+	 * This method sets the visualiser
+	 * @param vis The visualiser
+	 */
 	public void setVis(FXvisualiser vis) {
 		this.visualiser = vis;
 		int numberEl = getSize();
@@ -381,6 +403,11 @@ public class algModel extends Observable {
 		}
 	}
 
+	/**
+	 * Changes the indexes of the two elements that have been swapped
+	 * @param n1 Index of the first element
+	 * @param n2 Index of the second element
+	 */
 	public void changeIndex(int n1, int n2) {
 		Rectangle swapR1 = this.rects[n1];
 		Rectangle swapR2 = this.rects[n2];
@@ -392,56 +419,105 @@ public class algModel extends Observable {
 		this.texts[n2] = swapT1;
 	}
 
+	/**
+	 * This changes the indexes of all the elements that have to be moved during the Insertion algorithm
+	 * @param left The left most element
+	 * @param right The right most element
+	 */
 	public void changeIndexInsertion(int left, int right) {
 		for (int i = right; i > left; i--) {
 			changeIndex(i - 1, i);
 		}
 	}
 
+	/**
+	 * This changes the indexes of all the elements that have to be moved during the Insertion algorithm
+	 * for the backwards animation
+	 * @param left
+	 * @param right
+	 */
 	public void changeIndexInsertionBack(int left, int right) {
 		for (int i = left; i < right; i++) {
 			changeIndex(i, i + 1);
 		}
 	}
 
+	/**
+	 * Returns the name of the sort currently selected
+	 * @return The name of the sort
+	 */
 	public String getSortTypeString() {
 		// String sort = sortingAlgs.getSortTypeString();
 		return type;
 	}
 
+	/**
+	 * This returns the end of the array of steps
+	 * @return The end of the array of steps
+	 */
 	public int getBound() {
 		return steps.size() - 1;
 	}
 
+	/**
+	 * This returns the size of the array to be sorted
+	 * @return The size of the array to be sorted
+	 */
 	public int getSize() {
 		int[] p = steps.get(0);
 		return p.length;
 	}
 
+	/**
+	 * This returns the content of the current box (the number)
+	 * @param i The index of the box
+	 * @return The value/number in the box 
+	 */
 	public String getCurrentBoxContent(int i) {
 		int res = 0;
 		res = getCurrentList()[i];
 		return String.valueOf(res);
 	}
 
+	/**
+	 * This returns the rectangle at a given position
+	 * @param n The position
+	 * @return The rectangle
+	 */
 	public Rectangle getRect(int n) {
 		return this.rects[n];
 	}
 
+	/**
+	 * This returns the text at a given position
+	 * @param n The position
+	 * @return The text
+	 */
 	public Text getText(int n) {
 		return this.texts[n];
 	}
 
+	/**
+	 * Returns the ID of the model
+	 * @return The ID of the model
+	 */
 	public int getID() {
 		return this.intID;
 	}
 
+	/**
+	 * This updates the speed of the animation
+	 */	
 	public void updateSpeed() {
 		speed = 50 + visualiser.getspeed() * 1000 ;
 	}
 
 	public boolean animating = false;
 
+	/**
+	 * This method sets the flag whether the animation is running or not
+	 * @param b The new flag
+	 */
 	public void setAnimating(boolean b) {
 		// TODO Auto-generated method stub
 		animating = b;

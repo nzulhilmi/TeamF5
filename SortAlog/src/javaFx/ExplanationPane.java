@@ -105,7 +105,7 @@ public class ExplanationPane extends GridPane {
 		default:
 			break;
 		}
-		// return the text "Nothing"
+		// return the text "Nothing" if no other case is met 
 		return text;
 	}
 }

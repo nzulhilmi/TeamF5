@@ -54,7 +54,7 @@ public class SortAlgos {
 	}
 
 	/**
-	 * Bubble sort method
+	 * Bubble sort method.
 	 *
 	 * @param input
 	 *            An array that is to be sorted
@@ -111,8 +111,8 @@ public class SortAlgos {
 		int[] indexComparison = new int[2];
 		int[] indexComparison2 = new int[3];
 		while (i <= j) {
-		    	indexComparison2[2] = n;
-		    	indexComparison2[0] = i;
+			indexComparison2[2] = n;
+			indexComparison2[0] = i;
 			indexComparison2[1] = j;
 			array.add(indexComparison2.clone());
 			while (input[i] < pivot) {
@@ -134,10 +134,10 @@ public class SortAlgos {
 				indexComparison[0] = i;
 				indexComparison[1] = j;
 				array.add(indexComparison.clone());
-				for(int m = 0; m < input.length-1; m++) {
-				    if(input[m] == pivot) {
-					n = m;
-				    }
+				for (int m = 0; m < input.length - 1; m++) {
+					if (input[m] == pivot) {
+						n = m;
+					}
 				}
 				i++;
 				j--;
@@ -212,7 +212,7 @@ public class SortAlgos {
 		int n = input.length;
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 
-		//An array of the index of the two elements that are being compared
+		// An array of the index of the two elements that are being compared
 
 		int[] indexComparison = new int[2];
 
@@ -230,10 +230,10 @@ public class SortAlgos {
 			while ((j > -1) && (input[j] > key)) {
 				indexComparison[0] = j;
 				indexComparison[1] = i;
-				if(count != 0) {
-				    steps.add(indexComparison.clone());
+				if (count != 0) {
+					steps.add(indexComparison.clone());
 				}
-				int temp = input[j+1]; //to swap elements
+				int temp = input[j + 1]; // to swap elements
 				input[j + 1] = input[j];
 				input[j] = temp;
 				j--;
@@ -242,12 +242,12 @@ public class SortAlgos {
 
 			input[j + 1] = key;
 			count = 0;
-			int length = steps.size()-1;
-			while(steps.get(length).length != input.length) {
-			    length--;
+			int length = steps.size() - 1;
+			while (steps.get(length).length != input.length) {
+				length--;
 			}
-			if(!Arrays.equals(steps.get(length), input.clone())) {
-			    steps.add(input.clone());
+			if (!Arrays.equals(steps.get(length), input.clone())) {
+				steps.add(input.clone());
 			}
 		}
 		return steps;
@@ -260,7 +260,7 @@ public class SortAlgos {
 	 *            Array to keep track of the comparisons and the order of the
 	 *            list at each step.
 	 * @param input
-	 * @return An arraylist of comparisons and the order of the list at each
+	 * @return An ArrayList of comparisons and the order of the list at each
 	 *         step.
 	 */
 	public static ArrayList<int[]> selectionSort(int[] input) {
@@ -268,9 +268,7 @@ public class SortAlgos {
 		int temp;
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		steps.add(input.clone());
-		/*
-		 * An array of the index of the two elements that are being compared
-		 */
+		// An array of the index of the two elements that are being compared
 		int[] indexComparison = new int[2];
 		int[] minArray = new int[3];
 		for (int i = 0; i < length - 1; i++) {
@@ -279,32 +277,30 @@ public class SortAlgos {
 			Boolean b1 = false;
 
 			for (int j = i + 1; j < length; j++) {
-			    if(!b1) {
-				indexComparison[0] = i;
-				indexComparison[1] = j;
-				steps.add(indexComparison.clone());
-			    }
-			    else {
-				minArray[0] = i;
-				minArray[1] = j;
-				minArray[2] = compare;
-				steps.add(minArray.clone());
-			    }
+				if (!b1) {
+					indexComparison[0] = i;
+					indexComparison[1] = j;
+					steps.add(indexComparison.clone());
+				} else {
+					minArray[0] = i;
+					minArray[1] = j;
+					minArray[2] = compare;
+					steps.add(minArray.clone());
+				}
 				if (input[j] < min) {
-				    	min = input[j];
-				    	compare = j;
-				    	b1 = true;
+					min = input[j];
+					compare = j;
+					b1 = true;
 				}
 			}
-			if(input[i] != min) {
-			    input[compare] = input[i];
-			    input[i] = min;
-			    indexComparison[0] = i;
-			    indexComparison[1] = compare;
-			    steps.add(indexComparison.clone());
-			    steps.add(input.clone());
+			if (input[i] != min) {
+				input[compare] = input[i];
+				input[i] = min;
+				indexComparison[0] = i;
+				indexComparison[1] = compare;
+				steps.add(indexComparison.clone());
+				steps.add(input.clone());
 			}
-
 
 		}
 		return steps;

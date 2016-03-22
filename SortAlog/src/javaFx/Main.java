@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 /**
  * Runs the GUI for sortAlgo extends application.
- * 
+ *
  * @author ElliottUpton
  *
  */
@@ -19,8 +19,6 @@ public class Main extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) {
-		// TODO Auto-generated method stub
 		FXmainMenuGUI FXmainMenuGUI = new FXmainMenuGUI(primaryStage);
-		// primaryStage.setOnCloseRequest();
 	}
 }

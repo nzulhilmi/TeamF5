@@ -63,12 +63,7 @@ public class AdvancedMenu extends BorderPane {
 
 		Label advancedLabel = new Label("Choose input: ");
 
-		TextArea customInput = new TextArea("1,2,3,4,5,6,7,8,9,10"); // text
-																		// area
-																		// to
-																		// fill
-																		// custom
-																		// inputs
+		TextArea customInput = new TextArea("1,2,3,4,5,6,7,8,9,10"); // text area to fill custom inputs
 		customInput.setPrefSize(200, 10);
 		customInput.setMaxHeight(10);
 		customInput.setOnMouseClicked(e -> {
@@ -126,17 +121,12 @@ public class AdvancedMenu extends BorderPane {
 		Button submit = new Button("Submit");
 		submit.setOnAction(e -> {
 			String getInput = customInput.getText(); // get input from text area
-			getInput = getInput.replaceAll("\\s+", ""); // remove all the white
-														// spaces
+			getInput = getInput.replaceAll("\\s+", ""); // remove all the white spaces
 			String s = getInput.replaceAll(",", "");
 			String regex = "[0-9]+";
-			String[] split = getInput.split(","); // split the string into
-													// elements separated by ','
+			String[] split = getInput.split(","); // split the string into elements separated by ','
 			boolean b1 = true;
-			for (int i = 0; i < getInput.length() - 2; i++) { // check if
-																// there's two
-																// commas side
-																// by side
+			for (int i = 0; i < getInput.length() - 2; i++) { // check if there's two commas side by side
 				if (getInput.charAt(i) == ',' && getInput.charAt(i + 1) == ',') {
 					b1 = false;
 				}
@@ -165,6 +155,7 @@ public class AdvancedMenu extends BorderPane {
 			FXmainMenuGUI.setBoolean(false);
 		});
 
+		//add all the labels, buttons, and text area
 		advancedTop.getChildren().add(advancedLabel);
 		advancedTop.getChildren().add(sorted);
 		advancedTop.getChildren().add(reverse);
@@ -203,7 +194,7 @@ public class AdvancedMenu extends BorderPane {
 		int index;
 		Random random = new Random();
 		for (int i = array.length - 1; i > 0; i--) {
-			index = random.nextInt(i + 1);
+			index = random.nextInt(i + 1); //generate random number
 			if (index != i) {
 				array[index] ^= array[i];
 				array[i] ^= array[index];

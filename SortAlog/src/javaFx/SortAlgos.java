@@ -108,7 +108,11 @@ public class SortAlgos {
 		int n = (left + right) / 2;
 		int tmp;
 		int pivot = input[(left + right) / 2];
+
+		//to store elements being compared and about to swap
 		int[] indexComparison = new int[2];
+
+		//to store left bound, right bound, and current pivot
 		int[] indexComparison2 = new int[3];
 		while (i <= j) {
 			indexComparison2[2] = n;
@@ -268,6 +272,7 @@ public class SortAlgos {
 		int temp;
 		ArrayList<int[]> steps = new ArrayList<int[]>();
 		steps.add(input.clone());
+
 		// An array of the index of the two elements that are being compared
 		int[] indexComparison = new int[2];
 		int[] minArray = new int[3];

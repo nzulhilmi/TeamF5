@@ -494,7 +494,7 @@ public class FXvisualiser extends BorderPane {
 	 *            the rectangle
 	 */
 	public void changeColor(Rectangle rect) {
-		rect.setFill(Color.CORNFLOWERBLUE);
+		rect.setFill(Color.DODGERBLUE);
 	}
 
 	/**

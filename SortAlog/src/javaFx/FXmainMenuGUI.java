@@ -51,7 +51,7 @@ public class FXmainMenuGUI extends Application {
 
 	/*
 	 * numOfSortsOnScreen is the number of algorithms currently on the screen
-	 * 
+	 *
 	 * allowednumOfSortsOnScreen is the max number allowed on screen. This
 	 * number changes depending on screen resolutions. max is 3
 	 */
@@ -84,7 +84,7 @@ public class FXmainMenuGUI extends Application {
 
 	/***
 	 * Starts running the Stage and program within it
-	 * 
+	 *
 	 */
 	@Override
 	public void start(Stage stage) {
@@ -102,7 +102,7 @@ public class FXmainMenuGUI extends Application {
 		/*
 		 * Each visulisation is held in its own flow pane, flow panes are
 		 * dynamically added
-		 * 
+		 *
 		 */
 		// padding 20 because of scrollbars
 		flowPane.setPadding(new Insets(0, 20, 0, 0));
@@ -121,7 +121,7 @@ public class FXmainMenuGUI extends Application {
 		/*
 		 * if the users screen size greater than 750 then allow 3 algorithms on
 		 * screen else only permit 2
-		 * 
+		 *
 		 */
 		if (primaryScreenBounds.getHeight() >= 750) {
 			allowednumOfSortsOnScreen = 3;
@@ -133,17 +133,17 @@ public class FXmainMenuGUI extends Application {
 		/*
 		 * set the position of the scrollPane to the center of the main border
 		 * layout. Effectively the center of the entire window
-		 * 
+		 *
 		 */
 		border.setCenter(scrollPane);
 
 		/*
 		 * All sort buttons call the same method with a different param
-		 * 
+		 *
 		 * Firstly create the button and set its text second set the width of
 		 * the buttons to be the max and therefore equal thirdly set the
 		 * listener to create a visualisation when clicked
-		 * 
+		 *
 		 */
 
 		// Bubble button creation
@@ -190,7 +190,7 @@ public class FXmainMenuGUI extends Application {
 		/*
 		 * creates the stop all button stop all button has a loop which causes
 		 * all open algorithms to stop playing
-		 * 
+		 *
 		 */
 		stopAll = new Button("Stop All");
 		stopAll.setMaxWidth(Double.MAX_VALUE);
@@ -254,10 +254,10 @@ public class FXmainMenuGUI extends Application {
 		gridMenu.add(advanced, 1, 8);
 
 		/*
-		 * 
+		 *
 		 * Creates an image viewer so the logo can be added to the GUI
 		 * surrounded by try catch incase the logo cannot be loaded
-		 * 
+		 *
 		 */
 		ImageView imgView = null;
 		try {
@@ -323,7 +323,7 @@ public class FXmainMenuGUI extends Application {
 	/**
 	 * Removes a flow pane (visualisation) from the overall GUI. And updates the
 	 * title and stage accordingly.
-	 * 
+	 *
 	 * @param s
 	 *            The name of the pane to be deleted
 	 */
@@ -389,7 +389,7 @@ public class FXmainMenuGUI extends Application {
 
 	/**
 	 * generates a shuffled version of the input
-	 * 
+	 *
 	 * @param array
 	 *            the array to be shuffled
 	 */
@@ -408,7 +408,7 @@ public class FXmainMenuGUI extends Application {
 
 	/**
 	 * Sets the boolean flag for the advanced menu
-	 * 
+	 *
 	 * @param b1
 	 *            the flag state
 	 */

@@ -86,7 +86,6 @@ public class FXcontrolPane extends GridPane {
 			if (btnDisabledBack) {
 				// log failed attempt
 				logText.appendText("\n Please wait for the action to complete before starting another");
-				System.out.println("Please wait for the action to complete before starting another");
 			} else {
 				// call function for back and disable back button
 				disableBack();
@@ -100,11 +99,9 @@ public class FXcontrolPane extends GridPane {
 			if (btnDisabledPlay) {
 				// log the failed attempt
 				logText.appendText("\n Please wait for the action to complete before starting another");
-				System.out.println("Please wait for the action to complete before starting another");
 			} else {
 				// call function for play and disable play button
 				disablePlay();
-				System.out.println("Play");
 				logText.appendText("\n Play");
 				model.play();
 			}
@@ -127,7 +124,6 @@ public class FXcontrolPane extends GridPane {
 			if (btnDisabledForw) {
 				// log the failed attempt
 				logText.appendText("\n Please wait for the action to complete before starting another");
-				System.out.println("Please wait for the action to complete before starting another");
 			} else {
 				// disable the forward button
 				disableForward();

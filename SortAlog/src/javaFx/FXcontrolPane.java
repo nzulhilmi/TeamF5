@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
 public class FXcontrolPane extends GridPane {
 
 	/** The model. */
-	AlgModel model;
+	algModel model;
 
 	/** The button disabled play flag. */
 	public Boolean btnDisabledPlay = false;
@@ -60,7 +60,7 @@ public class FXcontrolPane extends GridPane {
 	 * @param logText
 	 *            the log text
 	 */
-	public FXcontrolPane(AlgModel model, TextArea logText) {
+	public FXcontrolPane(algModel model, TextArea logText) {
 		// set the model
 		this.model = model;
 		// make the slider and give it the needed properties

@@ -27,7 +27,7 @@ import javafx.util.Duration;
 public class FXvisualiser extends BorderPane {
 
 	/** The model. */
-	AlgModel model;
+	algModel model;
 
 	/** The rectangle list. */
 	private Rectangle[] rectList;
@@ -64,7 +64,7 @@ public class FXvisualiser extends BorderPane {
 	 * @param n
 	 *            the ID number
 	 */
-	public FXvisualiser(AlgModel model, int n) {
+	public FXvisualiser(algModel model, int n) {
 		// set the model
 		this.model = model;
 		// set the number of boxes

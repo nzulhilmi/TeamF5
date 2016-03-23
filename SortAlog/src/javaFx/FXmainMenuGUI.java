@@ -366,7 +366,7 @@ public class FXmainMenuGUI extends Application {
 			shuffleArray(input);
 		}
 		// create an instantiation of the model
-		AlgModel algModel = new AlgModel(input.clone(), sort, intID);
+		algModel algModel = new algModel(input.clone(), sort, intID);
 		// creates the visualisation
 		FXvisualiser vis = new FXvisualiser(algModel, intID);
 		// joins the model and the visualisation

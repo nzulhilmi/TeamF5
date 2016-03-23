@@ -22,12 +22,12 @@ import javafx.util.Duration;
  * this class is where the visualisation panels will be made Each sort is made
  * in a new panel.
  *
- * @author Kiril N., ElliottUpton
+ * @author Kiril N., Elliott Upton
  */
 public class FXvisualiser extends BorderPane {
 
 	/** The model. */
-	algModel model;
+	AlgModel model;
 
 	/** The rectangle list. */
 	private Rectangle[] rectList;
@@ -64,7 +64,7 @@ public class FXvisualiser extends BorderPane {
 	 * @param n
 	 *            the ID number
 	 */
-	public FXvisualiser(algModel model, int n) {
+	public FXvisualiser(AlgModel model, int n) {
 		// set the model
 		this.model = model;
 		// set the number of boxes

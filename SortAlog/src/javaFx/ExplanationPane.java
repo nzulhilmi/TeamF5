@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
  * This is a class creating the explanation section and containing the
  * explanations of the algorithms.
  *
- * @author ElliottUpton
+ * @author Elliott Upton
  *
  */
 public class ExplanationPane extends GridPane {
@@ -51,7 +51,7 @@ public class ExplanationPane extends GridPane {
 		explanation.setWrapText(true);
 		explanation.setText("Select a sort from the drop down list to display a discrition of how it works");
 		comboBox.setOnAction(e -> {
-			explanation.setText(TextExplanation(comboBox.getValue()));
+			explanation.setText(textExplanation(comboBox.getValue()));
 			if (!visable) {
 				this.add(explanation, 1, 2);
 				FXmainMenuGUI.resizeStage();
@@ -70,7 +70,7 @@ public class ExplanationPane extends GridPane {
 	 *            The sort that was selected to be shown
 	 * @return The textual explanation of the sorting algorithm
 	 */
-	private String TextExplanation(String sort) {
+	private String textExplanation(String sort) {
 		String text = "Nothing";
 		switch (sort) {
 		case "Bubble":

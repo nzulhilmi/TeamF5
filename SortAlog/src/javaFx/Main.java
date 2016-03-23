@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 /**
  * Runs the GUI for sortAlgo extends application.
  *
- * @author ElliottUpton
+ * @author Elliott Upton
  *
  */
 public class Main extends Application {

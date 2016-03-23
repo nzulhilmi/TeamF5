@@ -29,7 +29,7 @@ import javafx.stage.WindowEvent;
 /**
  * Create the Main Menu of the Application.
  *
- * @author ElliottUpton, Kiril N.
+ * @author Elliott Upton, Kiril N.
  *
  */
 public class FXmainMenuGUI extends Application {
@@ -366,7 +366,7 @@ public class FXmainMenuGUI extends Application {
 			shuffleArray(input);
 		}
 		// create an instantiation of the model
-		algModel algModel = new algModel(input.clone(), sort, intID);
+		AlgModel algModel = new AlgModel(input.clone(), sort, intID);
 		// creates the visualisation
 		FXvisualiser vis = new FXvisualiser(algModel, intID);
 		// joins the model and the visualisation

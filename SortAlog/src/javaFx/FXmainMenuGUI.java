@@ -44,7 +44,6 @@ public class FXmainMenuGUI extends Application {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent we) {
 				stopAll();
-				System.out.println("Stage is closing");
 			}
 		});
 	}
@@ -183,7 +182,7 @@ public class FXmainMenuGUI extends Application {
 					((FXvisualiser) flowPane.getChildren().get(i)).clickPlay();
 				}
 			} else {
-				System.out.println("Error: no algorithms running");
+				System.err.println("Error: no algorithms running");
 			}
 		});
 
@@ -201,7 +200,7 @@ public class FXmainMenuGUI extends Application {
 					((FXvisualiser) flowPane.getChildren().get(i)).clickStop();
 				}
 			} else {
-				System.out.println("Error: no algorithms running");
+				System.err.println("Error: no algorithms running");
 			}
 		});
 
@@ -218,7 +217,7 @@ public class FXmainMenuGUI extends Application {
 					((FXvisualiser) flowPane.getChildren().get(i)).clickClose();
 				}
 			} else {
-				System.out.println("Error: no algorithms running");
+				System.err.println("Error: no algorithms running");
 			}
 		});
 

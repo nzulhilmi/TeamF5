@@ -195,6 +195,9 @@ public class AlgModel extends Observable {
 		updateSpeed();
 		// if the current step is not the last one
 		if (current == steps.size() - 1) {
+			// change the label to sorted
+			visualiser.screenMsg("Sorted");
+			visualiser.logAddMsg("---------SORTED---------");
 			// make the color the sorted color
 			visualiser.RectColorSorted();
 			// disable the forwards button as this is the last one

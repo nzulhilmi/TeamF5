@@ -260,7 +260,7 @@ public class FXmainMenuGUI extends Application {
 		 */
 		ImageView imgView = null;
 		try {
-			Image img = new Image("softwarelogoFinal2darkerLeadingPadding.png");
+			Image img = new Image("finalLogo.png");
 			imgView = new ImageView(img);
 			imgView.setFitHeight(100);
 			imgView.setFitWidth(240);

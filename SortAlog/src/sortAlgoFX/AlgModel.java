@@ -199,6 +199,8 @@ public class AlgModel extends Observable {
 			visualiser.RectColorSorted();
 			// disable the forwards button as this is the last one
 			visualiser.disableForward();
+			// change the label to sorted
+			visualiser.screenMsg("Sorted");
 		} else if (current < steps.size() - 1) {
 			// disable the forwards and back buttons until the animation is
 			// complete

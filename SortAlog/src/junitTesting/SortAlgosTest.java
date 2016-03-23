@@ -51,7 +51,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with empty array
 	 */
 	@Test
-	public void BubbleSortEmptyLyst_ShouldReturnEmptyList() {
+	public void bubbleSortEmptyLyst_ShouldReturnEmptyList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual1);
 		int j = array.size() - 1;
@@ -66,7 +66,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with one element in the array
 	 */
 	@Test
-	public void BubbleSortOneElement_ShouldReturnTheElement() {
+	public void bubbleSortOneElement_ShouldReturnTheElement() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual2);
 		int j = array.size() - 1;
@@ -81,7 +81,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with two elements in order
 	 */
 	@Test
-	public void BubbleSortTwoElementsInOrder_ShouldReturnSameList() {
+	public void bubbleSortTwoElementsInOrder_ShouldReturnSameList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual3);
 		// Special case different from the common one
@@ -93,7 +93,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with two elements in reverse order
 	 */
 	@Test
-	public void BubbleSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
+	public void bubbleSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual4);
 		result = array.get(array.size() - 1);
@@ -104,7 +104,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with two equal elements
 	 */
 	@Test
-	public void BubbleSortTwoEqualElements_ShouldReturnElementsInOrder() {
+	public void bubbleSortTwoEqualElements_ShouldReturnElementsInOrder() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual5);
 		// Special case different from the common one
@@ -116,7 +116,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with three elements in order
 	 */
 	@Test
-	public void BubbleSortThreeElementsInOrder_ShouldReturnSortedList() {
+	public void bubbleSortThreeElementsInOrder_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual6);
 		int j = array.size() - 1;
@@ -131,7 +131,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with three elements where the last two are swapped
 	 */
 	@Test
-	public void BubbleSortThreeElementsLastTwoSwapped_ShouldReturnSortedList() {
+	public void bubbleSortThreeElementsLastTwoSwapped_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual7);
 		int j = array.size() - 1;
@@ -146,7 +146,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with three elements where the first two are swapped
 	 */
 	@Test
-	public void BubbleSortThreeElementsFirstTwoSwapped_ShouldReturnSortedList() {
+	public void bubbleSortThreeElementsFirstTwoSwapped_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual8);
 		int j = array.size() - 1;
@@ -161,7 +161,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with three elements in reverse order
 	 */
 	@Test
-	public void BubbleSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
+	public void bubbleSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual9);
 		int j = array.size() - 1;
@@ -176,7 +176,7 @@ public class SortAlgosTest {
 	 * Testing bubble sort with N elements in random order
 	 */
 	@Test
-	public void BubbleSortNElementsRandomOrder_ShouldReturnSortedList() {
+	public void bubbleSortNElementsRandomOrder_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.bubbleSort(actual10);
 		int j = array.size() - 1;
@@ -331,7 +331,7 @@ public class SortAlgosTest {
 	 * Testing insertion sort with empty array
 	 */
 	@Test
-	public void InsertionSortEmptyLyst_ShouldReturnEmptyList() {
+	public void insertionSortEmptyLyst_ShouldReturnEmptyList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual1);
 		int j = array.size() - 1;
@@ -346,7 +346,7 @@ public class SortAlgosTest {
 	 * Testing insertion sort with one element in the array
 	 */
 	@Test
-	public void InsertionSortOneElement_ShouldReturnTheElement() {
+	public void insertionSortOneElement_ShouldReturnTheElement() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual2);
 		int j = array.size() - 1;
@@ -361,7 +361,7 @@ public class SortAlgosTest {
 	 * Testing insertion sort with two elements in order
 	 */
 	@Test
-	public void InsertionSortTwoElementsInOrder_ShouldReturnSameList() {
+	public void insertionSortTwoElementsInOrder_ShouldReturnSameList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual3);
 		result = array.get(array.size() - 1);
@@ -372,7 +372,7 @@ public class SortAlgosTest {
 	 * Testing insertion sort with two elements in reverse order
 	 */
 	@Test
-	public void InsertionSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
+	public void insertionSortTwoElementsInReverseOrder_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual4);
 		result = array.get(array.size() - 1);
@@ -383,7 +383,7 @@ public class SortAlgosTest {
 	 * Testing insertion sort with two equal elements
 	 */
 	@Test
-	public void InsertionSortTwoEqualElements_ShouldReturnElementsInOrder() {
+	public void insertionSortTwoEqualElements_ShouldReturnElementsInOrder() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual5);
 		result = array.get(array.size() - 1);
@@ -394,7 +394,7 @@ public class SortAlgosTest {
 	 * Testing insertion sort with three elements in order
 	 */
 	@Test
-	public void InsertionSortThreeElementsInOrder_ShouldReturnSortedList() {
+	public void insertionSortThreeElementsInOrder_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual6);
 		int j = array.size() - 1;
@@ -411,7 +411,7 @@ public class SortAlgosTest {
 	 * Testing insertion sort with three elements where the last two are swapped
 	 */
 	@Test
-	public void InsertionSortThreeElementsLastTwoSwaped_ShouldReturnSortedList() {
+	public void insertionSortThreeElementsLastTwoSwaped_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual7);
 		int j = array.size() - 1;
@@ -429,7 +429,7 @@ public class SortAlgosTest {
 	 * swapped
 	 */
 	@Test
-	public void InsertionSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {
+	public void insertionSortThreeElementsFirstTwoSwaped_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual8);
 		int j = array.size() - 1;
@@ -446,7 +446,7 @@ public class SortAlgosTest {
 	 * Testing insertion sort with three elements in reverse order
 	 */
 	@Test
-	public void InsertionSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
+	public void insertionSortThreeElementsInReverseOrder_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual9);
 		int j = array.size() - 1;
@@ -463,7 +463,7 @@ public class SortAlgosTest {
 	 * Testing insertion sort with N elements in random order
 	 */
 	@Test
-	public void InsertionSortNElementsRandomOrder_ShouldReturnSortedList() {
+	public void insertionSortNElementsRandomOrder_ShouldReturnSortedList() {
 		int[] result = new int[expected1.length];
 		ArrayList<int[]> array = SortAlgos.insertionSort(actual10);
 		int j = array.size() - 1;
